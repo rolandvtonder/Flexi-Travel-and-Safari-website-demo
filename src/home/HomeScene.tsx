@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import { useScroll, useMotionValueEvent, useReducedMotion } from 'motion/react'
 import { SCROLL_VH, P, G, INTRO, VIDEO_SEAM, SEAM_BAND, span, ramp, ease, lerp } from '../scroll'
 import { ArrowRight, ArrowUpRight } from '../components/Icons'
-import { img } from '../data/tours'
+import { img, asset } from '../data/tours'
 
 /*
   The home scene — the Marlin pattern, re-told for Flexi.
@@ -213,11 +213,11 @@ export default function HomeScene() {
         Flexi Travel &amp; Safari — African safaris and European adventures
       </h1>
       <div style={{ position: 'sticky', top: 0, height: '100svh', overflow: 'hidden' }}>
-        <video ref={vidA} muted playsInline preload="auto" poster="/assets/video/africa-poster.jpg" aria-hidden="true" tabIndex={-1} style={{ ...vStyle, opacity: 1 - bMix }}>
-          <source src="/assets/video/africa.mp4" type="video/mp4" />
+        <video ref={vidA} muted playsInline preload="auto" poster={asset('assets/video/africa-poster.jpg')} aria-hidden="true" tabIndex={-1} style={{ ...vStyle, opacity: 1 - bMix }}>
+          <source src={asset('assets/video/africa.mp4')} type="video/mp4" />
         </video>
-        <video ref={vidB} muted playsInline preload="auto" poster="/assets/video/europe-poster.jpg" aria-hidden="true" tabIndex={-1} style={{ ...vStyle, opacity: bMix }}>
-          <source src="/assets/video/europe.mp4" type="video/mp4" />
+        <video ref={vidB} muted playsInline preload="auto" poster={asset('assets/video/europe-poster.jpg')} aria-hidden="true" tabIndex={-1} style={{ ...vStyle, opacity: bMix }}>
+          <source src={asset('assets/video/europe.mp4')} type="video/mp4" />
         </video>
 
         {/* ---- section scrims: viewport-wide, so they never leave bare strips

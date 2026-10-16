@@ -2,7 +2,7 @@ import { Link } from 'react-router'
 import { PageHero, Reveal, SectionHead, TourCard, Eyebrow, Faq, usePageMeta } from '../components/ui'
 import EnquiryForm from '../components/EnquiryForm'
 import PaymentPlan from '../components/PaymentPlan'
-import { toursIn } from '../data/tours'
+import { toursIn, asset } from '../data/tours'
 import { ArrowRight, Check, Info } from '../components/Icons'
 
 const STEPS = [
@@ -19,7 +19,7 @@ export default function Europe() {
   return (
     <>
       <PageHero
-        image="/assets/video/europe-poster.jpg"
+        image={asset('assets/video/europe-poster.jpg')}
         eyebrow="European Adventures · For South Africa, Botswana & Namibia"
         title={
           <>

@@ -43,4 +43,13 @@ Until then, forms open WhatsApp to the right office with the enquiry pre-filled.
 
 ## Hosting
 
-It's a single-page app: `public/_redirects` (Netlify) and `vercel.json` (Vercel) send every route to `index.html`. On other hosts, configure the same fallback.
+**Demo — GitHub Pages:** every push to `main` runs `.github/workflows/deploy.yml`, which type-checks, builds
+with `BASE_PATH=/Flexi-Travel-and-Safari-website-demo/` and publishes to
+https://rolandvtonder.github.io/Flexi-Travel-and-Safari-website-demo/
+(one-time setup: repo **Settings → Pages → Source: GitHub Actions**).
+
+The build also writes `dist/404.html` (a copy of `index.html`) so deep links like `/europe` survive a refresh on Pages.
+All public files are referenced through `asset()` in `src/data/tours.ts`, so they resolve under any base path.
+
+**Live site — custom domain:** build with no `BASE_PATH` (base `/`). `public/_redirects` (Netlify) and `vercel.json`
+(Vercel) send every route to `index.html`; on other hosts configure the same fallback.
