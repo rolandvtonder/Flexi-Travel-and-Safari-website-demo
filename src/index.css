@@ -1,0 +1,289 @@
+@import "tailwindcss";
+
+/*
+  Flexi Travel & Safari — design tokens.
+
+  The structure follows the Marlin reference (a dark photographic page, one
+  scroll-choreographed scene, one accent), re-skinned for safari:
+
+      ink     #0c0f0b   warm near-black with a green cast, like bush at dusk
+      bone    #f5efe3   sun-bleached off-white instead of pure white
+      gold    #e0a83e   savanna gold — the single accent, kept for the mark,
+                        the primary CTA and active states only
+
+  Type is three faces with three jobs:
+      Fraunces   display serif — warm, editorial, reads as premium travel
+      Anybody    wide uppercase labels — the Marlin signature, kept for nav,
+                 eyebrows and data readouts
+      Manrope    body text
+
+  The logo mark and palette are placeholders until the client supplies the
+  final brand; every colour lives here, so swapping them is a one-file change.
+*/
+@theme {
+  --color-ink: #0c0f0b;
+  --color-ink-2: #141912;
+  --color-ink-3: #1c2219;
+  --color-bone: #f5efe3;
+  --color-mist: rgba(245, 239, 227, 0.72);
+  --color-dim: rgba(245, 239, 227, 0.56);
+  --color-line: rgba(245, 239, 227, 0.12);
+  --color-gold: #e0a83e;
+  --color-gold-soft: #f0c879;
+  --color-danger: #ff8a7a;
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-label: "Anybody", system-ui, sans-serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
+}
+
+html, body, #root { margin: 0; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-bone);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: var(--color-gold); color: var(--color-ink); }
+
+a { color: inherit; text-decoration: none; }
+
+/* Display serif. Optical size follows the font size automatically. */
+.display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-optical-sizing: auto;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+  color: var(--color-bone);
+  text-wrap: balance;
+}
+.display em { font-style: italic; font-weight: 400; color: var(--color-gold-soft); }
+
+/* Wide uppercase label — the Marlin voice. */
+.label {
+  font-family: var(--font-label);
+  font-variation-settings: "wdth" 125, "wght" 500;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+/* Glass over moving footage. */
+.glass {
+  background: linear-gradient(160deg, rgba(245, 239, 227, 0.16) 0%, rgba(245, 239, 227, 0.05) 100%);
+  border: 1px solid rgba(245, 239, 227, 0.24);
+  box-shadow: inset 0 1px 0 rgba(245, 239, 227, 0.32), 0 26px 50px -26px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+}
+
+/* Buttons. Real controls, 48px tall, visible focus. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  height: 48px;
+  padding: 0 26px;
+  border-radius: 999px;
+  font-family: var(--font-label);
+  font-variation-settings: "wdth" 125, "wght" 600;
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 0;
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease, transform 160ms ease;
+  touch-action: manipulation;
+}
+.btn:active { transform: scale(0.97); }
+.btn-gold { background: var(--color-gold); color: var(--color-ink); }
+.btn-gold:hover { background: var(--color-gold-soft); }
+.btn-light { background: var(--color-bone); color: var(--color-ink); }
+.btn-light:hover { background: #fff; }
+.btn-ghost {
+  background: transparent;
+  color: var(--color-bone);
+  border: 1px solid rgba(245, 239, 227, 0.42);
+  padding: 0 8px 0 22px;
+}
+.btn-ghost:hover { border-color: var(--color-bone); background: rgba(245, 239, 227, 0.08); }
+.btn-ghost .dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(245, 239, 227, 0.16);
+  display: grid;
+  place-items: center;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+.btn:focus-visible { border-radius: 999px; }
+
+.skip-link {
+  position: fixed;
+  left: 16px;
+  top: -60px;
+  z-index: 100;
+  background: var(--color-gold);
+  color: var(--color-ink);
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+}
+.skip-link:focus { top: 16px; }
+
+/* Form controls */
+.field-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-mist);
+  margin-bottom: 6px;
+}
+.input {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(245, 239, 227, 0.18);
+  background: rgba(245, 239, 227, 0.05);
+  color: var(--color-bone);
+  font: inherit;
+  font-size: 16px;
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+.input::placeholder { color: rgba(245, 239, 227, 0.4); }
+.input:hover { border-color: rgba(245, 239, 227, 0.32); }
+.input:focus { outline: none; border-color: var(--color-gold); background: rgba(245, 239, 227, 0.08); }
+.input[aria-invalid="true"] { border-color: var(--color-danger); }
+select.input { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--color-mist) 50%), linear-gradient(135deg, var(--color-mist) 50%, transparent 50%); background-position: calc(100% - 22px) 50%, calc(100% - 16px) 50%; background-size: 6px 6px; background-repeat: no-repeat; padding-right: 40px; }
+select.input option { background: var(--color-ink-2); color: var(--color-bone); }
+
+/* Range slider for the payment-plan calculator */
+input[type="range"].range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 28px;
+  background: transparent;
+  cursor: pointer;
+}
+input[type="range"].range::-webkit-slider-runnable-track { height: 6px; border-radius: 999px; background: linear-gradient(90deg, var(--color-gold) var(--fill, 50%), rgba(245, 239, 227, 0.16) var(--fill, 50%)); }
+input[type="range"].range::-moz-range-track { height: 6px; border-radius: 999px; background: rgba(245, 239, 227, 0.16); }
+input[type="range"].range::-moz-range-progress { height: 6px; border-radius: 999px; background: var(--color-gold); }
+input[type="range"].range::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; margin-top: -9px; border-radius: 50%; background: var(--color-bone); border: 4px solid var(--color-gold); }
+input[type="range"].range::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: var(--color-bone); border: 4px solid var(--color-gold); }
+
+.tabular { font-variant-numeric: tabular-nums; }
+
+/* Page container for the flow-layout pages. */
+.wrap {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+@media (min-width: 768px) {
+  .wrap { padding-left: 40px; padding-right: 40px; }
+}
+
+/* Primary nav links collapse into the menu sheet below 1180px. */
+@media (max-width: 1179px) {
+  .nav-links { display: none !important; }
+}
+@media (min-width: 1180px) {
+  .nav-burger { display: none !important; }
+}
+.nav-cta { padding: 0 20px; }
+.cta-short { display: none; }
+@media (max-width: 420px) {
+  .nav-cta { padding: 0 16px; }
+  .cta-long { display: none; }
+  .cta-short { display: inline; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Card hovers — image eases in, the arrow chip turns gold. Transform only. */
+.tour-card-img, .journey-img { transition: transform 900ms cubic-bezier(.2,.7,.2,1); }
+.tour-card:hover .tour-card-img, .journey-card:hover .journey-img { transform: scale(1.05); }
+.tour-card-go { transition: background-color 250ms ease, color 250ms ease, border-color 250ms ease; }
+.tour-card:hover .tour-card-go { background: var(--color-gold) !important; border-color: var(--color-gold) !important; color: var(--color-ink) !important; }
+.tour-card, .journey-card, .scene-tile { transition: border-color 250ms ease; }
+.tour-card:hover { border-color: rgba(224, 168, 62, 0.45) !important; }
+.scene-tile:hover span[aria-hidden] { background: var(--color-gold) !important; color: var(--color-ink) !important; border-color: var(--color-gold) !important; }
+
+/* Floating WhatsApp button */
+.wa-float {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #25d366;
+  color: #fff;
+  border: 0;
+  cursor: pointer;
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.6);
+  transition: transform 200ms ease;
+}
+.wa-float:hover { transform: scale(1.06); }
+
+/* Tour page: content beside a sticky enquiry rail on wide screens. */
+.tour-layout { display: grid; gap: 48px; }
+@media (min-width: 1024px) {
+  .tour-layout { grid-template-columns: minmax(0, 1fr) 400px; gap: 64px; align-items: start; }
+  .tour-aside { position: sticky; top: 92px; }
+}
+
+/* Choice cards — native radios/checkboxes inside a large, tappable label. */
+.choice {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 52px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(245, 239, 227, 0.18);
+  background: rgba(245, 239, 227, 0.03);
+  cursor: pointer;
+  font-size: 15.5px;
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+.choice:hover { border-color: rgba(245, 239, 227, 0.34); }
+.choice input { width: 18px; height: 18px; margin: 0; flex: none; accent-color: var(--color-gold); cursor: pointer; }
+.choice:has(input:checked) { border-color: var(--color-gold); background: rgba(224, 168, 62, 0.1); }
+.choice:has(input:focus-visible) { outline: 2px solid var(--color-gold); outline-offset: 2px; }
+.choice input:focus-visible { outline: none; }
+.choice-chip { min-height: 44px; padding: 8px 16px; border-radius: 999px; }
+
+/* FAQ disclosure */
+.faq summary { list-style: none; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq .faq-icon { transition: transform 250ms ease; }
+.faq[open] .faq-icon { transform: rotate(45deg); }
+.faq summary:hover { color: var(--color-gold-soft); }
