@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { Link, useSearchParams } from 'react-router'
 import { PageHero, Reveal, SectionHead, TourCard, Chips, Eyebrow, Faq, usePageMeta } from '../components/ui'
 import EnquiryForm from '../components/EnquiryForm'
-import { SAFARI_COUNTRIES, toursIn, img } from '../data/tours'
+import { SAFARI_COUNTRIES, toursIn, img, asset } from '../data/tours'
 import { ArrowRight, Check, Info } from '../components/Icons'
 
 const AUDIENCES = [
@@ -42,7 +42,7 @@ export default function Safari() {
   return (
     <>
       <PageHero
-        image="/assets/video/africa-poster.jpg"
+        image={asset('assets/video/africa-poster.jpg')}
         eyebrow="Safari Africa · For Europe & America"
         title={
           <>

@@ -315,4 +315,8 @@ export const formatPrice = (n: number, currency: 'EUR' | 'ZAR') => fmt(currency,
 export const priceRange = (t: Tour) => `${fmt(t.currency, t.price[0])} – ${fmt(t.currency, t.price[1])}`
 export const priceFrom = (t: Tour) => `From ${fmt(t.currency, t.price[0])}`
 
-export const img = (name: string) => `/assets/img/${name}.webp`
+/** A file in public/, resolved against the site's base path — '/' locally,
+    '/Flexi-Travel-and-Safari-website-demo/' on GitHub Pages. */
+export const asset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`
+
+export const img = (name: string) => asset(`assets/img/${name}.webp`)
