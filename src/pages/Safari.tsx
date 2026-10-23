@@ -2,14 +2,16 @@ import { useMemo } from 'react'
 import { Link, useSearchParams } from 'react-router'
 import { PageHero, Reveal, SectionHead, TourCard, Chips, Eyebrow, Faq, usePageMeta } from '../components/ui'
 import EnquiryForm from '../components/EnquiryForm'
-import { SAFARI_COUNTRIES, toursIn, img, asset } from '../data/tours'
+import { SAFARI_COUNTRIES, toursIn, photo } from '../data/tours'
+import { GUIDES } from '../data/guides'
+import { guideImage } from './TravelGuides'
 import { ArrowRight, Check, Info } from '../components/Icons'
 
 const AUDIENCES = [
-  { title: 'For couples', body: 'Romantic lodges, private moments and unforgettable wildlife encounters.', image: 'for-couples', pick: 'Wild Africa, Wine & Wellness' },
-  { title: 'For families', body: 'Exciting wildlife, comfortable stays and sensible travel days.', image: 'for-families', pick: 'The Big Five & Beautiful Cape' },
-  { title: 'For women travelling together', body: 'Shared adventures, trusted local guides and a little more courage in the itinerary.', image: 'for-women', pick: 'Into the Elephant Kingdom' },
-  { title: 'For the well-travelled', body: 'Unhurried days, exceptional hospitality and experiences worth travelling for.', image: 'for-well-travelled', pick: 'Serengeti & The Crater' },
+  { title: 'For couples', body: 'Romantic lodges, private moments and unforgettable wildlife encounters.', image: 'pnr-canyon-couple', pick: 'Wild Africa, Wine & Wellness' },
+  { title: 'For families', body: 'Exciting wildlife, comfortable stays and sensible travel days.', image: 'sun-elephant-family', pick: 'The Big Five & Beautiful Cape' },
+  { title: 'For women travelling together', body: 'Shared adventures, trusted local guides and a little more courage in the itinerary.', image: 'cpt-quad-friends', pick: 'Into the Elephant Kingdom' },
+  { title: 'For the well-travelled', body: 'Unhurried days, exceptional hospitality and experiences worth travelling for.', image: 'vic-dinner-cruise', pick: 'Serengeti & The Crater' },
 ]
 
 const WAY = [
@@ -27,7 +29,7 @@ const PROMISES = [
 ]
 
 export default function Safari() {
-  usePageMeta('Safari Africa', 'Thoughtfully planned African safaris in South Africa, Zimbabwe, Kenya and Tanzania for travellers from Europe and America. €4,000–€6,000 per person, flights excluded.')
+  usePageMeta('African Safaris', 'Thoughtfully planned African safaris in South Africa, Zimbabwe, Kenya and Tanzania for travellers from Europe and America. €4,000–€6,000 per person, flights excluded.')
   const [params, setParams] = useSearchParams()
   const country = params.get('country') ?? 'All'
   const tours = useMemo(() => toursIn('africa').filter((t) => country === 'All' || t.countries.includes(country)), [country])
@@ -42,8 +44,8 @@ export default function Safari() {
   return (
     <>
       <PageHero
-        image={asset('assets/video/africa-poster.jpg')}
-        eyebrow="Safari Africa · For Europe & America"
+        image={photo('safari-waterhole-mix')}
+        eyebrow="African Safaris · For Europe & America"
         title={
           <>
             Africa is more than a destination. <em>It’s home.</em>
@@ -111,8 +113,8 @@ export default function Safari() {
           <ul style={{ listStyle: 'none', padding: 0, margin: '44px 0 0', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', gap: 18 }}>
             {AUDIENCES.map((a, i) => (
               <Reveal as="li" key={a.title} delay={i * 0.06}>
-                <article style={{ position: 'relative', minHeight: 400, borderRadius: 32, overflow: 'hidden', border: '1px solid var(--color-line)', height: '100%' }}>
-                  <img src={img(a.image)} alt="" loading="lazy" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                <article className="dark" style={{ position: 'relative', minHeight: 400, borderRadius: 32, overflow: 'hidden', border: '1px solid var(--color-line)', height: '100%' }}>
+                  <img src={photo(a.image, 'sm')} alt="" loading="lazy" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
                   <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(8,10,7,0.1) 20%, rgba(8,10,7,0.92) 100%)' }} />
                   <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, padding: 26 }}>
                     <h3 className="display" style={{ margin: 0, fontSize: 28 }}>
@@ -124,6 +126,31 @@ export default function Safari() {
                     </p>
                   </div>
                 </article>
+              </Reveal>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* ---- destination guides ---- */}
+      <section aria-labelledby="dest-h" style={{ padding: '0 0 clamp(80px, 11vw, 140px)' }}>
+        <div className="wrap">
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 24, flexWrap: 'wrap' }}>
+            <SectionHead id="dest-h" eyebrow="Destination guides" title={<>Where we <em>travel</em></>} intro="From the Cape to the Serengeti — read up on each destination before you choose." />
+            <Link to="/travel-guides?topic=African%20Safaris" className="btn btn-ghost" style={{ paddingRight: 22 }}>
+              All travel guides
+            </Link>
+          </div>
+          <ul style={{ listStyle: 'none', padding: 0, margin: '36px 0 0', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 240px), 1fr))', gap: 16 }}>
+            {GUIDES.filter((g) => g.region === 'africa').slice(0, 6).map((g, i) => (
+              <Reveal as="li" key={g.slug} delay={(i % 3) * 0.05}>
+                <Link to={`/travel-guides/${g.slug}`} className="journey-card dark" style={{ position: 'relative', display: 'block', aspectRatio: '4 / 3', borderRadius: 22, overflow: 'hidden' }}>
+                  <img src={guideImage(g, 'sm')} alt="" loading="lazy" className="journey-img" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <span aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.8) 100%)' }} />
+                  <span className="display" style={{ position: 'absolute', left: 18, right: 18, bottom: 16, fontSize: 19, lineHeight: 1.2 }}>
+                    {g.title}
+                  </span>
+                </Link>
               </Reveal>
             ))}
           </ul>
@@ -218,7 +245,7 @@ export default function Safari() {
               <p style={{ margin: '18px 0 0', color: 'var(--color-mist)', fontSize: 17 }}>
                 Tell us what Africa means to you. Whether it’s your first safari, a celebration or your favourite people gathered for an adventure, we’ll help you find the right route.
               </p>
-              <div className="glass" style={{ marginTop: 28, padding: '20px 22px', borderRadius: 22 }}>
+              <div style={{ marginTop: 28, padding: '20px 22px', borderRadius: 22, background: 'var(--color-ink)', border: '1px solid var(--color-line)', boxShadow: '0 24px 50px -40px rgba(0,0,0,0.4)' }}>
                 <div className="label" style={{ fontSize: 10, color: 'var(--color-gold)' }}>
                   Typical safari budget
                 </div>

@@ -1,7 +1,7 @@
 import { useEffect, type CSSProperties, type ReactNode } from 'react'
 import { Link } from 'react-router'
 import { motion, useReducedMotion } from 'motion/react'
-import { type Tour, img, priceFrom } from '../data/tours'
+import { type Tour, tourImage, priceFrom } from '../data/tours'
 import { ArrowUpRight, Clock, Pin } from './Icons'
 import { SITE } from '../config'
 
@@ -97,7 +97,7 @@ export function PageHero({
 }) {
   const reduce = useReducedMotion()
   return (
-    <section style={{ position: 'relative', minHeight: 'min(92svh, 860px)', display: 'flex', alignItems: 'flex-end', overflow: 'hidden' }}>
+    <section className="dark" style={{ position: 'relative', minHeight: 'min(calc(88svh - var(--header-h)), 820px)', display: 'flex', alignItems: 'flex-end', overflow: 'hidden', background: '#111' }}>
       <motion.img
         src={image}
         alt=""
@@ -113,10 +113,10 @@ export function PageHero({
           position: 'absolute',
           inset: 0,
           background:
-            'linear-gradient(180deg, rgba(12,15,11,0.55) 0%, rgba(12,15,11,0.1) 30%, rgba(12,15,11,0.55) 62%, rgba(12,15,11,0.96) 100%), linear-gradient(90deg, rgba(12,15,11,0.7) 0%, rgba(12,15,11,0) 65%)',
+            'linear-gradient(180deg, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0) 32%, rgba(0,0,0,0.2) 58%, rgba(0,0,0,0.7) 100%), linear-gradient(90deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 62%)',
         }}
       />
-      <div className="wrap" style={{ position: 'relative', paddingTop: 140, paddingBottom: 'clamp(48px, 8vh, 96px)' }}>
+      <div className="wrap" style={{ position: 'relative', paddingTop: 96, paddingBottom: 'clamp(48px, 8vh, 96px)' }}>
         <Reveal>
           <Eyebrow>{eyebrow}</Eyebrow>
         </Reveal>
@@ -127,7 +127,7 @@ export function PageHero({
         </Reveal>
         {intro && (
           <Reveal delay={0.16}>
-            <p style={{ margin: '22px 0 0', fontSize: 'clamp(16px, 1.5vw, 19px)', color: 'rgba(245,239,227,0.86)', maxWidth: 620 }}>{intro}</p>
+            <p style={{ margin: '22px 0 0', fontSize: 'clamp(16px, 1.5vw, 19px)', color: 'color-mix(in srgb, var(--color-bone) 86%, transparent)', maxWidth: 620 }}>{intro}</p>
           </Reveal>
         )}
         {children && <Reveal delay={0.24}>{children}</Reveal>}
@@ -148,13 +148,13 @@ export function TourCard({ tour, priority = false }: { tour: Tour; priority?: bo
         height: '100%',
         borderRadius: 28,
         overflow: 'hidden',
-        background: 'var(--color-ink-2)',
+        background: 'var(--color-ink)',
         border: '1px solid var(--color-line)',
       }}
     >
-      <div style={{ position: 'relative', aspectRatio: '4 / 3', overflow: 'hidden' }}>
+      <div className="dark" style={{ position: 'relative', aspectRatio: '4 / 3', overflow: 'hidden' }}>
         <img
-          src={img(tour.image)}
+          src={tourImage(tour, 'sm')}
           alt=""
           loading={priority ? 'eager' : 'lazy'}
           decoding="async"
@@ -184,8 +184,8 @@ export function TourCard({ tour, priority = false }: { tour: Tour; priority?: bo
             borderRadius: '50%',
             display: 'grid',
             placeItems: 'center',
-            background: 'rgba(245,239,227,0.2)',
-            border: '1px solid rgba(245,239,227,0.4)',
+            background: 'color-mix(in srgb, var(--color-bone) 20%, transparent)',
+            border: '1px solid color-mix(in srgb, var(--color-bone) 40%, transparent)',
             backdropFilter: 'blur(8px)',
             color: 'var(--color-bone)',
           }}
@@ -202,7 +202,7 @@ export function TourCard({ tour, priority = false }: { tour: Tour; priority?: bo
           <span className="label" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'var(--color-mist)' }}>
             <Clock size={14} /> {tour.duration}
           </span>
-          <span className="tabular" style={{ fontWeight: 700, fontSize: 15, color: 'var(--color-gold-soft)' }}>
+          <span className="tabular" style={{ fontWeight: 700, fontSize: 15, color: 'var(--color-gold)' }}>
             {priceFrom(tour)}
             <span style={{ fontWeight: 500, fontSize: 12, color: 'var(--color-dim)' }}> pp</span>
           </span>
@@ -240,7 +240,7 @@ export function Chips({
               padding: '0 18px',
               borderRadius: 999,
               cursor: 'pointer',
-              border: `1px solid ${on ? 'var(--color-gold)' : 'rgba(245,239,227,0.2)'}`,
+              border: `1px solid ${on ? 'var(--color-gold)' : 'color-mix(in srgb, var(--color-bone) 20%, transparent)'}`,
               background: on ? 'var(--color-gold)' : 'transparent',
               color: on ? 'var(--color-ink)' : 'var(--color-bone)',
               transition: 'all 200ms ease',

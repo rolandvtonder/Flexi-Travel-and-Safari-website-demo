@@ -1,0 +1,27 @@
+{
+  "slug": "sun-city-and-pilanesberg",
+  "title": "Sun City & Pilanesberg: safari and resort in one",
+  "region": "africa",
+  "date": "2026-10-17",
+  "excerpt": "Morning game drives in a malaria-free Big Five reserve, afternoons at the Valley of Waves — a family favourite a couple of hours from Johannesburg.",
+  "hero": { "photo": "sun-elephant-family" },
+  "body": [
+    { "p": "Sun City and the Pilanesberg National Park sit side by side, around two to three hours' drive from Johannesburg. Together they offer something rare: a genuine Big Five safari in the morning and a resort day by the pool in the afternoon, which makes them ideal for families and for a short safari add-on." },
+    { "h": "Pilanesberg National Park" },
+    { "p": "The park lies in the bowl of an ancient volcanic crater, its rings of hills creating a beautiful setting for game viewing. Lion, elephant, rhino, buffalo and leopard all live here, alongside giraffe, zebra, cheetah and hippo. Because Pilanesberg is malaria-free, it is a popular choice for travellers with young children." },
+    { "ul": [
+      "Guided morning and evening game drives in open vehicles",
+      "Quad-bike safaris on trails at the edge of the reserve",
+      "Hot-air balloon flights over the crater, in season",
+      "Hides at the waterholes for quiet wildlife watching"
+    ] },
+    { "h": "Sun City resort" },
+    { "p": "Built around the legend of a lost civilisation, the resort is famous for the Palace of the Lost City and its elephant statues. The Valley of Waves water park has a wave pool with its own sandy beach, a lazy river and water slides, and there are golf courses, restaurants and entertainment for every age." },
+    { "h": "How long to stay" },
+    { "p": "Three or four nights gives you two full days of game drives and time to enjoy the resort. Many travellers combine it with Johannesburg, the Panorama Route and Kruger, or fly on to Cape Town." },
+    { "h": "When to go" },
+    { "p": "Game viewing is good all year, and best in the drier winter months when the bush is thinner. Summer days are hot — perfect for the Valley of Waves." }
+  ],
+  "gallery": { "places": ["sun"] },
+  "tours": ["big-five-and-beautiful-cape"]
+}

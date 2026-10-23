@@ -1,18 +1,18 @@
 import { Link } from 'react-router'
 import HomeScene from '../home/HomeScene'
 import { Reveal, SectionHead, TourCard, Eyebrow, usePageMeta } from '../components/ui'
-import { TOURS, img } from '../data/tours'
+import { TOURS, img, photo } from '../data/tours'
 import { ArrowRight, Heart, Wallet, Globe, Compass } from '../components/Icons'
 
 const JOURNEYS = [
   {
     to: '/safari',
     eyebrow: 'For Europe & America',
-    title: 'Safari Africa',
+    title: 'African Safaris',
     line: 'Africa’s wild side, without the planning stress.',
     body: 'Eight signature safaris across South Africa, Zimbabwe, Kenya and Tanzania — designed for first-timers, couples, families and friends travelling together.',
     meta: '6–10 days · from €4,000 pp',
-    image: 'elephant-kingdom',
+    image: photo('hwa-plains'),
     cta: 'Discover our safaris',
   },
   {
@@ -22,8 +22,8 @@ const JOURNEYS = [
     line: 'Your European dream, paid for over time.',
     body: 'Spain, Portugal, France and Italy for travellers from South Africa, Botswana and Namibia — paid monthly, by EFT or card, over up to twelve months before you fly.',
     meta: '7–8 days · from R36,000 pp',
-    image: 'dolce-vita',
-    cta: 'Explore European adventures',
+    image: img('dolce-vita'),
+    cta: 'Explore Europe',
   },
 ]
 
@@ -74,8 +74,8 @@ export default function Home() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 460px), 1fr))', gap: 20, marginTop: 48 }}>
             {JOURNEYS.map((j, i) => (
               <Reveal key={j.to} delay={i * 0.08}>
-                <Link to={j.to} className="journey-card" style={{ position: 'relative', display: 'block', minHeight: 560, borderRadius: 32, overflow: 'hidden', border: '1px solid var(--color-line)' }}>
-                  <img src={img(j.image)} alt="" loading="lazy" className="journey-img" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                <Link to={j.to} className="journey-card dark" style={{ position: 'relative', display: 'block', minHeight: 560, borderRadius: 32, overflow: 'hidden', border: '1px solid var(--color-line)' }}>
+                  <img src={j.image} alt="" loading="lazy" className="journey-img" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
                   <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(8,10,7,0.15) 0%, rgba(8,10,7,0.45) 45%, rgba(8,10,7,0.94) 100%)' }} />
                   <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, padding: 'clamp(24px, 4vw, 40px)' }}>
                     <Eyebrow>{j.eyebrow}</Eyebrow>
@@ -107,9 +107,9 @@ export default function Home() {
         <div className="wrap" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 420px), 1fr))', gap: 'clamp(32px, 6vw, 80px)', alignItems: 'center' }}>
           <Reveal style={{ position: 'relative' }}>
             <div style={{ position: 'relative', aspectRatio: '4 / 5', borderRadius: 32, overflow: 'hidden' }}>
-              <img src={img('founder-elephant')} alt="An elephant’s eye and weathered skin, close up" loading="lazy" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img src={photo('hwa-elephant-family')} alt="An elephant family in Hwange National Park, Zimbabwe" loading="lazy" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
-            <div className="glass" style={{ position: 'absolute', right: 'clamp(-8px, -2vw, -24px)', bottom: 28, padding: '18px 22px', borderRadius: 22, maxWidth: 240 }}>
+            <div className="glass dark" style={{ position: 'absolute', right: 'clamp(-8px, -2vw, -24px)', bottom: 28, padding: '18px 22px', borderRadius: 22, maxWidth: 240 }}>
               <div className="label" style={{ color: 'var(--color-gold)', fontSize: 10 }}>
                 Hwange, Zimbabwe
               </div>
@@ -175,7 +175,7 @@ export default function Home() {
           <ul style={{ listStyle: 'none', padding: 0, margin: '56px 0 0', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 250px), 1fr))', gap: 1, background: 'var(--color-line)', borderRadius: 28, overflow: 'hidden', border: '1px solid var(--color-line)' }}>
             {POINTS.map((pt, i) => (
               <Reveal as="li" key={pt.title} delay={i * 0.06} style={{ background: 'var(--color-ink-2)', padding: 'clamp(26px, 3vw, 38px)' }}>
-                <span style={{ width: 48, height: 48, borderRadius: '50%', display: 'grid', placeItems: 'center', border: '1px solid rgba(224,168,62,0.45)', color: 'var(--color-gold)' }}>
+                <span style={{ width: 48, height: 48, borderRadius: '50%', display: 'grid', placeItems: 'center', border: '1px solid color-mix(in srgb, var(--color-brand-gold) 45%, transparent)', color: 'var(--color-gold)' }}>
                   <pt.icon size={20} />
                 </span>
                 <div className="label tabular" style={{ marginTop: 26, color: 'var(--color-dim)' }}>

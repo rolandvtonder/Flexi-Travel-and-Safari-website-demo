@@ -2,3 +2,5 @@ node_modules
 dist
 .DS_Store
 *.log
+# Raw client media (662 MB). The site uses the processed copies in public/assets.
+Media/

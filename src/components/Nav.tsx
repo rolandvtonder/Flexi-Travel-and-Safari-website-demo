@@ -1,49 +1,72 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router'
-import { Logo } from './Logo'
-import { Close, Menu, ArrowRight } from './Icons'
-import { SITE } from '../config'
+import { Logo, Mark } from './Logo'
+import { Close, Menu, ArrowRight, WhatsApp, Mail } from './Icons'
+import { SITE, whatsappLink } from '../config'
+import { SAFARI_COUNTRIES, toursIn, tourBySlug } from '../data/tours'
 
-export const NAV = [
-  { to: '/safari', label: 'Safari Africa' },
-  { to: '/europe', label: 'European Adventures' },
-  { to: '/europe#payment-plans', label: 'Payment plans' },
-  { to: '/about', label: 'Our story' },
-  { to: '/contact', label: 'Contact' },
+type Item = { to: string; label: string; sub?: { to: string; label: string }[] }
+
+/* The menu, as the client specified it. */
+export const MENU: Item[] = [
+  { to: '/', label: 'Home' },
+  {
+    to: '/safari',
+    label: 'African Safaris',
+    sub: [
+      { to: '/safari', label: 'All African safaris' },
+      ...SAFARI_COUNTRIES.map((c) => ({ to: `/safari?country=${encodeURIComponent(c)}#tours`, label: c })),
+    ],
+  },
+  {
+    to: '/europe',
+    label: 'European Adventures',
+    sub: [
+      { to: '/europe', label: 'All European adventures' },
+      ...toursIn('europe').map((t) => ({ to: `/tours/${t.slug}`, label: t.country })),
+    ],
+  },
+  { to: '/payment-options', label: 'Payment Options' },
+  { to: '/about', label: 'Our Story' },
+  { to: '/travel-guides', label: 'Travel Guides' },
+  { to: '/contact', label: 'Contact Us' },
 ]
 
-/*
-  Which link is "here". Router matching ignores the #hash, so on /europe both
-  "European Adventures" and "Payment plans" would claim the page. A link with
-  a hash is current only when that hash is in the address; a plain link is
-  current on its path unless a hash link has claimed it.
-*/
-function isCurrent(to: string, pathname: string, hash: string) {
-  const [path, anchor] = to.split('#')
-  if (pathname !== path) return false
-  if (anchor) return hash === `#${anchor}`
-  return !NAV.some((n) => n.to.startsWith(`${path}#`) && hash === `#${n.to.split('#')[1]}`)
+/** Which top-level item is "here" — tour pages belong to their region. */
+function isCurrent(to: string, pathname: string) {
+  if (to === '/') return pathname === '/'
+  if (pathname === to || pathname.startsWith(`${to}/`)) return true
+  const tour = pathname.startsWith('/tours/') ? tourBySlug(pathname.slice(7)) : undefined
+  return !!tour && to === (tour.region === 'africa' ? '/safari' : '/europe')
 }
 
-/*
-  The bar is viewport-level chrome, as in the reference: a tint that fades to
-  nothing rather than a solid bar, so it never draws a seam across footage.
-  Once the page has scrolled it firms up so links stay legible over any photo.
-*/
-export default function Nav() {
-  const [open, setOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-  const loc = useLocation()
-  const burger = useRef<HTMLButtonElement>(null)
+const Chevron = () => (
+  <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
+    <path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+)
 
+export default function Nav() {
+  const { pathname, hash } = useLocation()
+  const [open, setOpen] = useState(false)
+  const [expanded, setExpanded] = useState<string | null>(null)
+  const [stuck, setStuck] = useState(false)
+  const burger = useRef<HTMLButtonElement>(null)
+  const topRows = useRef<HTMLDivElement>(null)
+
+  /* Once the contact strip and logo row have scrolled away, the pinned bar
+     shows the acacia mark and its own Plan-a-trip button. */
   useEffect(() => {
-    const on = () => setScrolled(window.scrollY > 40)
+    const on = () => setStuck(window.scrollY > (topRows.current?.offsetHeight ?? 130) - 2)
     on()
     window.addEventListener('scroll', on, { passive: true })
     return () => window.removeEventListener('scroll', on)
   }, [])
 
-  useEffect(() => setOpen(false), [loc.pathname, loc.hash])
+  useEffect(() => {
+    setOpen(false)
+    setExpanded(null)
+  }, [pathname, hash])
 
   useEffect(() => {
     if (!open) return
@@ -62,154 +85,180 @@ export default function Nav() {
     }
   }, [open])
 
+  const [madrid, capetown] = SITE.offices
+
   return (
     <>
-      <header
-        style={{
-          position: 'fixed',
-          inset: '0 0 auto 0',
-          zIndex: 40,
-          height: scrolled ? 76 : 112,
-          transition: 'height 300ms ease',
-          pointerEvents: 'none',
-        }}
-      >
-        <div
-          aria-hidden="true"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background: scrolled
-              ? 'linear-gradient(180deg, rgba(12,15,11,0.92) 0%, rgba(12,15,11,0.78) 70%, rgba(12,15,11,0) 100%)'
-              : 'linear-gradient(180deg, rgba(8,10,7,0.72) 0%, rgba(8,10,7,0.38) 50%, rgba(8,10,7,0) 100%)',
-            backdropFilter: 'blur(10px)',
-            WebkitBackdropFilter: 'blur(10px)',
-            maskImage: 'linear-gradient(180deg, #000 0%, #000 55%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(180deg, #000 0%, #000 55%, transparent 100%)',
-            transition: 'background 300ms ease',
-          }}
-        />
-        <nav
-          aria-label="Main"
-          className="wrap"
-          style={{
-            position: 'relative',
-            display: 'flex',
-            alignItems: 'center',
-            gap: 16,
-            height: scrolled ? 64 : 88,
-            transition: 'height 300ms ease',
-            maxWidth: 1440,
-            pointerEvents: 'auto',
-          }}
-        >
-          <Link to="/" aria-label={`${SITE.name} — home`} style={{ display: 'inline-flex', minHeight: 44, alignItems: 'center' }}>
-            <Logo />
-          </Link>
-
-          <ul className="nav-links" style={{ flex: 1, display: 'flex', justifyContent: 'center', gap: 34, listStyle: 'none', margin: 0, padding: 0 }}>
-            {NAV.map((n) => {
-              const on = isCurrent(n.to, loc.pathname, loc.hash)
-              return (
-                <li key={n.to}>
-                  <Link
-                    to={n.to}
-                    className="label"
-                    aria-current={on ? 'page' : undefined}
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      minHeight: 44,
-                      whiteSpace: 'nowrap',
-                      color: on ? 'var(--color-gold)' : 'rgba(245,239,227,0.82)',
-                      transition: 'color 200ms ease',
-                    }}
-                  >
-                    {n.label}
-                  </Link>
-                </li>
-              )
-            })}
-          </ul>
-
-          <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 10 }}>
-            <Link to="/contact" className="btn btn-gold nav-cta" style={{ height: 44 }} aria-label="Plan my trip">
-              <span className="cta-long">Plan my trip</span>
-              <span className="cta-short" aria-hidden="true">Enquire</span>
-            </Link>
-            <button
-              ref={burger}
-              type="button"
-              className="nav-burger"
-              aria-label={open ? 'Close menu' : 'Open menu'}
-              aria-expanded={open}
-              aria-controls="menu-sheet"
-              onClick={() => setOpen((o) => !o)}
-              style={{
-                width: 44,
-                height: 44,
-                borderRadius: '50%',
-                border: '1px solid rgba(245,239,227,0.3)',
-                background: 'rgba(12,15,11,0.4)',
-                color: 'var(--color-bone)',
-                display: 'grid',
-                placeItems: 'center',
-                cursor: 'pointer',
-              }}
-            >
-              {open ? <Close /> : <Menu />}
-            </button>
+      {/* ================= desktop: contact strip + logo row (scroll away) ================= */}
+      <div ref={topRows} className="hdr-desktop">
+        <div style={{ background: 'var(--color-black)', color: 'rgba(255,255,255,0.86)', fontSize: 13 }}>
+          <div className="wrap" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, height: 38 }}>
+            <div style={{ display: 'flex', gap: 26 }}>
+              {[madrid, capetown].map((o) => (
+                <a key={o.key} href={whatsappLink('Hi Flexi, I’d like help planning a trip.', o.key)} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                  <span style={{ color: '#25d366', display: 'inline-flex' }}>
+                    <WhatsApp size={15} />
+                  </span>
+                  <span>
+                    <strong style={{ color: '#fff', fontWeight: 600 }}>{o.city}</strong> {o.phone}
+                  </span>
+                </a>
+              ))}
+            </div>
+            <a href={`mailto:${SITE.email}`} style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+              <Mail size={15} /> {SITE.email}
+            </a>
           </div>
-        </nav>
+        </div>
+        <div style={{ background: '#fff' }}>
+          <div className="wrap" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, height: 96 }}>
+            <Link to="/" aria-label={`${SITE.name} — home`} style={{ display: 'inline-flex' }}>
+              <Logo height={62} />
+            </Link>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 22 }}>
+              <span className="label" style={{ color: 'var(--color-dim)', fontSize: 11 }}>
+                {SITE.tagline}
+              </span>
+              <Link to="/contact" className="btn btn-gold">
+                Plan a trip
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ================= desktop: the pinned menu bar ================= */}
+      <nav aria-label="Main" className="hdr-desktop" style={{ position: 'sticky', top: 0, zIndex: 40, background: 'var(--color-black)', boxShadow: stuck ? '0 10px 30px -18px rgba(0,0,0,0.6)' : 'none' }}>
+        <div className="wrap" style={{ display: 'flex', alignItems: 'center', gap: 20, height: 'var(--header-h)' }}>
+          <Link
+            to="/"
+            aria-label={`${SITE.name} — home`}
+            tabIndex={stuck ? 0 : -1}
+            style={{ display: 'inline-flex', width: stuck ? 34 : 0, opacity: stuck ? 1 : 0, overflow: 'hidden', transition: 'width 250ms ease, opacity 250ms ease', background: '#fff', borderRadius: 8 }}
+          >
+            <Mark size={34} />
+          </Link>
+          <ul style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, listStyle: 'none', margin: 0, padding: 0, flex: 1, maxWidth: 1080 }}>
+            {MENU.map((m) => (
+              <li key={m.to} className="menu-item" style={{ position: 'relative' }}>
+                <Link to={m.to} className="menu-link" aria-current={isCurrent(m.to, pathname) ? 'page' : undefined}>
+                  {m.label}
+                  {m.sub && <Chevron />}
+                </Link>
+                {m.sub && (
+                  <ul className="submenu" aria-label={m.label}>
+                    {m.sub.map((s) => (
+                      <li key={s.to}>
+                        <Link to={s.to}>
+                          {s.label}
+                          <ArrowRight size={14} />
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+          <Link
+            to="/contact"
+            className="btn btn-gold pin-cta"
+            tabIndex={stuck ? 0 : -1}
+            aria-hidden={!stuck}
+            style={{ height: 38, padding: '0 18px', fontSize: 11, opacity: stuck ? 1 : 0, pointerEvents: stuck ? 'auto' : 'none', transition: 'opacity 250ms ease' }}
+          >
+            Plan a trip
+          </Link>
+        </div>
+      </nav>
+
+      {/* ================= phones & tablets: one white bar ================= */}
+      <header className="hdr-mobile" style={{ position: 'sticky', top: 0, zIndex: 40, background: '#fff', borderBottom: '1px solid var(--color-line)', boxShadow: '0 8px 24px -20px rgba(0,0,0,0.5)' }}>
+        <div className="wrap" style={{ display: 'flex', alignItems: 'center', gap: 12, height: 'var(--header-h)' }}>
+          <Link to="/" aria-label={`${SITE.name} — home`} style={{ display: 'inline-flex', marginRight: 'auto' }}>
+            <Logo height={40} />
+          </Link>
+          <Link to="/contact" className="btn btn-gold" style={{ height: 40, padding: '0 16px', fontSize: 11 }}>
+            Enquire
+          </Link>
+          <button
+            ref={burger}
+            type="button"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+            aria-controls="menu-sheet"
+            onClick={() => setOpen((o) => !o)}
+            style={{ width: 44, height: 44, borderRadius: 12, border: 0, background: 'var(--color-black)', color: '#fff', display: 'grid', placeItems: 'center', cursor: 'pointer', flex: 'none' }}
+          >
+            {open ? <Close /> : <Menu />}
+          </button>
+        </div>
       </header>
 
-      {/* Menu sheet for phones and tablets */}
+      {/* Menu sheet */}
       <div
         id="menu-sheet"
         role="dialog"
         aria-modal="true"
         aria-label="Menu"
         hidden={!open}
-        style={{
-          position: 'fixed',
-          inset: 0,
-          zIndex: 39,
-          background: 'rgba(12,15,11,0.97)',
-          backdropFilter: 'blur(14px)',
-          paddingTop: 110,
-          overflowY: 'auto',
-        }}
+        style={{ position: 'fixed', inset: 'var(--header-h) 0 0 0', zIndex: 39, background: '#fff', overflowY: 'auto', paddingBottom: 40 }}
       >
-        <ul className="wrap" style={{ listStyle: 'none', margin: 0 }}>
-          {[{ to: '/', label: 'Home' }, ...NAV].map((n, i) => (
-            <li key={n.to} style={{ borderBottom: '1px solid var(--color-line)' }}>
-              <Link
-                to={n.to}
-                className="display"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  minHeight: 64,
-                  fontSize: 30,
-                  animation: open ? `sheetIn 420ms ${i * 45}ms both cubic-bezier(.2,.7,.2,1)` : undefined,
-                }}
-              >
-                {n.label}
-                <ArrowRight size={20} />
-              </Link>
-            </li>
-          ))}
+        <ul className="wrap" style={{ listStyle: 'none', margin: 0, paddingTop: 8 }}>
+          {MENU.map((m) => {
+            const on = isCurrent(m.to, pathname)
+            const exp = expanded === m.to
+            return (
+              <li key={m.to} style={{ borderBottom: '1px solid var(--color-line)' }}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <Link
+                    to={m.to}
+                    aria-current={on ? 'page' : undefined}
+                    style={{ flex: 1, display: 'flex', alignItems: 'center', minHeight: 58, fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 19, color: on ? 'var(--color-gold)' : 'var(--color-bone)' }}
+                  >
+                    {m.label}
+                  </Link>
+                  {m.sub && (
+                    <button
+                      type="button"
+                      aria-expanded={exp}
+                      aria-label={`${exp ? 'Hide' : 'Show'} ${m.label} options`}
+                      onClick={() => setExpanded(exp ? null : m.to)}
+                      style={{ width: 48, height: 48, border: 0, background: 'var(--color-ink-2)', borderRadius: 12, display: 'grid', placeItems: 'center', cursor: 'pointer', color: 'var(--color-bone)', transform: exp ? 'rotate(180deg)' : undefined, transition: 'transform 200ms ease' }}
+                    >
+                      <Chevron />
+                    </button>
+                  )}
+                </div>
+                {m.sub && exp && (
+                  <ul style={{ listStyle: 'none', margin: '0 0 12px', padding: 0 }}>
+                    {m.sub.map((s) => (
+                      <li key={s.to}>
+                        <Link to={s.to} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', minHeight: 46, padding: '0 14px', borderRadius: 10, fontWeight: 600, color: 'var(--color-mist)' }}>
+                          {s.label}
+                          <ArrowRight size={14} />
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            )
+          })}
         </ul>
-        <div className="wrap" style={{ marginTop: 28, display: 'flex', gap: 24, flexWrap: 'wrap', color: 'var(--color-dim)', fontSize: 14 }}>
+        <div className="wrap" style={{ marginTop: 22, display: 'grid', gap: 10 }}>
           {SITE.offices.map((o) => (
-            <span key={o.city}>
-              <span className="label" style={{ color: 'var(--color-gold)' }}>{o.city}</span> · {o.role}
-            </span>
+            <a key={o.key} href={whatsappLink('Hi Flexi, I’d like help planning a trip.', o.key)} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 52, padding: '0 16px', borderRadius: 14, background: 'var(--color-ink-2)' }}>
+              <span style={{ color: '#1a9e4b', display: 'inline-flex' }}>
+                <WhatsApp size={20} />
+              </span>
+              <span style={{ fontWeight: 600 }}>{o.city}</span>
+              <span style={{ color: 'var(--color-dim)', marginLeft: 'auto' }}>{o.phone}</span>
+            </a>
           ))}
         </div>
-        <style>{`@keyframes sheetIn { from { opacity: 0; transform: translateY(14px) } to { opacity: 1; transform: none } }`}</style>
       </div>
     </>
   )
 }
+

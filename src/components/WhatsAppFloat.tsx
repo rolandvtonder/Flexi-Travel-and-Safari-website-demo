@@ -50,7 +50,7 @@ export default function WhatsAppFloat() {
             width: 'min(300px, calc(100vw - 36px))',
             padding: 8,
             borderRadius: 22,
-            background: 'rgba(20,25,18,0.97)',
+            background: '#fff',
             border: '1px solid var(--color-line)',
             boxShadow: '0 24px 50px -20px rgba(0,0,0,0.8)',
             backdropFilter: 'blur(14px)',
@@ -80,7 +80,7 @@ export default function WhatsAppFloat() {
             </a>
           ))}
           <style>{`@keyframes waIn { from { opacity: 0; transform: translateY(8px) scale(.98) } to { opacity: 1; transform: none } }
-            .wa-item:hover { background: rgba(245,239,227,0.07); }`}</style>
+            .wa-item:hover { background: color-mix(in srgb, var(--color-bone) 7%, transparent); }`}</style>
         </div>
       )}
       <button

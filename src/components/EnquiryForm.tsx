@@ -311,7 +311,7 @@ export default function EnquiryForm({
         </div>
         <div aria-hidden="true" style={{ display: 'grid', gridTemplateColumns: `repeat(${STEPS.length}, 1fr)`, gap: 6, marginTop: 14 }}>
           {STEPS.map((s, i) => (
-            <span key={s} style={{ height: 4, borderRadius: 999, background: i <= step ? 'var(--color-gold)' : 'rgba(245,239,227,0.14)', transition: 'background-color 300ms ease' }} />
+            <span key={s} style={{ height: 4, borderRadius: 999, background: i <= step ? 'var(--color-gold)' : 'color-mix(in srgb, var(--color-bone) 14%, transparent)', transition: 'background-color 300ms ease' }} />
           ))}
         </div>
       </div>

@@ -1,0 +1,29 @@
+{
+  "slug": "victoria-falls-and-hwange",
+  "title": "Victoria Falls & Hwange: the ultimate guide",
+  "region": "africa",
+  "date": "2026-10-15",
+  "excerpt": "The smoke that thunders, sunset on the Zambezi and the elephants of Hwange — everything you need to know about Zimbabwe's great double act.",
+  "hero": { "photo": "vic-falls-bridge-aerial" },
+  "body": [
+    { "p": "Locally the falls are called Mosi-oa-Tunya, 'the smoke that thunders', and you hear them and see the spray long before you reach them. Where the Zambezi River drops into a narrow gorge on the border between Zimbabwe and Zambia, it forms one of the largest curtains of falling water on earth." },
+    { "h": "Seeing the falls" },
+    { "p": "A path through the rainforest on the Zimbabwean side leads to a series of viewpoints facing the main falls. A guided visit explains the history and helps you time it for the light. For the full scale, a helicopter or microlight flight shows the river, the zigzagging gorges and the historic Victoria Falls Bridge from above." },
+    { "h": "On the Zambezi" },
+    { "ul": [
+      "A sunset cruise on the upper Zambezi, with hippos and elephants on the banks",
+      "A dinner cruise as the sky turns gold",
+      "A guided visit to a local village and community projects",
+      "White-water rafting in the gorges for the adventurous, in season"
+    ] },
+    { "h": "Hwange National Park" },
+    { "p": "A few hours' drive from the falls, Hwange is Zimbabwe's largest national park and one of the best places in Africa to see elephants — tens of thousands live here, gathering at the waterholes in the dry season. It is also our founder's home: she grew up near the park, watching elephants wander into her uncles' fields." },
+    { "p": "Lion, buffalo, giraffe, zebra, sable antelope and wild dog are all found here, and lodges built around waterholes let you watch the action from your veranda." },
+    { "h": "Getting there" },
+    { "p": "Victoria Falls International Airport is around twenty minutes from the town, with connections via Johannesburg and other regional hubs. We meet you on arrival and arrange every transfer, including the road journey to Hwange." },
+    { "h": "When to go" },
+    { "p": "The falls are at their fullest and most dramatic after the rains, roughly February to May — expect to get wet. Later in the dry season the spray drops and the views of the rock face are clearer. For Hwange, the dry months from around July to October are best, when animals concentrate at the water." }
+  ],
+  "gallery": { "places": ["vic", "hwa"] },
+  "tours": ["the-falls-and-the-wild-zambezi", "into-the-elephant-kingdom"]
+}

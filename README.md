@@ -11,14 +11,36 @@ npm run build    # → dist/
 
 ## Pages
 
+The menu (as the client specified): Home · African Safaris · European Adventures · Payment Options · Our Story · Travel Guides · Contact Us.
+
 | Route | What it is |
 |---|---|
-| `/` | Scroll-choreographed scene (Africa → Europe footage), then the two journeys, founder teaser, signature tours |
-| `/safari` | Safari Africa — for Europe & America. Audiences, 8 safaris (2 each: South Africa, Zimbabwe, Kenya, Tanzania) with country filter, FAQ, enquiry |
-| `/europe` | European Adventures — for South Africa, Botswana & Namibia. 4 tours (Spain, Portugal, France, Italy), combine-countries option, payment calculator (up to 12 months, EFT or card), FAQ, enquiry |
-| `/tours/:slug` | One page per tour (12), with itinerary, inclusions, enquiry form |
-| `/about` | The founder's Hwange story |
-| `/contact` | Plan my trip (accepts `?journey=africa\|europe` and `?tour=<slug>`) |
+| `/` | Scroll-choreographed scene (Africa → Europe footage), the two journeys, founder story, signature tours |
+| `/safari` | African Safaris — 8 safaris (2 each: South Africa, Zimbabwe, Kenya, Tanzania), destination guides, FAQ, enquiry |
+| `/europe` | European Adventures — 4 tours (Spain, Portugal, France, Italy), combine-countries option, FAQ, enquiry |
+| `/tours/:slug` | One page per tour: highlights, good-to-know facts, itinerary, photo gallery, inclusions, payment calculator, enquiry |
+| `/payment-options` | EFT, card and monthly instalments up to 12 months; calculator in € (safaris) or R (Europe) |
+| `/about` | Our Story — the founder's Hwange story |
+| `/travel-guides`, `/travel-guides/:slug` | Destination and practical guides with photo galleries |
+| `/contact` | Contact Us / plan a trip (accepts `?journey=africa\|europe` and `?tour=<slug>`) |
+
+## Brand
+
+White page, client colours: gold `#AC8D2D`, grey `#837E7C`, black — all as tokens at the top of `src/index.css`.
+Areas where text sits on a photo use the `.dark` class, which inverts the same tokens. Logo: `public/assets/brand/logo.png`
+(the supplied artwork with its white background removed); favicon and touch icon are cut from its acacia.
+
+## Photos
+
+The client's 168 photos (from `Media/extra-images`, minus old logos, template placeholders and duplicates) live in
+`public/assets/photos` as `<key>.webp` (1600px) and `<key>-sm.webp` (720px). `src/data/photos.ts` lists every key with
+its place and alt text. Tours reference keys (`photo`, `gallery`); each travel guide's gallery pulls every photo for its
+places, so every photo appears on the site. `Media/` itself is git-ignored.
+
+## Travel guides — adding one
+
+Add a JSON file to `src/content/guides/` (copy an existing one) and push — the guide list and page pick it up
+automatically, newest `date` first. This is the hook for the planned daily auto-posting.
 
 ## Contacts & enquiries
 

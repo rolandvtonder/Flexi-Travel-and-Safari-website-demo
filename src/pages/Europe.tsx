@@ -1,16 +1,8 @@
 import { Link } from 'react-router'
 import { PageHero, Reveal, SectionHead, TourCard, Eyebrow, Faq, usePageMeta } from '../components/ui'
 import EnquiryForm from '../components/EnquiryForm'
-import PaymentPlan from '../components/PaymentPlan'
 import { toursIn, asset } from '../data/tours'
 import { ArrowRight, Check, Info } from '../components/Icons'
-
-const STEPS = [
-  { t: 'Choose your adventure', b: 'Pick a tour and a planned departure date — or ask us to tailor one.' },
-  { t: 'Reserve your place', b: 'Pay a clearly disclosed deposit under agreed booking terms.' },
-  { t: 'Pay monthly', b: 'Spread the balance over up to twelve months by EFT or card, with every due date provided upfront.' },
-  { t: 'Travel with confidence', b: 'The balance is settled by the final payment date before you fly. Then Europe is yours.' },
-]
 
 export default function Europe() {
   usePageMeta('European Adventures', 'Spain, Portugal, France and Italy for travellers from South Africa, Botswana and Namibia — 7 to 8 day adventures from R36,000, payable monthly over up to 12 months.')
@@ -32,12 +24,12 @@ export default function Europe() {
           <a href="#tours" className="btn btn-gold">
             Explore the tours
           </a>
-          <a href="#payment-plans" className="btn btn-ghost">
-            See payment plans
+          <Link to="/payment-options" className="btn btn-ghost">
+            Payment options
             <span className="dot">
               <ArrowRight size={14} />
             </span>
-          </a>
+          </Link>
         </div>
       </PageHero>
 
@@ -80,7 +72,7 @@ export default function Europe() {
               </li>
             ))}
           </ul>
-          <Reveal style={{ marginTop: 20, padding: 'clamp(22px, 3vw, 32px)', borderRadius: 28, border: '1px solid rgba(224,168,62,0.35)', background: 'linear-gradient(140deg, rgba(224,168,62,0.14), rgba(224,168,62,0.02))', display: 'flex', gap: 24, alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+          <Reveal style={{ marginTop: 20, padding: 'clamp(22px, 3vw, 32px)', borderRadius: 28, border: '1px solid color-mix(in srgb, var(--color-brand-gold) 35%, transparent)', background: 'linear-gradient(140deg, color-mix(in srgb, var(--color-brand-gold) 14%, transparent), color-mix(in srgb, var(--color-brand-gold) 2%, transparent))', display: 'flex', gap: 24, alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap' }}>
             <div style={{ maxWidth: 640 }}>
               <h3 className="display" style={{ margin: 0, fontSize: 'clamp(24px, 2.6vw, 32px)' }}>
                 Two countries, <em>one trip?</em>
@@ -103,26 +95,23 @@ export default function Europe() {
       </section>
 
       {/* ---- payment plans ---- */}
-      <section id="payment-plans" aria-labelledby="plans-h" style={{ padding: 'clamp(80px, 11vw, 140px) 0', scrollMarginTop: 70 }}>
+      <section id="payment-plans" aria-labelledby="plans-h" style={{ padding: 'clamp(70px, 10vw, 120px) 0', scrollMarginTop: 'calc(var(--header-h) + 16px)' }}>
         <div className="wrap">
-          <SectionHead id="plans-h" eyebrow="Book early · Pay over time · Travel with excitement" title={<>Your Europe <em>holiday fund</em></>} intro="Reserve your place and work towards it with monthly payments over up to twelve months — by EFT or card, whichever suits you. Try the numbers:" />
-          <Reveal delay={0.1} style={{ marginTop: 44 }}>
-            <PaymentPlan />
-          </Reveal>
-
-          <ol style={{ listStyle: 'none', padding: 0, margin: '56px 0 0', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', gap: 18 }}>
-            {STEPS.map((s, i) => (
-              <Reveal as="li" key={s.t} delay={i * 0.06} style={{ padding: 26, borderRadius: 24, border: '1px solid var(--color-line)' }}>
-                <span className="display tabular" style={{ fontSize: 40, color: 'var(--color-gold)', fontWeight: 300, lineHeight: 1 }}>
-                  {i + 1}
-                </span>
-                <h3 className="display" style={{ margin: '14px 0 6px', fontSize: 23 }}>
-                  {s.t}
-                </h3>
-                <p style={{ margin: 0, color: 'var(--color-mist)', fontSize: 15.5 }}>{s.b}</p>
-              </Reveal>
-            ))}
-          </ol>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 380px), 1fr))', gap: 'clamp(28px, 5vw, 64px)', alignItems: 'center' }}>
+            <SectionHead id="plans-h" eyebrow="Book early · Pay over time" title={<>Your Europe <em>holiday fund</em></>} intro="Reserve your place and work towards it with monthly payments over up to twelve months — by EFT or card, whichever suits you." />
+            <Reveal delay={0.1} style={{ padding: 'clamp(24px, 3vw, 34px)', borderRadius: 26, background: 'var(--color-ink-2)', border: '1px solid var(--color-line)' }}>
+              <div className="label" style={{ color: 'var(--color-dim)' }}>
+                For example
+              </div>
+              <div className="display tabular" style={{ fontSize: 'clamp(40px, 5vw, 56px)', margin: '8px 0 4px' }}>
+                R3 750<span style={{ fontSize: 18, color: 'var(--color-dim)', fontFamily: 'var(--font-sans)', fontWeight: 500 }}> / month</span>
+              </div>
+              <p style={{ margin: '0 0 20px', color: 'var(--color-mist)' }}>for a R45 000 adventure over 12 months — no interest added.</p>
+              <Link to="/payment-options#calculator" className="btn btn-light">
+                Work out your payments <ArrowRight />
+              </Link>
+            </Reveal>
+          </div>
 
           <Reveal>
             <p style={{ display: 'flex', gap: 12, margin: '36px 0 0', padding: '18px 22px', borderRadius: 18, background: 'var(--color-ink-2)', border: '1px solid var(--color-line)', color: 'var(--color-mist)', fontSize: 15 }}>

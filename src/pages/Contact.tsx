@@ -13,8 +13,8 @@ export default function Contact() {
   const region: Region | undefined = tour?.region ?? (j === 'africa' || j === 'europe' ? j : undefined)
 
   return (
-    <section style={{ padding: 'clamp(130px, 16vw, 180px) 0 clamp(60px, 8vw, 100px)', position: 'relative', overflow: 'hidden' }}>
-      <div aria-hidden="true" style={{ position: 'absolute', inset: '0 0 auto 0', height: 520, background: 'radial-gradient(60% 80% at 20% 0%, rgba(224,168,62,0.16), transparent 70%)' }} />
+    <section style={{ padding: 'clamp(48px, 7vw, 96px) 0 clamp(60px, 8vw, 100px)', position: 'relative', overflow: 'hidden' }}>
+      <div aria-hidden="true" style={{ position: 'absolute', inset: '0 0 auto 0', height: 520, background: 'radial-gradient(60% 80% at 20% 0%, color-mix(in srgb, var(--color-brand-gold) 16%, transparent), transparent 70%)' }} />
       <div className="wrap" style={{ position: 'relative', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 380px), 1fr))', gap: 'clamp(40px, 6vw, 90px)', alignItems: 'start' }}>
         <div>
           <Reveal>
@@ -31,7 +31,7 @@ export default function Contact() {
             <ul style={{ listStyle: 'none', padding: 0, margin: '40px 0 0', display: 'grid', gap: 12 }}>
               <li>
                 <a href={`mailto:${SITE.email}`} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '18px 20px', borderRadius: 20, border: '1px solid var(--color-line)', background: 'var(--color-ink-2)' }}>
-                  <span style={{ width: 46, height: 46, borderRadius: '50%', display: 'grid', placeItems: 'center', border: '1px solid rgba(224,168,62,0.45)', color: 'var(--color-gold)', flex: 'none' }}>
+                  <span style={{ width: 46, height: 46, borderRadius: '50%', display: 'grid', placeItems: 'center', border: '1px solid color-mix(in srgb, var(--color-brand-gold) 45%, transparent)', color: 'var(--color-gold)', flex: 'none' }}>
                     <Mail size={20} />
                   </span>
                   <span style={{ minWidth: 0 }}>

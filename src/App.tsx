@@ -11,17 +11,22 @@ const Europe = lazy(() => import('./pages/Europe'))
 const TourPage = lazy(() => import('./pages/TourPage'))
 const About = lazy(() => import('./pages/About'))
 const Contact = lazy(() => import('./pages/Contact'))
+const PaymentOptions = lazy(() => import('./pages/PaymentOptions'))
+const TravelGuides = lazy(() => import('./pages/TravelGuides'))
+const GuidePage = lazy(() => import('./pages/GuidePage'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
 /*
   Each section of the brief is its own page:
 
       /                the scroll-choreographed scene + the two journeys
-      /safari          Safari Africa — for Europe & America
-      /europe          European Adventures + payment plans — for Southern Africa
-      /tours/:slug     every tour has its own page and enquiry form
-      /about           the founder's story
-      /contact         plan my trip
+      /safari                African Safaris — for Europe & America
+      /europe                European Adventures — for Southern Africa
+      /tours/:slug           every tour has its own page and enquiry form
+      /payment-options       EFT, card and monthly instalments, with a calculator
+      /about                 Our Story — the founder's story
+      /travel-guides(/:slug) destination guides; one JSON file per guide
+      /contact               Contact Us / plan a trip
 */
 
 /** New page → top of the page (or the #anchor), and focus to main for screen readers. */
@@ -75,7 +80,10 @@ export default function App() {
           <Route path="/safari" element={<Safari />} />
           <Route path="/europe" element={<Europe />} />
           <Route path="/tours/:slug" element={<TourPage />} />
+          <Route path="/payment-options" element={<PaymentOptions />} />
           <Route path="/about" element={<About />} />
+          <Route path="/travel-guides" element={<TravelGuides />} />
+          <Route path="/travel-guides/:slug" element={<GuidePage />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -1,0 +1,31 @@
+{
+  "slug": "the-garden-route-road-trip",
+  "title": "The Garden Route: South Africa's great coastal road trip",
+  "region": "africa",
+  "date": "2026-10-21",
+  "excerpt": "Whales at Hermanus, the southern tip of Africa, ostriches and caves in Oudtshoorn, and the lagoons of Knysna — the Garden Route at its best.",
+  "hero": { "photo": "grt-knysna-heads" },
+  "body": [
+    { "p": "East of Cape Town, the coast softens into lagoons, forests and long golden beaches. The Garden Route is best enjoyed slowly, a few hours of driving at a time, with nights in small towns that each have their own character. It pairs beautifully with a few days in Cape Town and a safari." },
+    { "h": "Hermanus and the whales" },
+    { "p": "Hermanus is one of the best places on earth to watch whales from land. Southern right whales come into Walker Bay to calve, usually from around June to November, and you can watch them from the cliff path that runs along the town's shoreline." },
+    { "h": "Cape Agulhas — where two oceans meet" },
+    { "p": "A short detour brings you to Cape Agulhas, the southernmost point of Africa and the official meeting point of the Atlantic and Indian Oceans. A simple marker on the rocks makes for one of the trip's most memorable photographs." },
+    { "h": "Oudtshoorn: ostriches and the Cango Caves" },
+    { "p": "Inland, the semi-desert Klein Karoo is ostrich country. Oudtshoorn's farms tell the story of the feather boom that built the town, and nearby the Cango Caves open into vast chambers of dripstone formations — guided tours take you through them." },
+    { "h": "Knysna and Tsitsikamma" },
+    { "ul": [
+      "Boat trips on the Knysna lagoon and the view from the Knysna Heads",
+      "Walking alongside elephants at a sanctuary near Knysna",
+      "The Wilderness lakes and lagoons from the hills above",
+      "The suspension bridge over the Storms River mouth in Tsitsikamma",
+      "Forest waterfalls and tandem paragliding over the coast"
+    ] },
+    { "h": "Planning your route" },
+    { "p": "Six or seven days lets you enjoy the highlights without long days in the car. Most travellers drive one way and fly home from Port Elizabeth (Gqeberha) or George. We arrange the car or a private driver, the hotels and the activities, so all you have to do is stop at the viewpoints." },
+    { "h": "When to go" },
+    { "p": "The Garden Route has a mild climate year-round. Spring (September to November) combines whale season with wildflowers and warm days; summer is busiest with South African holidaymakers in December and January." }
+  ],
+  "gallery": { "places": ["grt"], "keys": ["adventure-paragliding-coast"] },
+  "tours": ["wild-africa-wine-and-wellness", "big-five-and-beautiful-cape"]
+}

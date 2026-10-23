@@ -1,0 +1,34 @@
+{
+  "slug": "arriving-in-africa",
+  "title": "Arriving in Africa: flights, airports and transfers",
+  "region": "africa",
+  "date": "2026-10-09",
+  "excerpt": "Which airport to fly into for each of our safaris, how transfers work, and the documents to sort out before you go.",
+  "hero": { "photo": "travel-vfa-arrivals" },
+  "body": [
+    { "p": "Our safari prices cover your accommodation and transfers on the ground, while international flights are booked separately — either by you, or by us on request. Here is where you'll be flying to, and what happens when you land." },
+    { "h": "Your gateway airports" },
+    { "ul": [
+      "Cape Town International — for Cape Town, the Winelands and the Garden Route",
+      "Johannesburg O.R. Tambo — for Kruger, the Panorama Route, Sun City and Pilanesberg, and many regional connections",
+      "Victoria Falls International — for Victoria Falls and Hwange",
+      "Nairobi Jomo Kenyatta — for the Masai Mara",
+      "Kilimanjaro International — for the Serengeti and Ngorongoro Crater",
+      "Zanzibar Abeid Amani Karume — for Zanzibar's beaches"
+    ] },
+    { "h": "When you land" },
+    { "p": "We arrange every transfer on your itinerary, starting with a meet-and-greet at the airport. Your driver will be waiting in arrivals with a name board, and will take you to your hotel or lodge. Flights between safari areas are often on small aircraft to bush airstrips, with luggage limits — we'll confirm the allowance for your route." },
+    { "h": "Documents to check" },
+    { "ul": [
+      "Passport validity and blank pages — requirements differ by country, so check well ahead",
+      "Visas — these depend on your nationality and every country on your route",
+      "Health requirements, including any vaccination certificates",
+      "Comprehensive travel insurance covering your whole trip"
+    ] },
+    { "p": "Entry rules can change, so always confirm requirements with the relevant embassy or official government website before you travel. We'll point you in the right direction for your route." },
+    { "h": "Booking flights" },
+    { "p": "Book international flights once your safari dates are confirmed, and allow time between connections — especially if you are flying on to a bush airstrip on the same day. If you'd like us to look at flight options for you, just ask when you enquire." }
+  ],
+  "gallery": { "places": ["travel"] },
+  "tours": ["big-five-and-beautiful-cape", "the-falls-and-the-wild-zambezi", "serengeti-and-the-crater"]
+}
