@@ -1,0 +1,31 @@
+{
+  "slug": "cape-town-the-ultimate-playground",
+  "title": "Cape Town: the ultimate playground",
+  "region": "africa",
+  "date": "2026-10-23",
+  "excerpt": "Table Mountain, penguins, wine country and a Big Five safari within reach — why Cape Town is the perfect start (or finish) to an African adventure.",
+  "hero": { "photo": "cpt-twelve-apostles-dusk" },
+  "body": [
+    { "p": "Few cities pack as much into one place as Cape Town. Mountain, ocean, vineyards, history and wildlife all sit within an easy drive of each other, which is why so many of our safaris begin or end here. Give it three or four days and it rewards you every one of them." },
+    { "h": "Table Mountain and the city bowl" },
+    { "p": "The cableway takes you from the lower station to the summit in a few minutes, with the city, Robben Island and the Atlantic seaboard laid out below. On clear mornings go early; when the famous 'tablecloth' of cloud rolls in or the wind picks up, the cableway can pause, so we always build in a flexible day." },
+    { "p": "Back at sea level, the colourful houses of the Bo-Kaap tell the story of the city's Cape Malay heritage, and the V&A Waterfront is the place for an easy afternoon of shopping, food and harbour views." },
+    { "h": "The Cape Peninsula" },
+    { "p": "A day around the peninsula is one of the great drives of the world. Chapman's Peak Drive is cut into the cliffs above the sea, the Cape Point lighthouse looks out over two oceans, and the sign at the Cape of Good Hope marks the most south-western point of the continent. On the way back, Boulders Beach is home to a colony of African penguins that wander between the granite boulders." },
+    { "h": "History on Robben Island" },
+    { "p": "Ferries leave from the Nelson Mandela Gateway at the Waterfront for the island where Nelson Mandela spent eighteen of his twenty-seven years in prison. Tours are led by guides with first-hand knowledge of its history. Sailings depend on the weather, so it is worth booking early in your stay." },
+    { "h": "Wine, adventure and the water" },
+    { "ul": [
+      "Wine tasting in Stellenbosch and Franschhoek, less than an hour from the city",
+      "A sunset catamaran cruise past Camps Bay and the Twelve Apostles",
+      "Tandem paragliding with views over the whole city bowl",
+      "Quad biking on the white sand dunes north of the city"
+    ] },
+    { "h": "Adding a safari" },
+    { "p": "Private game reserves a couple of hours from Cape Town offer a gentle introduction to the Big Five, ideal if you are short on time. For the full experience, a short flight takes you to the Greater Kruger region — our Big Five & Beautiful Cape safari combines both." },
+    { "h": "When to go" },
+    { "p": "Summer (November to March) brings long, dry, sunny days and the best beach weather. Winter (June to August) is cooler and greener, with fewer crowds and lower prices. Cape Town is a year-round destination — pack layers whatever the season." }
+  ],
+  "gallery": { "places": ["cpt"], "keys": ["adventure-paragliding-lagoon"] },
+  "tours": ["big-five-and-beautiful-cape", "wild-africa-wine-and-wellness"]
+}

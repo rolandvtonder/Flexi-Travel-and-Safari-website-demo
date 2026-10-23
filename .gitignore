@@ -3,3 +3,5 @@ dist
 .DS_Store
 .claude/
 *.log
+# Raw client media (662 MB). The site uses the processed copies in public/assets.
+Media/

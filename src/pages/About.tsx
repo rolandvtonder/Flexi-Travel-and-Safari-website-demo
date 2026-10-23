@@ -1,6 +1,7 @@
 import { Link } from 'react-router'
 import { PageHero, Reveal, SectionHead, Eyebrow, usePageMeta } from '../components/ui'
-import { img } from '../data/tours'
+import { img, photo } from '../data/tours'
+import Gallery from '../components/Gallery'
 import { SITE } from '../config'
 import { ArrowRight, Heart, Wallet, Globe, Compass, Pin } from '../components/Icons'
 
@@ -17,7 +18,7 @@ export default function About() {
   return (
     <>
       <PageHero
-        image={img('founder-elephant')}
+        image={photo('hwa-plains')}
         position="center 40%"
         eyebrow="Our story"
         title={
@@ -60,17 +61,27 @@ export default function About() {
         </div>
       </section>
 
+      {/* ---- Hwange in pictures ---- */}
+      <section aria-labelledby="hwange-photos" style={{ padding: '0 0 clamp(70px, 10vw, 120px)' }}>
+        <div className="wrap">
+          <h2 id="hwange-photos" className="display" style={{ margin: '0 0 22px', fontSize: 'clamp(26px, 3vw, 36px)' }}>
+            Hwange, <em>in pictures</em>
+          </h2>
+          <Gallery keys={['hwa-elephant-family', 'hwa-lodge-waterhole', 'hwa-plains', 'safari-elephant-calves', 'safari-elephant-family', 'vic-full-flow']} label="Hwange and Victoria Falls photos" />
+        </div>
+      </section>
+
       {/* ---- two worlds ---- */}
       <section aria-labelledby="worlds" style={{ padding: '0 0 clamp(80px, 11vw, 140px)' }}>
         <div className="wrap">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 420px), 1fr))', gap: 20 }}>
             {[
-              { to: '/safari', image: 'elephants-rivers', eyebrow: 'For Europe & America', t: 'We share the Africa we grew up in', cta: 'Safari Africa' },
-              { to: '/europe', image: 'viva-espana', eyebrow: 'For Southern Africa', t: 'We open the Europe we now call home', cta: 'European Adventures' },
+              { to: '/safari', image: photo('east-elephants-acacias'), eyebrow: 'For Europe & America', t: 'We share the Africa we grew up in', cta: 'African Safaris' },
+              { to: '/europe', image: img('viva-espana'), eyebrow: 'For Southern Africa', t: 'We open the Europe we now call home', cta: 'European Adventures' },
             ].map((w, i) => (
               <Reveal key={w.to} delay={i * 0.08}>
-                <Link to={w.to} className="journey-card" style={{ position: 'relative', display: 'block', minHeight: 420, borderRadius: 32, overflow: 'hidden', border: '1px solid var(--color-line)' }}>
-                  <img src={img(w.image)} alt="" loading="lazy" className="journey-img" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                <Link to={w.to} className="journey-card dark" style={{ position: 'relative', display: 'block', minHeight: 420, borderRadius: 32, overflow: 'hidden', border: '1px solid var(--color-line)' }}>
+                  <img src={w.image} alt="" loading="lazy" className="journey-img" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
                   <div aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(8,10,7,0.1) 25%, rgba(8,10,7,0.92) 100%)' }} />
                   <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, padding: 32 }}>
                     <Eyebrow>{w.eyebrow}</Eyebrow>
@@ -95,7 +106,7 @@ export default function About() {
           <ul style={{ listStyle: 'none', padding: 0, margin: '50px 0 0', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: 18 }}>
             {POINTS.map((pt, i) => (
               <Reveal as="li" key={pt.t} delay={i * 0.06} style={{ padding: 30, borderRadius: 26, border: '1px solid var(--color-line)', background: 'var(--color-ink)' }}>
-                <span style={{ width: 48, height: 48, borderRadius: '50%', display: 'grid', placeItems: 'center', border: '1px solid rgba(224,168,62,0.45)', color: 'var(--color-gold)' }}>
+                <span style={{ width: 48, height: 48, borderRadius: '50%', display: 'grid', placeItems: 'center', border: '1px solid color-mix(in srgb, var(--color-brand-gold) 45%, transparent)', color: 'var(--color-gold)' }}>
                   <pt.icon size={20} />
                 </span>
                 <h3 className="display" style={{ margin: '22px 0 10px', fontSize: 24 }}>

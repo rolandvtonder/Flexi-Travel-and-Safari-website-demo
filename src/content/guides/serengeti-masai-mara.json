@@ -1,0 +1,29 @@
+{
+  "slug": "serengeti-and-masai-mara",
+  "title": "The Serengeti & Masai Mara: East Africa's great plains",
+  "region": "africa",
+  "date": "2026-10-13",
+  "excerpt": "The Great Migration, balloon safaris at dawn and the culture of the Maasai — a guide to the plains of Kenya and Tanzania.",
+  "hero": { "photo": "east-mara-crossing" },
+  "body": [
+    { "p": "The Serengeti in Tanzania and the Masai Mara in Kenya are two halves of one vast ecosystem. These are the endless plains of the documentaries: flat-topped acacias, big skies, and some of the greatest concentrations of wildlife left on earth." },
+    { "h": "The Great Migration" },
+    { "p": "Each year well over a million wildebeest, joined by zebra and gazelle, follow the rains in a great circle through the Serengeti and into the Mara. Calving takes place on the southern Serengeti plains early in the year, and the dramatic river crossings in the north usually happen between July and October. Wildlife movements vary from year to year, so crossings are never guaranteed — but the plains are full of life in every month." },
+    { "h": "Beyond the migration" },
+    { "ul": [
+      "Lion prides, cheetah and leopard on the open grasslands",
+      "Elephant herds beneath the acacias, and hippos crowded into river pools",
+      "A sunrise hot-air balloon flight, followed by breakfast on the plains",
+      "The Ngorongoro Crater, a natural amphitheatre full of wildlife",
+      "Giraffe, buffalo, waterbuck, ostrich and countless birds"
+    ] },
+    { "h": "Meeting the Maasai" },
+    { "p": "The Maasai have lived alongside wildlife on these plains for generations. A respectful visit to a Maasai village — with its beadwork, songs and the famous jumping dance — is often a highlight, and the best visits support the community directly." },
+    { "h": "Kenya or Tanzania?" },
+    { "p": "The Masai Mara is compact and easy to reach from Nairobi, making it perfect for a shorter first safari. Tanzania's Serengeti is larger and wilder, and combines beautifully with the Ngorongoro Crater and the beaches of Zanzibar. Both pair well with time on the Indian Ocean coast." },
+    { "h": "Practical tips" },
+    { "p": "Light-aircraft flights between airstrips often have luggage limits, so pack in a soft bag. Both countries have specific health and entry requirements — check visas, vaccinations and malaria advice with a travel doctor before you book." }
+  ],
+  "gallery": { "places": ["east"] },
+  "tours": ["first-safari-full-of-wonder", "the-mara-the-mountains-and-the-coast", "serengeti-and-the-crater", "safari-to-sea-serengeti-and-zanzibar"]
+}

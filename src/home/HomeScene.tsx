@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import { useScroll, useMotionValueEvent, useReducedMotion } from 'motion/react'
 import { SCROLL_VH, P, G, INTRO, VIDEO_SEAM, SEAM_BAND, span, ramp, ease, lerp } from '../scroll'
 import { ArrowRight, ArrowUpRight } from '../components/Icons'
-import { img, asset } from '../data/tours'
+import { photo, asset } from '../data/tours'
 
 /*
   The home scene — the Marlin pattern, re-told for Flexi.
@@ -49,10 +49,10 @@ function Mask({ t, children, style }: { t: number; children: ReactNode; style?: 
 }
 
 const AUDIENCES = [
-  { label: ['For', 'couples'], art: 'for-couples' },
-  { label: ['For', 'families'], art: 'for-families' },
-  { label: ['Women', 'together'], art: 'for-women' },
-  { label: ['Well-', 'travelled'], art: 'for-well-travelled' },
+  { label: ['For', 'couples'], art: 'pnr-blyde-couple' },
+  { label: ['For', 'families'], art: 'safari-elephant-calves' },
+  { label: ['Women', 'together'], art: 'cpt-quad-friends' },
+  { label: ['Well-', 'travelled'], art: 'vic-dinner-cruise' },
 ]
 
 const CHAPTERS = [
@@ -68,7 +68,9 @@ function useStage() {
       /* clientWidth, not innerWidth: the latter includes the scrollbar, which
          would push the right edge of the artboard under it */
       const vw = document.documentElement.clientWidth
-      const vh = window.innerHeight
+      /* the scene pins below the header bar, so it has that much less height */
+      const headerH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 0
+      const vh = window.innerHeight - headerH
       const key: StageKey = vw < 760 || vw / vh < 0.95 ? 'mobile' : 'desktop'
       const { W, H } = STAGES[key]
       const scale = Math.min(vw / W, vh / H)
@@ -208,11 +210,11 @@ export default function HomeScene() {
     : AUDIENCES.map((a, i) => ({ ...a, x: [0, GW - 255, 116, GW - 371][i], y: [0, 0, 240, 240][i], w: 255, h: 215 }))
 
   return (
-    <div ref={wrap} style={{ height: `${SCROLL_VH}vh`, background: 'var(--color-ink)', position: 'relative' }}>
+    <div ref={wrap} className="dark" style={{ height: `${SCROLL_VH}vh`, background: '#111', position: 'relative' }}>
       <h1 className="sr-only" style={srOnly}>
         Flexi Travel &amp; Safari — African safaris and European adventures
       </h1>
-      <div style={{ position: 'sticky', top: 0, height: '100svh', overflow: 'hidden' }}>
+      <div style={{ position: 'sticky', top: 'var(--header-h)', height: 'calc(100svh - var(--header-h))', overflow: 'hidden' }}>
         <video ref={vidA} muted playsInline preload="auto" poster={asset('assets/video/africa-poster.jpg')} aria-hidden="true" tabIndex={-1} style={{ ...vStyle, opacity: 1 - bMix }}>
           <source src={asset('assets/video/africa.mp4')} type="video/mp4" />
         </video>
@@ -228,8 +230,8 @@ export default function HomeScene() {
             position: 'absolute',
             inset: 0,
             background: mobile
-              ? 'linear-gradient(180deg, rgba(8,10,7,0.7) 0%, rgba(8,10,7,0.5) 45%, rgba(8,10,7,0.86) 100%)'
-              : 'linear-gradient(90deg, rgba(8,10,7,0.86) 0%, rgba(8,10,7,0.55) 36%, rgba(8,10,7,0.12) 64%, rgba(8,10,7,0.35) 100%)',
+              ? 'linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.3) 45%, rgba(0,0,0,0.7) 100%)'
+              : 'linear-gradient(90deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.4) 34%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.18) 100%)',
             opacity: 1 - (reduce ? ramp(p, [0.2, 0.28]) : m1),
             pointerEvents: 'none',
           }}
@@ -239,7 +241,7 @@ export default function HomeScene() {
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'radial-gradient(70% 60% at 50% 80%, rgba(8,10,7,0.88) 0%, rgba(8,10,7,0.4) 58%, rgba(8,10,7,0.12) 100%)',
+            background: 'radial-gradient(70% 55% at 50% 82%, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 58%, rgba(0,0,0,0) 100%)',
             opacity: (reduce ? oCards : m1 * (1 - m2)),
             pointerEvents: 'none',
           }}
@@ -250,8 +252,8 @@ export default function HomeScene() {
             position: 'absolute',
             inset: 0,
             background: mobile
-              ? 'linear-gradient(180deg, rgba(8,10,7,0.35) 0%, rgba(8,10,7,0.78) 40%, rgba(8,10,7,0.92) 100%)'
-              : 'linear-gradient(180deg, rgba(8,10,7,0.45) 0%, rgba(8,10,7,0.74) 32%, rgba(8,10,7,0.9) 70%, rgba(8,10,7,0.95) 100%)',
+              ? 'linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.65) 40%, rgba(0,0,0,0.85) 100%)'
+              : 'linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.55) 32%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0.88) 100%)',
             opacity: reduce ? oEurope : m2,
             pointerEvents: 'none',
           }}
@@ -316,7 +318,7 @@ export default function HomeScene() {
                     cursor: 'pointer',
                     fontSize: 15,
                     textAlign: 'right',
-                    color: chapter === i ? 'var(--color-gold)' : 'rgba(245,239,227,0.42)',
+                    color: chapter === i ? 'var(--color-gold)' : 'color-mix(in srgb, var(--color-bone) 42%, transparent)',
                     transition: 'color 300ms ease',
                     opacity: it('cta'),
                   }}
@@ -348,7 +350,7 @@ export default function HomeScene() {
 
             {heroBody.map((line, i) => (
               <Mask key={line} t={it(bodyKeys[i])} style={box(0, bodyTop + i * bodyStep, mobile ? 346 : 560, bodyStep + 6)}>
-                <div aria-hidden="true" style={{ fontSize: mobile ? 16 : 18.5, lineHeight: `${bodyStep}px`, color: 'rgba(245,239,227,0.86)', whiteSpace: 'nowrap' }}>
+                <div aria-hidden="true" style={{ fontSize: mobile ? 16 : 18.5, lineHeight: `${bodyStep}px`, color: 'color-mix(in srgb, var(--color-bone) 86%, transparent)', whiteSpace: 'nowrap' }}>
                   {line}
                 </div>
               </Mask>
@@ -393,7 +395,7 @@ export default function HomeScene() {
             >
               <div aria-hidden="true" style={{ position: 'absolute', inset: mobile ? '20px 22px' : '34px 38px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                  <div style={{ fontSize: mobile ? 15 : 17, lineHeight: 1.35, color: 'rgba(245,239,227,0.9)' }}>
+                  <div style={{ fontSize: mobile ? 15 : 17, lineHeight: 1.35, color: 'color-mix(in srgb, var(--color-bone) 90%, transparent)' }}>
                     Signature
                     <br />
                     safaris
@@ -405,13 +407,13 @@ export default function HomeScene() {
 
                 {!mobile && (
                   <>
-                    <div style={{ position: 'absolute', left: 0, right: 0, top: 100, height: 5, borderRadius: 999, background: 'rgba(245,239,227,0.16)', overflow: 'hidden' }}>
+                    <div style={{ position: 'absolute', left: 0, right: 0, top: 100, height: 5, borderRadius: 999, background: 'color-mix(in srgb, var(--color-bone) 16%, transparent)', overflow: 'hidden' }}>
                       <div style={{ width: `${100 * stat}%`, height: '100%', borderRadius: 999, background: 'var(--color-gold)', boxShadow: '0 0 14px var(--color-gold)' }} />
                     </div>
-                    <div className="label" style={{ position: 'absolute', left: 0, top: 116, fontSize: 9.5, color: 'rgba(245,239,227,0.55)' }}>
+                    <div className="label" style={{ position: 'absolute', left: 0, top: 116, fontSize: 9.5, color: 'color-mix(in srgb, var(--color-bone) 55%, transparent)' }}>
                       South Africa · Zimbabwe · Kenya · Tanzania
                     </div>
-                    <div style={{ position: 'absolute', left: 0, right: 0, top: 148, height: 1, background: 'rgba(245,239,227,0.14)' }} />
+                    <div style={{ position: 'absolute', left: 0, right: 0, top: 148, height: 1, background: 'color-mix(in srgb, var(--color-bone) 14%, transparent)' }} />
                   </>
                 )}
 
@@ -421,12 +423,12 @@ export default function HomeScene() {
                     ['Up to', `${Math.round(10 * stat)}`, 'days'],
                     ['From', `€${Math.round(4 * stat)}k`, 'pp'],
                   ].map(([k, v, u], i) => (
-                    <div key={k} style={{ flex: 1, paddingLeft: i ? (mobile ? 14 : 20) : 0, borderLeft: i ? '1px solid rgba(245,239,227,0.14)' : undefined }}>
+                    <div key={k} style={{ flex: 1, paddingLeft: i ? (mobile ? 14 : 20) : 0, borderLeft: i ? '1px solid color-mix(in srgb, var(--color-bone) 14%, transparent)' : undefined }}>
                       <div className="display tabular" style={{ fontSize: mobile ? 22 : 26, fontWeight: 500 }}>
                         {v}
                         <span style={{ fontSize: 12, opacity: 0.6, fontFamily: 'var(--font-sans)' }}> {u}</span>
                       </div>
-                      <div className="label" style={{ marginTop: 6, fontSize: 9.5, color: 'rgba(245,239,227,0.55)' }}>
+                      <div className="label" style={{ marginTop: 6, fontSize: 9.5, color: 'color-mix(in srgb, var(--color-bone) 55%, transparent)' }}>
                         {k}
                       </div>
                     </div>
@@ -455,11 +457,11 @@ export default function HomeScene() {
                   style={{ ...box(c.x, c.y, c.w, c.h), opacity: o, transform: `translateY(${(1 - o) * 30}px)`, display: 'block' }}
                 >
                   <div style={{ position: 'absolute', inset: 0, borderRadius: mobile ? 30 : 46, overflow: 'hidden' }}>
-                    <img src={img(c.art)} alt="" loading="lazy" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <img src={photo(c.art, 'sm')} alt="" loading="lazy" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
                     {/* the label sits on a photograph, so it gets its own ground */}
                     <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(150deg, rgba(8,10,7,0.84) 0%, rgba(8,10,7,0.32) 55%, rgba(8,10,7,0.05) 100%)' }} />
                   </div>
-                  <div style={{ position: 'absolute', inset: 0, borderRadius: mobile ? 30 : 46, border: '1px solid rgba(245,239,227,0.28)', pointerEvents: 'none' }} />
+                  <div style={{ position: 'absolute', inset: 0, borderRadius: mobile ? 30 : 46, border: '1px solid color-mix(in srgb, var(--color-bone) 28%, transparent)', pointerEvents: 'none' }} />
                   <div className="display" aria-hidden="true" style={{ position: 'absolute', left: mobile ? 16 : 24, top: mobile ? 18 : 28, fontSize: mobile ? 19 : 24, lineHeight: 1.1 }}>
                     {c.label[0]}
                     <br />
@@ -474,8 +476,8 @@ export default function HomeScene() {
                       width: mobile ? 40 : 58,
                       height: mobile ? 40 : 58,
                       borderRadius: '50%',
-                      background: 'rgba(245,239,227,0.22)',
-                      border: '1px solid rgba(245,239,227,0.4)',
+                      background: 'color-mix(in srgb, var(--color-bone) 22%, transparent)',
+                      border: '1px solid color-mix(in srgb, var(--color-bone) 40%, transparent)',
                       display: 'grid',
                       placeItems: 'center',
                       backdropFilter: 'blur(8px)',
@@ -502,7 +504,7 @@ export default function HomeScene() {
                 fontSize: mobile ? 16 : 20,
                 lineHeight: mobile ? '25px' : '31px',
                 textAlign: 'center',
-                color: 'rgba(245,239,227,0.86)',
+                color: 'color-mix(in srgb, var(--color-bone) 86%, transparent)',
               }}
             >
               Wake to elephants at the waterhole, follow lions across the plains and end the day with dinner under the stars — at your own pace.
@@ -528,7 +530,7 @@ export default function HomeScene() {
                 margin: 0,
                 fontSize: mobile ? 16 : 17.5,
                 lineHeight: mobile ? '25px' : '29px',
-                color: 'rgba(245,239,227,0.84)',
+                color: 'color-mix(in srgb, var(--color-bone) 84%, transparent)',
                 opacity: eIn(2),
                 transform: `translateY(${(1 - eIn(2)) * 24}px)`,
               }}
@@ -551,14 +553,14 @@ export default function HomeScene() {
               }}
             >
               <div>
-                <div className="label" style={{ fontSize: 9.5, color: 'rgba(245,239,227,0.6)' }}>
+                <div className="label" style={{ fontSize: 9.5, color: 'color-mix(in srgb, var(--color-bone) 60%, transparent)' }}>
                   A R45 000 adventure
                 </div>
-                <div style={{ fontSize: 14, color: 'rgba(245,239,227,0.82)', marginTop: 4 }}>over 12 months</div>
+                <div style={{ fontSize: 14, color: 'color-mix(in srgb, var(--color-bone) 82%, transparent)', marginTop: 4 }}>over 12 months</div>
               </div>
               <div className="display tabular" style={{ fontSize: mobile ? 32 : 40, fontWeight: 400 }}>
                 R3 750
-                <span style={{ fontSize: 13, fontFamily: 'var(--font-sans)', color: 'rgba(245,239,227,0.6)' }}> /month</span>
+                <span style={{ fontSize: 13, fontFamily: 'var(--font-sans)', color: 'color-mix(in srgb, var(--color-bone) 60%, transparent)' }}> /month</span>
               </div>
             </div>
             <div

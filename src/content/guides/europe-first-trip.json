@@ -1,0 +1,28 @@
+{
+  "slug": "planning-your-first-trip-to-europe",
+  "title": "Planning your first trip to Europe from Southern Africa",
+  "region": "europe",
+  "date": "2026-10-22",
+  "excerpt": "Schengen visas, when to go, how to budget and how to pay over time — a practical guide for travellers from South Africa, Botswana and Namibia.",
+  "hero": { "image": "viva-espana" },
+  "body": [
+    { "p": "Spain, Portugal, France and Italy are four of the most rewarding countries in Europe, and they're closer to a first visit than many people think. A little planning — mostly around your visa and your budget — makes everything else easy." },
+    { "h": "The Schengen visa" },
+    { "p": "All four countries are part of the Schengen area, which shares a single short-stay visa. Most travellers with South African, Botswana or Namibian passports need one. You usually apply through the consulate or visa centre of the country where you'll spend the most time, or where you'll arrive first if your time is split evenly." },
+    { "ul": [
+      "Applications can generally be made up to six months before you travel, and should be made well in advance of your trip",
+      "Expect to provide your itinerary, accommodation bookings, bank statements and travel insurance",
+      "Schengen travel insurance must meet a minimum medical cover — we'll point you to suitable policies"
+    ] },
+    { "p": "Rules and processing times can change, so always confirm the current requirements with the official consulate or visa centre. We'll provide the trip documents you need for your application." },
+    { "h": "When to go" },
+    { "p": "Spring (April to June) and autumn (September to October) offer warm weather, smaller crowds and better prices. July and August are hot and busy, especially on the coast; winter is quiet and atmospheric in the cities." },
+    { "h": "Getting around" },
+    { "p": "Fast, comfortable trains link most of the cities on our routes — Madrid to Seville, Lisbon to Porto, Rome to Florence and Venice. We plan the connections and include them in your package, so you can relax and watch the countryside go by." },
+    { "h": "Budgeting — and paying over time" },
+    { "p": "Our European adventures are priced as land packages: hotels, transport between cities and the experiences on your itinerary. Flights, visa fees and insurance are budgeted separately. You can pay by EFT or card, and spread the cost in monthly instalments over up to twelve months before you travel." },
+    { "h": "Combine two countries" },
+    { "p": "Spain and Portugal, or France and Italy, combine beautifully in a single trip of ten to fourteen days. Tell us what you'd love to see and we'll tailor the route and the payment plan around it." }
+  ],
+  "tours": ["viva-espana", "portugal-in-colour", "bonjour-paris", "ciao-italia"]
+}

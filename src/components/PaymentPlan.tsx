@@ -2,11 +2,14 @@ import { useId, useState } from 'react'
 import { toursIn, formatPrice } from '../data/tours'
 import { Check } from './Icons'
 
-const MIN = 36000
-const MAX = 60000
-const STEP = 1000
-/** Lowest amount a typed custom price settles on. */
-const MIN_CUSTOM = 1000
+type Currency = 'EUR' | 'ZAR'
+
+/* Slider range per currency, around the tours' indicative prices. A typed
+   custom amount can go beyond either end. */
+const RANGE: Record<Currency, { min: number; max: number; step: number; minCustom: number }> = {
+  EUR: { min: 3000, max: 9000, step: 100, minCustom: 100 },
+  ZAR: { min: 36000, max: 60000, step: 1000, minCustom: 1000 },
+}
 
 /**
   The instalment calculator. As the client set it out: payments are flexible —
@@ -14,9 +17,20 @@ const MIN_CUSTOM = 1000
   number of months, up to 12. Equal payments, no interest or fees assumed; the
   copy beneath says so rather than letting the number imply a promise.
 */
-export default function PaymentPlan({ initialPrice = 45000, lockPrice = false }: { initialPrice?: number; lockPrice?: boolean }) {
+export default function PaymentPlan({
+  currency = 'ZAR',
+  initialPrice,
+  lockPrice = false,
+}: {
+  currency?: Currency
+  initialPrice?: number
+  lockPrice?: boolean
+}) {
   const uid = useId()
-  const europe = toursIn('europe')
+  const { min: MIN, max: MAX, step: STEP, minCustom: MIN_CUSTOM } = RANGE[currency]
+  /* safaris are priced in euros, European adventures in rand */
+  const europe = toursIn(currency === 'EUR' ? 'africa' : 'europe')
+  initialPrice ??= europe.find((t) => t.flagship)?.price[0] ?? europe[0].price[0]
   const [price, setPrice] = useState(initialPrice)
   const [months, setMonths] = useState(12)
   /* What the dropdown shows is its own state — deriving it from the price
@@ -41,7 +55,7 @@ export default function PaymentPlan({ initialPrice = 45000, lockPrice = false }:
 
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: 1, borderRadius: 32, overflow: 'hidden', border: '1px solid var(--color-line)', background: 'var(--color-line)' }}>
-      <div style={{ background: 'var(--color-ink-2)', padding: 'clamp(24px, 4vw, 40px)', display: 'grid', gap: 30, alignContent: 'start' }}>
+      <div style={{ background: 'var(--color-ink)', padding: 'clamp(24px, 4vw, 40px)', display: 'grid', gap: 30, alignContent: 'start' }}>
         {!lockPrice && (
           <div>
             <label htmlFor={`${uid}-tour`} className="field-label">
@@ -61,7 +75,7 @@ export default function PaymentPlan({ initialPrice = 45000, lockPrice = false }:
               <option value="">Custom amount</option>
               {europe.map((t) => (
                 <option key={t.slug} value={t.slug}>
-                  {t.title} — from {formatPrice(t.price[0], 'ZAR')}
+                  {t.title} — from {formatPrice(t.price[0], currency)}
                 </option>
               ))}
             </select>
@@ -74,7 +88,7 @@ export default function PaymentPlan({ initialPrice = 45000, lockPrice = false }:
               Holiday price per person
             </label>
             <output htmlFor={`${uid}-price`} className="display tabular" style={{ fontSize: 26 }}>
-              {formatPrice(price, 'ZAR')}
+              {formatPrice(price, currency)}
             </output>
           </div>
           {lockPrice ? (
@@ -84,7 +98,7 @@ export default function PaymentPlan({ initialPrice = 45000, lockPrice = false }:
               {choice === '' && (
                 <div style={{ marginTop: 12 }}>
                   <label htmlFor={`${uid}-amount`} className="field-label">
-                    Your amount (R)
+                    Your amount ({currency === 'EUR' ? '€' : 'R'})
                   </label>
                   <input
                     id={`${uid}-amount`}
@@ -92,7 +106,7 @@ export default function PaymentPlan({ initialPrice = 45000, lockPrice = false }:
                     type="text"
                     inputMode="numeric"
                     autoComplete="off"
-                    placeholder="e.g. 50000"
+                    placeholder={currency === 'EUR' ? 'e.g. 5000' : 'e.g. 50000'}
                     value={typed}
                     onChange={(e) => onTyped(e.target.value)}
                     onBlur={() => {
@@ -118,11 +132,11 @@ export default function PaymentPlan({ initialPrice = 45000, lockPrice = false }:
                   applyPrice(Number(e.target.value))
                 }}
                 style={{ ['--fill' as string]: `${priceFill}%`, marginTop: 10 }}
-                aria-valuetext={formatPrice(price, 'ZAR')}
+                aria-valuetext={formatPrice(price, currency)}
               />
               <div className="label tabular" style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--color-dim)', fontSize: 10 }}>
-                <span>R36 000</span>
-                <span>R60 000</span>
+                <span>{formatPrice(MIN, currency)}</span>
+                <span>{formatPrice(MAX, currency)}</span>
               </div>
             </>
           )}
@@ -167,13 +181,13 @@ export default function PaymentPlan({ initialPrice = 45000, lockPrice = false }:
         </ul>
       </div>
 
-      <div style={{ background: 'linear-gradient(160deg, var(--color-ink-3), var(--color-ink-2))', padding: 'clamp(24px, 4vw, 40px)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: 24 }}>
+      <div style={{ background: 'var(--color-ink-2)', padding: 'clamp(24px, 4vw, 40px)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: 24 }}>
         <div>
           <div className="label" style={{ color: 'var(--color-gold)' }}>
             {months === 1 ? 'One payment' : 'Estimated monthly payment'}
           </div>
           <div aria-live="polite" className="display tabular" style={{ fontSize: 'clamp(54px, 7vw, 88px)', lineHeight: 1, marginTop: 12, fontWeight: 400 }}>
-            {formatPrice(monthly, 'ZAR')}
+            {formatPrice(monthly, currency)}
           </div>
           <div style={{ color: 'var(--color-mist)', marginTop: 8 }}>{months === 1 ? 'per person, paid before departure' : `per person, per month, for ${months} months`}</div>
         </div>
