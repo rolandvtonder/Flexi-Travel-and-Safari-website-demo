@@ -1,13 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router'
 import { SITE, whatsappLink } from '../config'
-import { tourBySlug } from '../data/tours'
 import { WhatsApp, Close } from './Icons'
 
 /*
   Two offices, two WhatsApp numbers. The floating button opens a small chooser
-  so the visitor reaches the team that handles their kind of trip — the
-  office relevant to the page they're on is listed first.
+  so the visitor can message whichever office suits them — both take all
+  enquiries.
 */
 export default function WhatsAppFloat() {
   const [open, setOpen] = useState(false)
@@ -36,8 +35,7 @@ export default function WhatsAppFloat() {
     }
   }, [open])
 
-  const europeFirst = pathname.startsWith('/europe') || tourBySlug(pathname.split('/tours/')[1])?.region === 'europe'
-  const offices = europeFirst ? [...SITE.offices].reverse() : SITE.offices
+  const offices = SITE.offices
 
   return (
     <div ref={root} style={{ position: 'fixed', right: 18, bottom: 18, zIndex: 30, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 12 }}>

@@ -1,7 +1,7 @@
 import { Link } from 'react-router'
 import { PageHero, Reveal, SectionHead, TourCard, Eyebrow, Faq, usePageMeta } from '../components/ui'
 import EnquiryForm from '../components/EnquiryForm'
-import { toursIn, asset } from '../data/tours'
+import { toursIn, img } from '../data/tours'
 import { ArrowRight, Check, Info } from '../components/Icons'
 
 export default function Europe() {
@@ -11,7 +11,9 @@ export default function Europe() {
   return (
     <>
       <PageHero
-        image={asset('assets/video/europe-poster.jpg')}
+        image={img('europe-paris-dawn')}
+        position="center 62%"
+        titleMax={620}
         eyebrow="European Adventures · For South Africa, Botswana & Namibia"
         title={
           <>

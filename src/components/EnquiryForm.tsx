@@ -1,7 +1,7 @@
 import { useEffect, useId, useRef, useState, type FormEvent, type ReactNode } from 'react'
 import { TOURS, SAFARI_COUNTRIES, EUROPE_COUNTRIES, type Region } from '../data/tours'
 import { submitEnquiry } from '../lib/submit'
-import { officeFor, whatsappLink } from '../config'
+import { nearestOffice, whatsappLink } from '../config'
 import { ArrowLeft, ArrowRight, Check, WhatsApp } from './Icons'
 
 /*
@@ -193,7 +193,6 @@ export default function EnquiryForm({
   }
   const err = (k: Key) => (touched[k] || summary ? errors[k] : undefined)
 
-  const region: 'africa' | 'europe' = v.journey === 'europe' ? 'europe' : 'africa'
   const europe = v.journey === 'europe'
   const tours = TOURS.filter((t) => !v.journey || v.journey === 'unsure' || t.region === v.journey)
   const countryOptions = v.journey === 'africa' ? SAFARI_COUNTRIES : v.journey === 'europe' ? EUROPE_COUNTRIES : []
@@ -256,7 +255,7 @@ export default function EnquiryForm({
       Message: v.message.trim(),
     }
     const r = await submitEnquiry(`[${lead}] ${journeyLabel} — ${tour ? tour.title : 'tailor-made'} — ${v.name.trim()}`, fields, {
-      region: europe ? 'europe' : 'africa',
+      office: nearestOffice(v.residence).key,
       internal: { 'Lead score': lead },
     })
     if (r.ok) {
@@ -269,7 +268,7 @@ export default function EnquiryForm({
   }
 
   if (state === 'done') {
-    const o = officeFor(europe ? 'europe' : 'africa')
+    const o = nearestOffice(v.residence)
     return (
       <div role="status" style={{ padding: compact ? 24 : 36, borderRadius: 24, border: '1px solid var(--color-line)', background: 'var(--color-ink-2)' }}>
         <span style={{ width: 48, height: 48, borderRadius: '50%', display: 'grid', placeItems: 'center', background: 'var(--color-gold)', color: 'var(--color-ink)' }}>
@@ -559,7 +558,7 @@ export default function EnquiryForm({
       {state === 'failed' && (
         <p role="alert" style={{ margin: 0, color: 'var(--color-danger)' }}>
           {failure}{' '}
-          <a href={whatsappLink(`Hi Flexi, I tried to send an enquiry from the website. My name is ${v.name}.`, europe ? 'europe' : 'africa')} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline' }}>
+          <a href={whatsappLink(`Hi Flexi, I tried to send an enquiry from the website. My name is ${v.name}.`, nearestOffice(v.residence).key)} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline' }}>
             Message us on WhatsApp
           </a>{' '}
           or try again.
@@ -585,7 +584,7 @@ export default function EnquiryForm({
           )}
         </button>
         {step === 0 && (
-          <a href={whatsappLink('Hi Flexi, I’d like help planning a trip.', region)} target="_blank" rel="noopener noreferrer" className="label" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, minHeight: 44, color: 'var(--color-mist)' }}>
+          <a href={whatsappLink('Hi Flexi, I’d like help planning a trip.', nearestOffice(v.residence).key)} target="_blank" rel="noopener noreferrer" className="label" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, minHeight: 44, color: 'var(--color-mist)' }}>
             <WhatsApp /> Rather chat on WhatsApp
           </a>
         )}

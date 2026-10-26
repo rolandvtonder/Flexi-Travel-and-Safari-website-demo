@@ -63,8 +63,9 @@
 
 /* Height of the part of the header that stays pinned while scrolling.
    The home scene pins itself just below it. */
-:root { --header-h: 64px; }
-@media (min-width: 1100px) { :root { --header-h: 56px; } }
+:root { --header-h: 64px; --header-full: 64px; }
+/* desktop: contact strip (38) + logo row (96) + menu bar (56) */
+@media (min-width: 1100px) { :root { --header-h: 56px; --header-full: 190px; } }
 
 html, body, #root { margin: 0; }
 
@@ -400,3 +401,10 @@ input[type="range"].range::-moz-range-thumb { width: 18px; height: 18px; border-
 .prose li { margin: 0.3em 0; }
 .prose li::marker { color: var(--color-brand-gold); }
 .prose strong { color: var(--color-bone); }
+
+/* Home hero tabs: short labels on phones so the controls stay on one line. */
+.tab-short { display: none; }
+@media (max-width: 560px) {
+  .tab-long { display: none; }
+  .tab-short { display: inline; }
+}

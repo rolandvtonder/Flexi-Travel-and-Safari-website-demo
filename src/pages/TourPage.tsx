@@ -3,7 +3,7 @@ import { Reveal, TourCard, Eyebrow, usePageMeta } from '../components/ui'
 import EnquiryForm from '../components/EnquiryForm'
 import PaymentPlan from '../components/PaymentPlan'
 import NotFound from './NotFound'
-import { whatsappLink } from '../config'
+import { SITE, whatsappLink } from '../config'
 import { TOURS, tourBySlug, priceRange, formatPrice, tourImage } from '../data/tours'
 import Gallery from '../components/Gallery'
 import { ArrowLeft, Check, Clock, Info, Pin, Sparkle, Users, Close, WhatsApp, Compass, Heart } from '../components/Icons'
@@ -259,15 +259,21 @@ export default function TourPage() {
                 <a href="#enquire" className="btn btn-gold">
                   Enquire about this {africa ? 'safari' : 'trip'}
                 </a>
-                <a
-                  href={whatsappLink(`Hi Flexi, I’m interested in “${tour.title}”. Could you tell me more?`, tour.region)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-ghost"
-                  style={{ padding: '0 22px' }}
-                >
-                  <WhatsApp /> Ask on WhatsApp
-                </a>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+                  {SITE.offices.map((o) => (
+                    <a
+                      key={o.key}
+                      href={whatsappLink(`Hi Flexi, I’m interested in “${tour.title}”. Could you tell me more?`, o.key)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-ghost"
+                      aria-label={`Ask about this ${africa ? 'safari' : 'trip'} on WhatsApp — ${o.city} office`}
+                      style={{ padding: '0 10px', gap: 8, fontSize: 11 }}
+                    >
+                      <WhatsApp size={16} /> {o.city}
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
           </aside>

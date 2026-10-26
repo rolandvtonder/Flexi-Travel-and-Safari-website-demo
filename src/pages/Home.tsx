@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import HomeScene from '../home/HomeScene'
+import HomeHero from '../home/HomeHero'
 import { Reveal, SectionHead, TourCard, Eyebrow, usePageMeta } from '../components/ui'
 import { TOURS, img, photo } from '../data/tours'
 import { ArrowRight, Heart, Wallet, Globe, Compass } from '../components/Icons'
@@ -25,6 +25,13 @@ const JOURNEYS = [
     image: img('dolce-vita'),
     cta: 'Explore Europe',
   },
+]
+
+const AUDIENCES = [
+  { label: 'For couples', body: 'Romantic lodges and private moments.', photo: 'pnr-blyde-couple' },
+  { label: 'For families', body: 'Exciting wildlife, sensible travel days.', photo: 'safari-elephant-calves' },
+  { label: 'For women together', body: 'Shared adventures, trusted guides.', photo: 'cpt-quad-friends' },
+  { label: 'For the well-travelled', body: 'Unhurried days, exceptional hospitality.', photo: 'vic-dinner-cruise' },
 ]
 
 const POINTS = [
@@ -56,7 +63,7 @@ export default function Home() {
 
   return (
     <>
-      <HomeScene />
+      <HomeHero />
 
       {/* ---- two journeys ---- */}
       <section aria-labelledby="journeys" style={{ padding: 'clamp(80px, 12vw, 150px) 0 40px', position: 'relative', zIndex: 1, background: 'var(--color-ink)' }}>
@@ -99,6 +106,29 @@ export default function Home() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ---- find your kind of Africa ---- */}
+      <section aria-labelledby="kinds" style={{ padding: '0 0 clamp(40px, 6vw, 72px)' }}>
+        <div className="wrap">
+          <SectionHead id="kinds" eyebrow="First safari? Perfect." title={<>Find your kind <em>of Africa</em></>} intro="Wake to elephants at the waterhole, follow lions across the plains and end the day with dinner under the stars — at your own pace." />
+          <ul style={{ listStyle: 'none', padding: 0, margin: '40px 0 0', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', gap: 16 }}>
+            {AUDIENCES.map((a, i) => (
+              <Reveal as="li" key={a.label} delay={i * 0.06}>
+                <Link to="/safari#audience" className="journey-card dark" style={{ position: 'relative', display: 'block', aspectRatio: '4 / 5', borderRadius: 26, overflow: 'hidden' }}>
+                  <img src={photo(a.photo, 'sm')} alt="" loading="lazy" className="journey-img" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <span aria-hidden="true" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.82) 100%)' }} />
+                  <span style={{ position: 'absolute', left: 20, right: 20, bottom: 18, display: 'block' }}>
+                    <span className="display" style={{ display: 'block', fontSize: 22 }}>
+                      {a.label}
+                    </span>
+                    <span style={{ display: 'block', marginTop: 4, color: 'var(--color-mist)', fontSize: 15 }}>{a.body}</span>
+                  </span>
+                </Link>
+              </Reveal>
+            ))}
+          </ul>
         </div>
       </section>
 

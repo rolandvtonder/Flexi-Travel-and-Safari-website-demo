@@ -23,7 +23,7 @@ const OFFICES: Office[] = [
     key: 'madrid',
     city: 'Madrid',
     country: 'Spain',
-    role: 'African safaris for Europe & America',
+    role: 'All enquiries — safaris & European adventures',
     address: ['Calle Puerto de Somosierra 11', 'Majadahonda, Madrid', 'Spain'],
     whatsapp: '34678704368',
     phone: '+34 678 704 368',
@@ -32,7 +32,7 @@ const OFFICES: Office[] = [
     key: 'capetown',
     city: 'Cape Town',
     country: 'South Africa',
-    role: 'European adventures for Southern Africa',
+    role: 'All enquiries — safaris & European adventures',
     address: ['Unit C6, The Exchange', '1 School Street, Milnerton', 'Cape Town, South Africa'],
     whatsapp: '27732502549',
     phone: '+27 73 250 2549',
@@ -59,12 +59,13 @@ export const SITE = {
 export const office = (key: OfficeKey) => OFFICES.find((o) => o.key === key)!
 
 /*
-  Safari travellers are in Europe and America, so Madrid answers them;
-  European-adventure travellers are in Southern Africa, so Cape Town does.
+  Both offices take all enquiries (client, Oct 2026). Where the site has to
+  pick one — an enquiry handed to WhatsApp — it uses the office nearest the
+  traveller: Cape Town for Southern Africa, Madrid for everyone else.
 */
-export const officeFor = (region?: 'africa' | 'europe') => office(region === 'europe' ? 'capetown' : 'madrid')
+const SOUTHERN_AFRICA = ['South Africa', 'Botswana', 'Namibia', 'Zimbabwe']
+export const nearestOffice = (residence?: string) => office(residence && SOUTHERN_AFRICA.includes(residence) ? 'capetown' : 'madrid')
 
-export function whatsappLink(message: string, to: OfficeKey | 'africa' | 'europe' = 'madrid') {
-  const o = to === 'africa' || to === 'europe' ? officeFor(to) : office(to)
-  return `https://wa.me/${o.whatsapp}?text=${encodeURIComponent(message)}`
+export function whatsappLink(message: string, to: OfficeKey = 'madrid') {
+  return `https://wa.me/${office(to).whatsapp}?text=${encodeURIComponent(message)}`
 }

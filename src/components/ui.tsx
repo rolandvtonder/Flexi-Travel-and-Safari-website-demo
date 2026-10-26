@@ -87,6 +87,7 @@ export function PageHero({
   intro,
   children,
   position = 'center',
+  titleMax = 1000,
 }: {
   image: string
   eyebrow: string
@@ -94,6 +95,8 @@ export function PageHero({
   intro?: ReactNode
   children?: ReactNode
   position?: string
+  /** Narrow the headline to keep it clear of the photo's subject. */
+  titleMax?: number
 }) {
   const reduce = useReducedMotion()
   return (
@@ -121,7 +124,7 @@ export function PageHero({
           <Eyebrow>{eyebrow}</Eyebrow>
         </Reveal>
         <Reveal delay={0.08}>
-          <h1 className="display" style={{ margin: '18px 0 0', fontSize: 'clamp(42px, 7.2vw, 104px)', maxWidth: 1000 }}>
+          <h1 className="display" style={{ margin: '18px 0 0', fontSize: 'clamp(42px, 7.2vw, 104px)', maxWidth: titleMax }}>
             {title}
           </h1>
         </Reveal>

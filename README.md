@@ -15,7 +15,7 @@ The menu (as the client specified): Home · African Safaris · European Adventur
 
 | Route | What it is |
 |---|---|
-| `/` | Scroll-choreographed scene (Africa → Europe footage), the two journeys, founder story, signature tours |
+| `/` | Two-slide hero carousel (African Safaris / European Adventures), the two journeys, find-your-kind-of-Africa tiles, founder story, signature tours |
 | `/safari` | African Safaris — 8 safaris (2 each: South Africa, Zimbabwe, Kenya, Tanzania), destination guides, FAQ, enquiry |
 | `/europe` | European Adventures — 4 tours (Spain, Portugal, France, Italy), combine-countries option, FAQ, enquiry |
 | `/tours/:slug` | One page per tour: highlights, good-to-know facts, itinerary, photo gallery, inclusions, payment calculator, enquiry |
@@ -59,9 +59,7 @@ Until then, forms open WhatsApp to the right office with the enquiry pre-filled.
 - **Colours & fonts**: the `@theme` block at the top of `src/index.css`.
 - **Tours & prices**: `src/data/tours.ts` — cards, tour pages and form dropdowns all read from it. Prices are indicative per the brief.
 - **Photos**: `public/assets/img/*.webp` (Pexels licence, free for commercial use, no attribution required).
-- **Hero footage**: `public/assets/video/africa.mp4` and `europe.mp4` (Pexels). Replacements should be re-encoded with a short keyframe interval so scroll-scrubbing stays smooth, e.g.
-  `ffmpeg -i in.mp4 -t 12 -an -vf scale=1280:-2,fps=24 -c:v libx264 -crf 30 -g 8 -keyint_min 8 -movflags +faststart out.mp4`
-- **Scroll timing**: `src/scroll.ts` holds every phase of the home scene.
+- **Home hero slides**: `src/home/HomeHero.tsx` (image, headline, buttons per slide).
 
 ## Hosting
 
