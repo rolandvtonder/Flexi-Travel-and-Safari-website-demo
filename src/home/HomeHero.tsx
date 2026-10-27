@@ -22,6 +22,8 @@ type Slide = {
   image: string
   alt: string
   position: string
+  /** How dark the left-hand shade behind the text is (0–1) — busier photos need more. */
+  shade: number
   eyebrow: string
   title: ReactNode
   body: string
@@ -37,6 +39,7 @@ const SLIDES: Slide[] = [
     image: photo('hwa-plains'),
     alt: 'Elephants crossing the plains of Hwange National Park, Zimbabwe',
     position: '62% 60%',
+    shade: 0.62,
     eyebrow: 'African Safaris · For Europe & America',
     title: (
       <>
@@ -51,9 +54,10 @@ const SLIDES: Slide[] = [
     key: 'europe',
     tab: 'European Adventures',
     short: 'Europe',
-    image: img('europe-amalfi-calm'),
-    alt: 'The calm blue sea beneath the cliffs of the Amalfi Coast, Italy',
-    position: '70% 50%',
+    image: img('europe-madrid-granvia'),
+    alt: 'Gran Vía and the Metropolis building in Madrid at sunset',
+    position: '60% 55%',
+    shade: 0.8,
     eyebrow: 'European Adventures · For Southern Africa',
     title: (
       <>
@@ -131,8 +135,7 @@ export default function HomeHero() {
               style={{
                 position: 'absolute',
                 inset: 0,
-                background:
-                  'linear-gradient(90deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.32) 38%, rgba(0,0,0,0) 66%), linear-gradient(180deg, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 62%, rgba(0,0,0,0.55) 100%)',
+                background: `linear-gradient(90deg, rgba(0,0,0,${s.shade}) 0%, rgba(0,0,0,${s.shade / 2}) 42%, rgba(0,0,0,0) 70%), linear-gradient(180deg, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 62%, rgba(0,0,0,0.55) 100%)`,
               }}
             />
             <div className="wrap" style={{ position: 'relative', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingTop: 24, paddingBottom: 84 }}>
