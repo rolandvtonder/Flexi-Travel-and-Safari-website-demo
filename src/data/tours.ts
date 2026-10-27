@@ -56,7 +56,7 @@ export interface TourFacts {
 const SAFARI_FACTS: TourFacts = {
   availability: 'All year',
   groupSize: 'Up to 15 travellers',
-  minAge: 'None — families welcome',
+  minAge: 'None, families welcome',
   dayStarts: 'Activities usually start between 7 and 8am',
   wear: 'Comfortable layers in neutral colours, closed shoes, a warm jacket for early drives, a sun hat and sunglasses',
 }
@@ -167,7 +167,7 @@ export const TOURS: Tour[] = [
     days: 8,
     price: [4500, 6000],
     currency: 'EUR',
-    summary: 'Four unhurried days in Hwange — our founder’s home — learning about elephants, not just ticking off sightings.',
+    summary: 'Four unhurried days in Hwange, our founder’s home, learning about elephants, not just ticking off sightings.',
     bestFor: 'Wildlife enthusiasts, adventurous couples and small women’s groups.',
     itinerary: [
       { when: 'Days 1–2', what: 'Victoria Falls and a guided exploration of the area.' },
@@ -321,12 +321,12 @@ export const TOURS: Tour[] = [
     days: 8,
     price: [45000, 55000],
     currency: 'ZAR',
-    summary: 'Three very different Spanish personalities in one holiday — royal Madrid, Gaudí’s Barcelona and flamenco Seville.',
+    summary: 'Three very different Spanish personalities in one holiday: royal Madrid, Gaudí’s Barcelona and flamenco Seville.',
     bestFor: 'First-time European travellers, couples, friends and families with older children.',
     itinerary: [
-      { when: 'Days 1–2', what: 'Madrid — royal sights, historic streets, tapas and a guided city tour.' },
-      { when: 'Days 3–4', what: 'Barcelona — Gaudí architecture, the waterfront and time to explore.' },
-      { when: 'Days 5–6', what: 'Seville — beautiful squares, Andalusian culture and an evening flamenco experience.' },
+      { when: 'Days 1–2', what: 'Madrid: royal sights, historic streets, tapas and a guided city tour.' },
+      { when: 'Days 3–4', what: 'Barcelona: Gaudí architecture, the waterfront and time to explore.' },
+      { when: 'Days 5–6', what: 'Seville: beautiful squares, Andalusian culture and an evening flamenco experience.' },
       { when: 'Days 7–8', what: 'Return to Madrid by planned transport and depart.' },
     ],
     touch: 'Three very different Spanish personalities in one holiday, with time to enjoy each city instead of racing through it.',
@@ -346,9 +346,9 @@ export const TOURS: Tour[] = [
     summary: 'A relaxed first taste of Europe: Lisbon’s viewpoints and Porto’s riverside, linked by train.',
     bestFor: 'First-time Europe visitors, couples and friends who enjoy food, history and scenic cities.',
     itinerary: [
-      { when: 'Days 1–3', what: 'Lisbon — old neighbourhoods, viewpoints, local food and Belém.' },
+      { when: 'Days 1–3', what: 'Lisbon: old neighbourhoods, viewpoints, local food and Belém.' },
       { when: 'Day 4', what: 'Travel north by train to Porto.' },
-      { when: 'Days 5–6', what: 'Porto — riverside walks, historic streets and an optional Douro Valley excursion.' },
+      { when: 'Days 5–6', what: 'Porto: riverside walks, historic streets and an optional Douro Valley excursion.' },
       { when: 'Day 7', what: 'Departure.' },
     ],
     touch: 'A relaxed introduction to Europe with beautiful scenery and two distinctive cities, without changing hotels every night.',
@@ -365,10 +365,10 @@ export const TOURS: Tour[] = [
     days: 7,
     price: [42000, 52000],
     currency: 'ZAR',
-    summary: 'A well-paced Paris — the Eiffel Tower, the Seine, the Louvre and Versailles, with time for café terraces.',
+    summary: 'A well-paced Paris: the Eiffel Tower, the Seine, the Louvre and Versailles, with time for café terraces.',
     bestFor: 'First-time visitors, couples and travellers who want the iconic Paris experience.',
     itinerary: [
-      { when: 'Days 1–3', what: 'Paris — Eiffel Tower area, the Seine, historic neighbourhoods and a guided city tour.' },
+      { when: 'Days 1–3', what: 'Paris: Eiffel Tower area, the Seine, historic neighbourhoods and a guided city tour.' },
       { when: 'Day 4', what: 'Explore the Louvre or another major museum, subject to ticket availability.' },
       { when: 'Day 5', what: 'Optional day trip to Versailles.' },
       { when: 'Days 6–7', what: 'Enjoy a flexible final day and depart.' },
@@ -389,9 +389,9 @@ export const TOURS: Tour[] = [
     summary: 'Three legendary Italian cities linked by planned rail travel, with the essentials arranged in advance.',
     bestFor: 'First-time European visitors, couples and culture lovers.',
     itinerary: [
-      { when: 'Days 1–3', what: 'Rome — the Colosseum area, ancient sights and Italian dining.' },
-      { when: 'Days 4–5', what: 'Florence — art, architecture and Tuscan food.' },
-      { when: 'Days 6–7', what: 'Venice — canals, bridges and time to explore.' },
+      { when: 'Days 1–3', what: 'Rome: the Colosseum area, ancient sights and Italian dining.' },
+      { when: 'Days 4–5', what: 'Florence: art, architecture and Tuscan food.' },
+      { when: 'Days 6–7', what: 'Venice: canals, bridges and time to explore.' },
       { when: 'Day 8', what: 'Departure.' },
     ],
     touch: 'Three legendary Italian cities linked by planned rail travel, with the essentials arranged in advance.',
@@ -411,7 +411,7 @@ const fmt = (currency: 'EUR' | 'ZAR', n: number) =>
     : `R${n.toLocaleString('en-ZA').replace(/ /g, ' ')}`
 
 export const formatPrice = (n: number, currency: 'EUR' | 'ZAR') => fmt(currency, n)
-export const priceRange = (t: Tour) => `${fmt(t.currency, t.price[0])} – ${fmt(t.currency, t.price[1])}`
+export const priceRange = (t: Tour) => `${fmt(t.currency, t.price[0])} to ${fmt(t.currency, t.price[1])}`
 export const priceFrom = (t: Tour) => `From ${fmt(t.currency, t.price[0])}`
 
 /** A file in public/, resolved against the site's base path — '/' locally,

@@ -26,7 +26,7 @@ export default function TravelGuides() {
               Know before <em>you go</em>
             </h1>
             <p style={{ margin: '18px 0 0', fontSize: 'clamp(16px, 1.4vw, 18px)', color: 'var(--color-mist)', maxWidth: 640 }}>
-              Destination guides, packing lists and practical advice from our team in Madrid and Cape Town — with new guides added regularly.
+              Destination guides, packing lists and practical advice from our team in Madrid and Cape Town, with new guides added regularly.
             </p>
           </Reveal>
           <div style={{ marginTop: 28 }}>

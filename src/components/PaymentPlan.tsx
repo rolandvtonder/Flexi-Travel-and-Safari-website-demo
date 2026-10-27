@@ -75,7 +75,7 @@ export default function PaymentPlan({
               <option value="">Custom amount</option>
               {europe.map((t) => (
                 <option key={t.slug} value={t.slug}>
-                  {t.title} — from {formatPrice(t.price[0], currency)}
+                  {t.title}, from {formatPrice(t.price[0], currency)}
                 </option>
               ))}
             </select>
@@ -115,7 +115,7 @@ export default function PaymentPlan({
                     aria-describedby={`${uid}-amount-hint`}
                   />
                   <p id={`${uid}-amount-hint`} style={{ margin: '6px 0 0', fontSize: 13, color: 'var(--color-dim)' }}>
-                    Type any amount — handy for combined or tailor-made trips — or use the slider.
+                    Type any amount (handy for combined or tailor-made trips) or use the slider.
                   </p>
                 </div>
               )}
@@ -192,7 +192,7 @@ export default function PaymentPlan({
           <div style={{ color: 'var(--color-mist)', marginTop: 8 }}>{months === 1 ? 'per person, paid before departure' : `per person, per month, for ${months} months`}</div>
         </div>
         <p style={{ margin: 0, fontSize: 13, color: 'var(--color-dim)' }}>
-          An estimate assuming equal payments with no interest or fees. Your schedule is agreed when you book and must finish before you travel — so a 12-month plan needs a departure at least 12 months away.
+          An estimate assuming equal payments with no interest or fees. Your schedule is agreed when you book and must finish before you travel, so a 12-month plan needs a departure at least 12 months away.
         </p>
       </div>
     </div>

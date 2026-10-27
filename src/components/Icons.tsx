@@ -33,6 +33,9 @@ export const Close = ({ size = 22 }: P) => (
 export const Clock = ({ size = 16 }: P) => (
   <svg {...base(size)}><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
 )
+export const Calendar = ({ size = 16 }: P) => (
+  <svg {...base(size)}><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /></svg>
+)
 export const Pin = ({ size = 16 }: P) => (
   <svg {...base(size)}><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z" /><circle cx="12" cy="9.5" r="2.5" /></svg>
 )

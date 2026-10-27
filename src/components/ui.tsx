@@ -8,7 +8,7 @@ import { SITE } from '../config'
 /** Sets the document title and meta description for a route. */
 export function usePageMeta(title: string, description?: string) {
   useEffect(() => {
-    document.title = title ? `${title} · ${SITE.name}` : `${SITE.name} — ${SITE.tagline}`
+    document.title = title ? `${title} · ${SITE.name}` : `${SITE.name} | ${SITE.tagline}`
     if (description) document.querySelector('meta[name="description"]')?.setAttribute('content', description)
   }, [title, description])
 }

@@ -11,7 +11,7 @@ export default function NotFound() {
           Off the beaten <em>track.</em>
         </h1>
         <p style={{ color: 'var(--color-mist)', margin: '0 auto 30px', maxWidth: 460 }}>
-          That page doesn’t exist — but plenty of extraordinary places do.
+          That page doesn’t exist, but plenty of extraordinary places do.
         </p>
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
           <Link to="/safari" className="btn btn-gold">

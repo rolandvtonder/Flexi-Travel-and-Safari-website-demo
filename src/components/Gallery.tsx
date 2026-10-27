@@ -55,7 +55,7 @@ export default function Gallery({ keys, label }: { keys: string[]; label: string
 
       <dialog
         ref={dialog}
-        aria-label={`${label} — photo viewer`}
+        aria-label={`${label}: photo viewer`}
         onClose={() => {
           setAt(null)
           opener.current?.focus()

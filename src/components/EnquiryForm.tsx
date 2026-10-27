@@ -57,14 +57,14 @@ type Errors = Partial<Record<Key, string>>
 const BUDGETS: Record<'africa' | 'europe', { label: string; fit: number }[]> = {
   africa: [
     { label: 'Under €3,000', fit: 0 },
-    { label: '€3,000 – €4,000', fit: 0 },
-    { label: '€4,000 – €6,000', fit: 1 },
+    { label: '€3,000 to €4,000', fit: 0 },
+    { label: '€4,000 to €6,000', fit: 1 },
     { label: '€6,000 or more', fit: 2 },
   ],
   europe: [
     { label: 'Under R30,000', fit: 0 },
-    { label: 'R30,000 – R36,000', fit: 0 },
-    { label: 'R36,000 – R60,000', fit: 1 },
+    { label: 'R30,000 to R36,000', fit: 0 },
+    { label: 'R36,000 to R60,000', fit: 1 },
     { label: 'R60,000 or more', fit: 2 },
   ],
 }
@@ -84,22 +84,22 @@ function validate(step: number, v: Values): Errors {
   const e: Errors = {}
   if (step === 0) {
     if (!v.journey) e.journey = 'Choose the kind of journey you’re planning.'
-    if (!v.month) e.month = 'Pick a rough month — it can change later.'
+    if (!v.month) e.month = 'Pick a rough month. It can change later.'
     const a = Number(v.adults)
     if (!v.adults || a < 1 || a > 30) e.adults = 'Enter between 1 and 30 adults.'
     const c = Number(v.children || 0)
     if (c < 0 || c > 20) e.children = 'Enter between 0 and 20 children.'
   }
   if (step === 1) {
-    if (!v.budget) e.budget = 'Choose a budget per person — it helps us suggest the right lodges and hotels.'
+    if (!v.budget) e.budget = 'Choose a budget per person. It helps us suggest the right lodges and hotels.'
     if (v.journey === 'europe' && !v.pay) e.pay = 'Tell us whether you’d like to pay in full or monthly.'
   }
   if (step === 2) {
     if (!v.name.trim()) e.name = 'Tell us your name so we know who to reply to.'
     if (!v.email.trim()) e.email = 'Add an email address so we can send your itinerary.'
-    else if (!EMAIL.test(v.email.trim())) e.email = 'That email looks incomplete — use the form name@example.com.'
+    else if (!EMAIL.test(v.email.trim())) e.email = 'That email looks incomplete. Use the form name@example.com.'
     if (v.phone.replace(/\D/g, '').length < 8) e.phone = 'Add a phone or WhatsApp number, including the country code.'
-    if (!v.residence) e.residence = 'Tell us where you live — it affects routes, visas and pricing.'
+    if (!v.residence) e.residence = 'Tell us where you live. It affects routes, visas and pricing.'
     if (!v.timeline) e.timeline = 'Let us know when you’d like to book.'
     if (!v.consent) e.consent = 'Please agree so we can contact you about this enquiry.'
   }
@@ -254,7 +254,7 @@ export default function EnquiryForm({
       'Heard about us': v.source,
       Message: v.message.trim(),
     }
-    const r = await submitEnquiry(`[${lead}] ${journeyLabel} — ${tour ? tour.title : 'tailor-made'} — ${v.name.trim()}`, fields, {
+    const r = await submitEnquiry(`[${lead}] ${journeyLabel}: ${tour ? tour.title : 'tailor-made'}, ${v.name.trim()}`, fields, {
       office: nearestOffice(v.residence).key,
       internal: { 'Lead score': lead },
     })
@@ -280,12 +280,12 @@ export default function EnquiryForm({
         <p style={{ margin: 0, color: 'var(--color-mist)' }}>
           {via === 'email'
             ? `Our ${o.city} team will reply within one working day by ${v.contactBy.toLowerCase()}.`
-            : `We opened WhatsApp with your details filled in — just press send and our ${o.city} team will take it from there.`}
+            : `We opened WhatsApp with your details filled in. Just press send and our ${o.city} team will take it from there.`}
         </p>
         <ol style={{ margin: '22px 0 0', paddingLeft: 20, color: 'var(--color-mist)', display: 'grid', gap: 6 }}>
           <li>We review your trip, dates and budget.</li>
           <li>You receive a suggested route with an itemised, honest price.</li>
-          <li>{europe ? 'We agree a payment schedule — EFT or card, up to 12 months.' : 'We fine-tune lodges and pace until it feels right.'}</li>
+          <li>{europe ? 'We agree a payment schedule by EFT or card, over up to 12 months.' : 'We fine-tune lodges and pace until it feels right.'}</li>
         </ol>
       </div>
     )
@@ -348,19 +348,19 @@ export default function EnquiryForm({
             </div>
           </Group>
 
-          <Field id={id('tour')} label="A tour that caught your eye" hint="Optional — or leave it to us and we’ll suggest a route">
+          <Field id={id('tour')} label="A tour that caught your eye" hint="Optional. Or leave it to us and we’ll suggest a route">
             <select id={id('tour')} className="input" value={v.tour} onChange={(e) => set('tour', e.target.value)} aria-describedby={id('tour-hint')}>
               <option value="">Something tailor-made</option>
               {tours.map((t) => (
                 <option key={t.slug} value={t.slug}>
-                  {t.country} — {t.title}
+                  {t.country}: {t.title}
                 </option>
               ))}
             </select>
           </Field>
 
           {countryOptions.length > 0 && (
-            <Group legend={europe ? 'Countries you’d love to see' : 'Where in Africa?'} hint={europe ? 'Pick one, or combine a few — we’ll plan the route' : 'Optional — pick any that appeal'} hintId={id('countries-hint')}>
+            <Group legend={europe ? 'Countries you’d love to see' : 'Where in Africa?'} hint={europe ? 'Pick one, or combine a few, and we’ll plan the route' : 'Optional. Pick any that appeal'} hintId={id('countries-hint')}>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
                 {countryOptions.map((c) => (
                   <label key={c} className="choice choice-chip">
@@ -403,7 +403,7 @@ export default function EnquiryForm({
       {/* ================= step 2 — budget & style ================= */}
       {step === 1 && (
         <>
-          <Group legend="Budget per person" required error={err('budget')} errId={id('budget-err')} firstId={id('budget')} hint={europe ? 'Land arrangements — flights from home are quoted separately' : 'Accommodation and transfers — international flights are separate'} hintId={id('budget-hint')}>
+          <Group legend="Budget per person" required error={err('budget')} errId={id('budget-err')} firstId={id('budget')} hint={europe ? 'Land arrangements only. Flights from home are quoted separately' : 'Accommodation and transfers. International flights are separate'} hintId={id('budget-hint')}>
             <div style={{ display: 'grid', gridTemplateColumns: compact ? '1fr' : 'repeat(auto-fit, minmax(180px, 1fr))', gap: 10 }}>
               {[...bands.map((b) => b.label), NOT_SURE].map((b, i) => (
                 <label key={b} className="choice">
@@ -459,7 +459,7 @@ export default function EnquiryForm({
                   </select>
                 </Field>
               )}
-              <Field id={id('visa')} label="Do you have a valid Schengen visa?" hint="Most Southern African passports need one — we explain the process">
+              <Field id={id('visa')} label="Do you have a valid Schengen visa?" hint="Most Southern African passports need one, and we explain the process">
                 <select id={id('visa')} className="input" value={v.visa} onChange={(e) => set('visa', e.target.value)} aria-describedby={id('visa-hint')}>
                   <option value="">Choose…</option>
                   <option>Yes, I have a valid visa</option>
@@ -535,7 +535,7 @@ export default function EnquiryForm({
             </Field>
           </div>
 
-          <Field id={id('message')} label="Anything else we should know?" hint="Must-sees, pace, dietary or mobility needs — the more we know, the better the route">
+          <Field id={id('message')} label="Anything else we should know?" hint="Must-sees, pace, dietary or mobility needs. The more we know, the better the route">
             <textarea id={id('message')} className="input" rows={compact ? 3 : 4} value={v.message} onChange={(e) => set('message', e.target.value)} aria-describedby={id('message-hint')} style={{ resize: 'vertical' }} />
           </Field>
 
@@ -590,7 +590,7 @@ export default function EnquiryForm({
         )}
       </div>
       <p style={{ margin: 0, fontSize: 13, color: 'var(--color-dim)' }}>
-        <span aria-hidden="true">*</span> Required. Takes about two minutes. No obligation — we reply within one working day.
+        <span aria-hidden="true">*</span> Required. Takes about two minutes. No obligation, and we reply within one working day.
       </p>
     </form>
   )

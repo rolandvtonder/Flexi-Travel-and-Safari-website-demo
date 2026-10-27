@@ -10,7 +10,7 @@ import { ArrowLeft, Check, Clock, Info, Pin, Sparkle, Users, Close, WhatsApp, Co
 
 const INCLUDES = {
   africa: {
-    yes: ['Accommodation as described, sharing a double or twin room', 'Breakfast daily — other meals as noted for each lodge', 'Transport and transfers on the itinerary', 'Guided game drives and most activities named in the itinerary', 'A single point of contact before and during your trip'],
+    yes: ['Accommodation as described, sharing a double or twin room', 'Breakfast daily, with other meals as noted for each lodge', 'Transport and transfers on the itinerary', 'Guided game drives and most activities named in the itinerary', 'A single point of contact before and during your trip'],
     no: ['International flights', 'Travel insurance and visas', 'Optional activities and spa treatments', 'Personal expenses and gratuities'],
   },
   europe: {
@@ -149,7 +149,7 @@ export default function TourPage() {
             <h2 className="display" style={{ margin: '56px 0 8px', fontSize: 'clamp(30px, 3.6vw, 44px)' }}>
               Your journey, <em>day by day</em>
             </h2>
-            <p style={{ margin: 0, color: 'var(--color-dim)' }}>Simple, well-paced and adjustable — add nights, swap lodges or slow it down.</p>
+            <p style={{ margin: 0, color: 'var(--color-dim)' }}>Simple, well-paced and adjustable. Add nights, swap lodges or slow it down.</p>
             <ol style={{ listStyle: 'none', padding: 0, margin: '30px 0 0', position: 'relative' }}>
               <span aria-hidden="true" style={{ position: 'absolute', left: 11, top: 12, bottom: 12, width: 1, background: 'linear-gradient(180deg, var(--color-gold), color-mix(in srgb, var(--color-brand-gold) 10%, transparent))' }} />
               {tour.itinerary.map((d, i) => (
@@ -220,7 +220,7 @@ export default function TourPage() {
               Pay for it <em>over time</em>
             </h2>
             <p style={{ margin: '0 0 26px', color: 'var(--color-dim)' }}>
-              Set to this tour’s starting price — slide to choose how many months. <Link to="/payment-options" style={{ color: 'var(--color-gold)', textDecoration: 'underline', textUnderlineOffset: 3 }}>All payment options</Link>
+              Set to this tour’s starting price. Slide to choose how many months. <Link to="/payment-options" style={{ color: 'var(--color-gold)', textDecoration: 'underline', textUnderlineOffset: 3 }}>All payment options</Link>
             </p>
             <PaymentPlan currency={tour.currency} initialPrice={tour.price[0]} lockPrice />
 
@@ -267,7 +267,7 @@ export default function TourPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn btn-ghost"
-                      aria-label={`Ask about this ${africa ? 'safari' : 'trip'} on WhatsApp — ${o.city} office`}
+                      aria-label={`Ask about this ${africa ? 'safari' : 'trip'} on WhatsApp, ${o.city} office`}
                       style={{ padding: '0 10px', gap: 8, fontSize: 11 }}
                     >
                       <WhatsApp size={16} /> {o.city}

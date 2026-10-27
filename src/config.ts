@@ -23,7 +23,7 @@ const OFFICES: Office[] = [
     key: 'madrid',
     city: 'Madrid',
     country: 'Spain',
-    role: 'All enquiries — safaris & European adventures',
+    role: 'All enquiries: safaris & European adventures',
     address: ['Calle Puerto de Somosierra 11', 'Majadahonda, Madrid', 'Spain'],
     whatsapp: '34678704368',
     phone: '+34 678 704 368',
@@ -32,7 +32,7 @@ const OFFICES: Office[] = [
     key: 'capetown',
     city: 'Cape Town',
     country: 'South Africa',
-    role: 'All enquiries — safaris & European adventures',
+    role: 'All enquiries: safaris & European adventures',
     address: ['Unit C6, The Exchange', '1 School Street, Milnerton', 'Cape Town, South Africa'],
     whatsapp: '27732502549',
     phone: '+27 73 250 2549',
@@ -52,6 +52,14 @@ export const SITE = {
     pre-filled, so no lead is ever lost.
   */
   web3formsKey: '',
+
+  /*
+    TODO(client): the founder's Calendly booking link, e.g.
+    https://calendly.com/flexitravel/30min. The footer's "Book a call" opens
+    it as a Calendly pop-up on every page. Until it is set, the button goes
+    to the contact page instead.
+  */
+  calendlyUrl: '',
 
   offices: OFFICES,
 } as const

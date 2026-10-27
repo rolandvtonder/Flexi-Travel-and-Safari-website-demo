@@ -46,7 +46,7 @@ const SLIDES: Slide[] = [
         Africa is calling. <em>Answer it in style.</em>
       </>
     ),
-    body: 'Thoughtfully planned safaris in South Africa, Zimbabwe, Kenya and Tanzania — for first-timers, couples, families and friends.',
+    body: 'Thoughtfully planned safaris in South Africa, Zimbabwe, Kenya and Tanzania, for first-timers, couples, families and friends.',
     primary: { to: '/safari', label: 'Explore African safaris' },
     secondary: { to: '/contact?journey=africa', label: 'Plan my safari' },
   },
@@ -64,7 +64,7 @@ const SLIDES: Slide[] = [
         Europe is calling. <em>Let’s make it happen.</em>
       </>
     ),
-    body: 'Spain, Portugal, France and Italy — planned with you, and paid for monthly over up to twelve months before you fly.',
+    body: 'Spain, Portugal, France and Italy, planned with you and paid for monthly over up to twelve months before you fly.',
     primary: { to: '/europe', label: 'Explore European adventures' },
     secondary: { to: '/payment-options', label: 'Payment options' },
   },
@@ -100,7 +100,7 @@ export default function HomeHero() {
       }}
       style={{ position: 'relative', height: 'min(max(520px, calc(100svh - var(--header-full))), 860px)', overflow: 'hidden', background: '#111' }}
     >
-      <h1 style={srOnly}>Flexi Travel &amp; Safari — African safaris and European adventures</h1>
+      <h1 style={srOnly}>Flexi Travel &amp; Safari: African safaris and European adventures</h1>
 
       {SLIDES.map((s, i) => {
         const on = i === at

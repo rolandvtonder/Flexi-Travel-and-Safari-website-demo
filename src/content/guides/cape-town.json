@@ -3,7 +3,7 @@
   "title": "Cape Town: the ultimate playground",
   "region": "africa",
   "date": "2026-10-23",
-  "excerpt": "Table Mountain, penguins, wine country and a Big Five safari within reach — why Cape Town is the perfect start (or finish) to an African adventure.",
+  "excerpt": "Table Mountain, penguins, wine country and a Big Five safari within reach. Here's why Cape Town is the perfect start (or finish) to an African adventure.",
   "hero": { "photo": "cpt-twelve-apostles-dusk" },
   "body": [
     { "p": "Few cities pack as much into one place as Cape Town. Mountain, ocean, vineyards, history and wildlife all sit within an easy drive of each other, which is why so many of our safaris begin or end here. Give it three or four days and it rewards you every one of them." },
@@ -22,9 +22,9 @@
       "Quad biking on the white sand dunes north of the city"
     ] },
     { "h": "Adding a safari" },
-    { "p": "Private game reserves a couple of hours from Cape Town offer a gentle introduction to the Big Five, ideal if you are short on time. For the full experience, a short flight takes you to the Greater Kruger region — our Big Five & Beautiful Cape safari combines both." },
+    { "p": "Private game reserves a couple of hours from Cape Town offer a gentle introduction to the Big Five, ideal if you are short on time. For the full experience, a short flight takes you to the Greater Kruger region, and our Big Five & Beautiful Cape safari combines both." },
     { "h": "When to go" },
-    { "p": "Summer (November to March) brings long, dry, sunny days and the best beach weather. Winter (June to August) is cooler and greener, with fewer crowds and lower prices. Cape Town is a year-round destination — pack layers whatever the season." }
+    { "p": "Summer (November to March) brings long, dry, sunny days and the best beach weather. Winter (June to August) is cooler and greener, with fewer crowds and lower prices. Cape Town is a year-round destination, so pack layers whatever the season." }
   ],
   "gallery": { "places": ["cpt"], "keys": ["adventure-paragliding-lagoon"] },
   "tours": ["big-five-and-beautiful-cape", "wild-africa-wine-and-wellness"]

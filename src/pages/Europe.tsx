@@ -5,7 +5,7 @@ import { toursIn, img } from '../data/tours'
 import { ArrowRight, Check, Info } from '../components/Icons'
 
 export default function Europe() {
-  usePageMeta('European Adventures', 'Spain, Portugal, France and Italy for travellers from South Africa, Botswana and Namibia — 7 to 8 day adventures from R36,000, payable monthly over up to 12 months.')
+  usePageMeta('European Adventures', 'Spain, Portugal, France and Italy for travellers from South Africa, Botswana and Namibia. 7 to 8 day adventures from R36,000, payable monthly over up to 12 months.')
   const tours = toursIn('europe')
 
   return (
@@ -20,7 +20,7 @@ export default function Europe() {
             Europe is calling. <em>Let’s make it happen.</em>
           </>
         }
-        intro="Your European dream, planned with you and paid for over time. Famous cities, beautiful coastlines, local food and iconic landmarks — without organising every hotel, transfer and activity yourself."
+        intro="Your European dream, planned with you and paid for over time. Famous cities, beautiful coastlines, local food and iconic landmarks, without organising every hotel, transfer and activity yourself."
       >
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 30 }}>
           <a href="#tours" className="btn btn-gold">
@@ -57,7 +57,7 @@ export default function Europe() {
               Perhaps you’ve imagined walking through Barcelona, discovering the streets of Paris or eating real Italian food with your family or friends. It’s about the experiences you’ve dreamed of and the memories you want to make.
             </p>
             <p style={{ margin: '16px 0 0', fontSize: 18, color: 'var(--color-mist)' }}>
-              Our founder was born and raised in Africa and now lives in Spain. We understand the excitement of travelling to Europe — and the practical questions that come with planning your first visit. The cost of a holiday shouldn’t mean giving up on the dream.
+              Our founder was born and raised in Africa and now lives in Spain. We understand the excitement of travelling to Europe, and the practical questions that come with planning your first visit. The cost of a holiday shouldn’t mean giving up on the dream.
             </p>
           </Reveal>
         </div>
@@ -80,7 +80,7 @@ export default function Europe() {
                 Two countries, <em>one trip?</em>
               </h3>
               <p style={{ margin: '8px 0 0', color: 'var(--color-mist)' }}>
-                Madrid and Lisbon, Paris and Rome — combine any of our countries and we’ll tailor the route, the hotels and the monthly payments around you.
+                Madrid and Lisbon, Paris and Rome: combine any of our countries and we’ll tailor the route, the hotels and the monthly payments around you.
               </p>
             </div>
             <a href="#plan" className="btn btn-light">
@@ -100,7 +100,7 @@ export default function Europe() {
       <section id="payment-plans" aria-labelledby="plans-h" style={{ padding: 'clamp(70px, 10vw, 120px) 0', scrollMarginTop: 'calc(var(--header-h) + 16px)' }}>
         <div className="wrap">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 380px), 1fr))', gap: 'clamp(28px, 5vw, 64px)', alignItems: 'center' }}>
-            <SectionHead id="plans-h" eyebrow="Book early · Pay over time" title={<>Your Europe <em>holiday fund</em></>} intro="Reserve your place and work towards it with monthly payments over up to twelve months — by EFT or card, whichever suits you." />
+            <SectionHead id="plans-h" eyebrow="Book early · Pay over time" title={<>Your Europe <em>holiday fund</em></>} intro="Reserve your place and work towards it with monthly payments over up to twelve months, by EFT or card, whichever suits you." />
             <Reveal delay={0.1} style={{ padding: 'clamp(24px, 3vw, 34px)', borderRadius: 26, background: 'var(--color-ink-2)', border: '1px solid var(--color-line)' }}>
               <div className="label" style={{ color: 'var(--color-dim)' }}>
                 For example
@@ -108,7 +108,7 @@ export default function Europe() {
               <div className="display tabular" style={{ fontSize: 'clamp(40px, 5vw, 56px)', margin: '8px 0 4px' }}>
                 R3 750<span style={{ fontSize: 18, color: 'var(--color-dim)', fontFamily: 'var(--font-sans)', fontWeight: 500 }}> / month</span>
               </div>
-              <p style={{ margin: '0 0 20px', color: 'var(--color-mist)' }}>for a R45 000 adventure over 12 months — no interest added.</p>
+              <p style={{ margin: '0 0 20px', color: 'var(--color-mist)' }}>for a R45 000 adventure over 12 months, with no interest added.</p>
               <Link to="/payment-options#calculator" className="btn btn-light">
                 Work out your payments <ArrowRight />
               </Link>
@@ -132,10 +132,10 @@ export default function Europe() {
         id="europe-faq"
         title={<>Your Europe <em>questions</em></>}
         items={[
-          { q: 'How do the payment plans work?', a: 'Choose your trip and departure, then pay monthly — by EFT or card — over up to twelve months. The amount follows from the price and the number of months, every due date is agreed upfront, and the balance is settled before you travel.' },
-          { q: 'Do I need a visa?', a: 'Most South African, Botswana and Namibian passport holders need a Schengen visa for Spain, Portugal, France and Italy. Requirements depend on your nationality and residence, so we explain what you need and when to apply — the visa itself is issued by the relevant embassy or consulate.' },
+          { q: 'How do the payment plans work?', a: 'Choose your trip and departure, then pay monthly by EFT or card over up to twelve months. The amount follows from the price and the number of months, every due date is agreed upfront, and the balance is settled before you travel.' },
+          { q: 'Do I need a visa?', a: 'Most South African, Botswana and Namibian passport holders need a Schengen visa for Spain, Portugal, France and Italy. Requirements depend on your nationality and residence, so we explain what you need and when to apply. The visa itself is issued by the relevant embassy or consulate.' },
           { q: 'Are flights included?', a: 'Our prices cover the land arrangements: hotels, planned transport between cities and the experiences in the itinerary. International flights, visa fees and travel insurance are quoted separately.' },
-          { q: 'Can I visit more than one country?', a: 'Yes — combine Spain and Portugal, or Paris and Rome, and we’ll tailor the route, the hotels and the payment plan around it.' },
+          { q: 'Can I visit more than one country?', a: 'Yes. Combine Spain and Portugal, or Paris and Rome, and we’ll tailor the route, the hotels and the payment plan around it.' },
           { q: 'Can I travel before I’ve finished paying?', a: 'Your plan is set up to finish before departure, so a twelve-month plan needs a departure at least twelve months away. Booking later? We’ll shorten the plan to fit.' },
         ]}
       />

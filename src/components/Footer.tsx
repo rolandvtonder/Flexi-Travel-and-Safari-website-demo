@@ -1,14 +1,13 @@
 /*
-  Footer, after the reference: a CTA band with the newsletter on the right, a
+  Footer, after the reference: a CTA band with "Book a call" (Calendly) on the right, a
   rule, the brand column beside three link columns and a legal bar.
   Ordinary responsive flow.
 */
-import { useState, type FormEvent } from 'react'
 import { Link } from 'react-router'
 import { Logo } from './Logo'
 import { SITE, whatsappLink } from '../config'
-import { WhatsApp, ArrowRight, Pin } from './Icons'
-import { submitEnquiry } from '../lib/submit'
+import { WhatsApp, ArrowRight, Pin, Calendar } from './Icons'
+import { BookCallLink } from './BookCall'
 
 const COLUMNS = [
   {
@@ -43,63 +42,19 @@ const COLUMNS = [
   },
 ]
 
-function Newsletter() {
-  const [email, setEmail] = useState('')
-  const [state, setState] = useState<'idle' | 'sending' | 'done' | 'error'>('idle')
-  const [error, setError] = useState('')
-
-  const onSubmit = async (e: FormEvent) => {
-    e.preventDefault()
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setState('error')
-      setError('Enter an email address like name@example.com.')
-      return
-    }
-    setState('sending')
-    const r = await submitEnquiry('Newsletter sign-up', { Email: email })
-    if (r.ok) setState('done')
-    else {
-      setState('error')
-      setError(r.error)
-    }
-  }
-
-  if (state === 'done')
-    return (
-      <p role="status" style={{ margin: 0, color: 'var(--color-gold-soft)', fontSize: 15 }}>
-        You’re on the list — first departures and new routes will come to your inbox.
-      </p>
-    )
-
+function BookCall() {
   return (
-    <form onSubmit={onSubmit} noValidate>
-      <label htmlFor="nl-email" className="label" style={{ display: 'block', color: 'var(--color-mist)', marginBottom: 12 }}>
-        New routes &amp; early departures
-      </label>
-      <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-        <input
-          id="nl-email"
-          type="email"
-          autoComplete="email"
-          inputMode="email"
-          placeholder="you@example.com"
-          className="input"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          aria-invalid={state === 'error'}
-          aria-describedby={state === 'error' ? 'nl-err' : undefined}
-          style={{ flex: '1 1 200px', width: 'auto' }}
-        />
-        <button className="btn btn-gold" disabled={state === 'sending'} style={{ opacity: state === 'sending' ? 0.6 : 1 }}>
-          {state === 'sending' ? 'Sending…' : 'Subscribe'}
-        </button>
+    <div>
+      <div className="label" style={{ color: 'var(--color-mist)', marginBottom: 12 }}>
+        Talk to our founder
       </div>
-      {state === 'error' && (
-        <p id="nl-err" role="alert" style={{ margin: '8px 0 0', fontSize: 13, color: 'var(--color-danger)' }}>
-          {error}
-        </p>
-      )}
-    </form>
+      <p style={{ margin: '0 0 18px', fontSize: 15, color: 'var(--color-dim)', maxWidth: 360 }}>
+        Book a free video call at a time that suits you, and bring your questions about safaris, Europe or paying over time.
+      </p>
+      <BookCallLink className="btn btn-gold">
+        <Calendar size={17} /> Book a call
+      </BookCallLink>
+    </div>
   )
 }
 
@@ -140,7 +95,7 @@ export default function Footer() {
               Your journey starts <em>with a conversation</em>
             </h2>
             <p style={{ margin: '14px 0 22px', fontSize: 16, color: 'var(--color-dim)', maxWidth: 440 }}>
-              Tell us where you dream of going. We’ll shape the route, the pace and — for Europe — the payment plan around you.
+              Tell us where you dream of going. We’ll shape the route, the pace and, for Europe, the payment plan around you.
             </p>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
               <Link to="/contact" className="btn btn-light">
@@ -149,7 +104,7 @@ export default function Footer() {
             </div>
           </div>
           <div style={{ flex: '0 1 380px' }}>
-            <Newsletter />
+            <BookCall />
           </div>
         </div>
 

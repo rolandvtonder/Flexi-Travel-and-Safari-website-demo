@@ -25,7 +25,7 @@ const PROMISES = [
   'One itinerary, clear inclusions and a single point of contact.',
   'Well-reviewed accommodation, sensible transfers and realistic travel days.',
   'Add private guiding, extra nights or special experiences where they make sense.',
-  'We explain what is included, what is optional and what to expect — before you pay.',
+  'We explain what is included, what is optional and what to expect, before you pay.',
 ]
 
 export default function Safari() {
@@ -94,7 +94,7 @@ export default function Safari() {
           />
           <Reveal delay={0.1}>
             <p style={{ margin: 0, fontSize: 18, color: 'var(--color-mist)' }}>
-              Our story begins in Hwange, Zimbabwe, where elephants were never just animals seen on a screen or from a safari vehicle — they were part of everyday life. Our founder grew up watching them roam near home, sometimes breaking out of the reserve to graze in her uncles’ fields.
+              Our story begins in Hwange, Zimbabwe, where elephants were never just animals seen on a screen or from a safari vehicle. They were part of everyday life. Our founder grew up watching them roam near home, sometimes breaking out of the reserve to graze in her uncles’ fields.
             </p>
             <p style={{ margin: '16px 0 0', fontSize: 18, color: 'var(--color-mist)' }}>
               That childhood connection became a lifelong passion for Africa’s wildlife, landscapes and people. Today, living in Spain, she helps travellers from Europe, America and beyond discover the Africa she knows and loves.
@@ -109,7 +109,7 @@ export default function Safari() {
       {/* ---- audiences ---- */}
       <section id="audience" aria-labelledby="audience-h" style={{ padding: '0 0 clamp(80px, 11vw, 140px)', scrollMarginTop: 90 }}>
         <div className="wrap">
-          <SectionHead id="audience-h" eyebrow="First safari? Perfect." title={<>Find your <em>kind of Africa</em></>} intro="Whether it’s your first safari, a special anniversary, a family adventure or a trip with your closest friends — every journey is built for first-timers to enjoy." />
+          <SectionHead id="audience-h" eyebrow="First safari? Perfect." title={<>Find your <em>kind of Africa</em></>} intro="Whether it’s your first safari, a special anniversary, a family adventure or a trip with your closest friends, every journey is built for first-timers to enjoy." />
           <ul style={{ listStyle: 'none', padding: 0, margin: '44px 0 0', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', gap: 18 }}>
             {AUDIENCES.map((a, i) => (
               <Reveal as="li" key={a.title} delay={i * 0.06}>
@@ -136,7 +136,7 @@ export default function Safari() {
       <section aria-labelledby="dest-h" style={{ padding: '0 0 clamp(80px, 11vw, 140px)' }}>
         <div className="wrap">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 24, flexWrap: 'wrap' }}>
-            <SectionHead id="dest-h" eyebrow="Destination guides" title={<>Where we <em>travel</em></>} intro="From the Cape to the Serengeti — read up on each destination before you choose." />
+            <SectionHead id="dest-h" eyebrow="Destination guides" title={<>Where we <em>travel</em></>} intro="From the Cape to the Serengeti, read up on each destination before you choose." />
             <Link to="/travel-guides?topic=African%20Safaris" className="btn btn-ghost" style={{ paddingRight: 22 }}>
               All travel guides
             </Link>
@@ -224,12 +224,12 @@ export default function Safari() {
         id="safari-faq"
         title={<>Your safari <em>questions</em></>}
         items={[
-          { q: 'Is a safari right for a first-timer?', a: 'Absolutely — every route in our collection is designed with first-time safari travellers in mind: sensible travel days, guided activities and comfortable lodges, so you can simply enjoy it.' },
+          { q: 'Is a safari right for a first-timer?', a: 'Absolutely. Every route in our collection is designed with first-time safari travellers in mind: sensible travel days, guided activities and comfortable lodges, so you can simply enjoy it.' },
           { q: 'Are safaris safe?', a: 'Game drives are led by trained, experienced guides who read animal behaviour and keep a respectful distance. We work with well-reviewed lodges, and the golden rule is simple: follow your guide’s instructions.' },
           { q: 'What does the price include?', a: 'Our indicative prices cover accommodation and transfers on the itinerary, plus the guided activities it names. International flights, travel insurance and visas are not included. Your written quote lists exactly what is and isn’t included before you pay anything.' },
-          { q: 'How far ahead should I book?', a: 'For peak safari season, six to twelve months ahead is ideal — the best lodges have only a handful of rooms. Shorter notice is sometimes possible, so ask us.' },
+          { q: 'How far ahead should I book?', a: 'For peak safari season, six to twelve months ahead is ideal, as the best lodges have only a handful of rooms. Shorter notice is sometimes possible, so ask us.' },
           { q: 'How do I pay?', a: 'Payments are flexible: by EFT or by card, on a schedule we agree with you in your quote.' },
-          { q: 'Can I change the itinerary?', a: 'Yes. Add nights, swap lodges, slow the pace or combine countries — every signature safari is a starting point, not a fixed package.' },
+          { q: 'Can I change the itinerary?', a: 'Yes. Add nights, swap lodges, slow the pace or combine countries. Every signature safari is a starting point, not a fixed package.' },
         ]}
       />
 
@@ -250,7 +250,7 @@ export default function Safari() {
                   Typical safari budget
                 </div>
                 <div className="display tabular" style={{ fontSize: 34, marginTop: 6 }}>
-                  €4,000 – €6,000
+                  €4,000 to €6,000
                 </div>
                 <div style={{ fontSize: 14, color: 'var(--color-dim)' }}>per person · 6 to 10 days · accommodation and transfers · flights excluded</div>
               </div>

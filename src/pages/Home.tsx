@@ -10,7 +10,7 @@ const JOURNEYS = [
     eyebrow: 'For Europe & America',
     title: 'African Safaris',
     line: 'Africa’s wild side, without the planning stress.',
-    body: 'Eight signature safaris across South Africa, Zimbabwe, Kenya and Tanzania — designed for first-timers, couples, families and friends travelling together.',
+    body: 'Eight signature safaris across South Africa, Zimbabwe, Kenya and Tanzania, designed for first-timers, couples, families and friends travelling together.',
     meta: '6–10 days · from €4,000 pp',
     image: photo('hwa-plains'),
     cta: 'Discover our safaris',
@@ -20,7 +20,7 @@ const JOURNEYS = [
     eyebrow: 'For Southern Africa',
     title: 'European Adventures',
     line: 'Your European dream, paid for over time.',
-    body: 'Spain, Portugal, France and Italy for travellers from South Africa, Botswana and Namibia — paid monthly, by EFT or card, over up to twelve months before you fly.',
+    body: 'Spain, Portugal, France and Italy for travellers from South Africa, Botswana and Namibia, paid monthly by EFT or card over up to twelve months before you fly.',
     meta: '7–8 days · from R36,000 pp',
     image: img('europe-rome-vatican'),
     cta: 'Explore Europe',
@@ -38,7 +38,7 @@ const POINTS = [
   {
     icon: Heart,
     title: 'A genuine African story',
-    body: 'African-founded, with roots in Hwange, Zimbabwe, and a lifelong love of elephants. A personal passion — not a catalogue of packages.',
+    body: 'African-founded, with roots in Hwange, Zimbabwe, and a lifelong love of elephants. A personal passion, not a catalogue of packages.',
   },
   {
     icon: Wallet,
@@ -48,7 +48,7 @@ const POINTS = [
   {
     icon: Globe,
     title: 'First-hand in both worlds',
-    body: 'Born and raised in Africa, now living in Spain. We know what makes Africa magic for visitors — and what Africans need to know about Europe.',
+    body: 'Born and raised in Africa, now living in Spain. We know what makes Africa magic for visitors, and what Africans need to know about Europe.',
   },
   {
     icon: Compass,
@@ -112,7 +112,7 @@ export default function Home() {
       {/* ---- find your kind of Africa ---- */}
       <section aria-labelledby="kinds" style={{ padding: '0 0 clamp(40px, 6vw, 72px)' }}>
         <div className="wrap">
-          <SectionHead id="kinds" eyebrow="First safari? Perfect." title={<>Find your kind <em>of Africa</em></>} intro="Wake to elephants at the waterhole, follow lions across the plains and end the day with dinner under the stars — at your own pace." />
+          <SectionHead id="kinds" eyebrow="First safari? Perfect." title={<>Find your kind <em>of Africa</em></>} intro="Wake to elephants at the waterhole, follow lions across the plains and end the day with dinner under the stars, all at your own pace." />
           <ul style={{ listStyle: 'none', padding: 0, margin: '40px 0 0', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', gap: 16 }}>
             {AUDIENCES.map((a, i) => (
               <Reveal as="li" key={a.label} delay={i * 0.06}>
@@ -143,7 +143,7 @@ export default function Home() {
               <div className="label" style={{ color: 'var(--color-gold)', fontSize: 10 }}>
                 Hwange, Zimbabwe
               </div>
-              <div style={{ fontSize: 14, marginTop: 6, color: 'var(--color-bone)' }}>Where it began — elephants in the backyard.</div>
+              <div style={{ fontSize: 14, marginTop: 6, color: 'var(--color-bone)' }}>Where it began: elephants in the backyard.</div>
             </div>
           </Reveal>
           <div>
@@ -161,7 +161,7 @@ export default function Home() {
                 Our founder grew up in Hwange, Zimbabwe, where elephants sometimes broke out of the reserve and wandered into her uncles’ fields to graze on their crops. Her uncles chased them away. She fell in love with them.
               </p>
               <p style={{ margin: '16px 0 0', fontSize: 18, color: 'var(--color-mist)' }}>
-                Today, living in Spain, she shares the Africa she knows with travellers from Europe and America — and helps Africans discover the Europe she now calls home.
+                Today, living in Spain, she shares the Africa she knows with travellers from Europe and America, and helps Africans discover the Europe she now calls home.
               </p>
               <Link to="/about" className="btn btn-ghost" style={{ marginTop: 30 }}>
                 Read our story
@@ -178,7 +178,7 @@ export default function Home() {
       <section aria-labelledby="signature" style={{ padding: '0 0 clamp(80px, 11vw, 140px)' }}>
         <div className="wrap">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 24, flexWrap: 'wrap' }}>
-            <SectionHead id="signature" eyebrow="Start here" title={<>Our signature <em>journeys</em></>} intro="Four routes we’d recommend to almost anyone — two for each side of the family." />
+            <SectionHead id="signature" eyebrow="Start here" title={<>Our signature <em>journeys</em></>} intro="Four routes we’d recommend to almost anyone, two for each side of the family." />
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
               <Link to="/safari#tours" className="btn btn-ghost" style={{ paddingRight: 22 }}>
                 All safaris

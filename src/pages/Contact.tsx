@@ -3,7 +3,8 @@ import { Reveal, Eyebrow, usePageMeta } from '../components/ui'
 import EnquiryForm from '../components/EnquiryForm'
 import { SITE, whatsappLink } from '../config'
 import { tourBySlug, type Region } from '../data/tours'
-import { Mail, Pin, WhatsApp, Clock } from '../components/Icons'
+import { Mail, Pin, WhatsApp, Clock, Calendar } from '../components/Icons'
+import { BookCallLink } from '../components/BookCall'
 
 export default function Contact() {
   usePageMeta('Plan my trip', 'Tell us about the safari or European adventure you have in mind. We reply within one working day with ideas and an honest, itemised price.')
@@ -23,7 +24,7 @@ export default function Contact() {
               Tell us what <em>you’re dreaming of.</em>
             </h1>
             <p style={{ margin: '22px 0 0', fontSize: 18, color: 'var(--color-mist)', maxWidth: 520 }}>
-              A first safari, a milestone celebration or your family’s first trip to Europe — share a few details and we’ll reply within one working day with ideas, an honest itemised price and, for Europe, a payment schedule.
+              A first safari, a milestone celebration or your family’s first trip to Europe? Share a few details and we’ll reply within one working day with ideas, an honest itemised price and, for Europe, a payment schedule.
             </p>
           </Reveal>
 
@@ -40,11 +41,22 @@ export default function Contact() {
                   </span>
                 </a>
               </li>
+              <li>
+                <BookCallLink style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '18px 20px', borderRadius: 20, border: '1px solid var(--color-line)', background: 'var(--color-ink-2)' }}>
+                  <span style={{ width: 46, height: 46, borderRadius: '50%', display: 'grid', placeItems: 'center', border: '1px solid color-mix(in srgb, var(--color-brand-gold) 45%, transparent)', color: 'var(--color-gold)', flex: 'none' }}>
+                    <Calendar size={20} />
+                  </span>
+                  <span style={{ minWidth: 0 }}>
+                    <span style={{ display: 'block', fontWeight: 700 }}>Book a call with our founder</span>
+                    <span style={{ fontSize: 14, color: 'var(--color-dim)' }}>A free video call, at a time that suits you</span>
+                  </span>
+                </BookCallLink>
+              </li>
               <li style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '10px 20px', color: 'var(--color-mist)' }}>
                 <span style={{ color: 'var(--color-gold)', flex: 'none', width: 46, display: 'grid', placeItems: 'center' }}>
                   <Clock size={22} />
                 </span>
-                We reply within one working day — no obligation, no hard sell.
+                We reply within one working day. No obligation, no hard sell.
               </li>
             </ul>
           </Reveal>

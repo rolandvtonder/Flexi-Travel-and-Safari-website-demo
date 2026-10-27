@@ -112,7 +112,7 @@ export default function Nav() {
         </div>
         <div style={{ background: '#fff' }}>
           <div className="wrap" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, height: 96 }}>
-            <Link to="/" aria-label={`${SITE.name} — home`} style={{ display: 'inline-flex' }}>
+            <Link to="/" aria-label={`${SITE.name} home`} style={{ display: 'inline-flex' }}>
               <Logo height={62} />
             </Link>
             <div style={{ display: 'flex', alignItems: 'center', gap: 22 }}>
@@ -132,7 +132,7 @@ export default function Nav() {
         <div className="wrap" style={{ display: 'flex', alignItems: 'center', gap: 20, height: 'var(--header-h)' }}>
           <Link
             to="/"
-            aria-label={`${SITE.name} — home`}
+            aria-label={`${SITE.name} home`}
             tabIndex={stuck ? 0 : -1}
             style={{ display: 'inline-flex', width: stuck ? 34 : 0, opacity: stuck ? 1 : 0, overflow: 'hidden', transition: 'width 250ms ease, opacity 250ms ease', background: '#fff', borderRadius: 8 }}
           >
@@ -175,7 +175,7 @@ export default function Nav() {
       {/* ================= phones & tablets: one white bar ================= */}
       <header className="hdr-mobile" style={{ position: 'sticky', top: 0, zIndex: 40, background: '#fff', borderBottom: '1px solid var(--color-line)', boxShadow: '0 8px 24px -20px rgba(0,0,0,0.5)' }}>
         <div className="wrap" style={{ display: 'flex', alignItems: 'center', gap: 12, height: 'var(--header-h)' }}>
-          <Link to="/" aria-label={`${SITE.name} — home`} style={{ display: 'inline-flex', marginRight: 'auto' }}>
+          <Link to="/" aria-label={`${SITE.name} home`} style={{ display: 'inline-flex', marginRight: 'auto' }}>
             <Logo height={40} />
           </Link>
           <Link to="/contact" className="btn btn-gold" style={{ height: 40, padding: '0 16px', fontSize: 11 }}>

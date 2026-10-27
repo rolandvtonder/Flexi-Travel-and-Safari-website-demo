@@ -15,19 +15,19 @@ import { ArrowRight, Check, Wallet, Globe, Clock } from '../components/Icons'
 
 const WAYS = [
   { icon: Wallet, t: 'EFT / bank transfer', b: 'Pay directly into our account. We send banking details and a reference with your invoice.' },
-  { icon: Globe, t: 'Card', b: 'Pay by debit or credit card — ideal if you are paying from abroad.' },
+  { icon: Globe, t: 'Card', b: 'Pay by debit or credit card. Ideal if you are paying from abroad.' },
   { icon: Clock, t: 'Monthly instalments', b: 'Spread the cost over up to twelve months before you travel. The monthly amount depends on the price and how many months you choose.' },
 ]
 
 const STEPS = [
-  { t: 'Choose your trip', b: 'Pick a signature safari or European adventure — or ask us to tailor one — and a departure date.' },
+  { t: 'Choose your trip', b: 'Pick a signature safari or European adventure (or ask us to tailor one) and a departure date.' },
   { t: 'Agree your plan', b: 'We confirm the price, then agree whether you pay in full or monthly, how many months, and your due dates.' },
   { t: 'Pay your way', b: 'Pay each instalment by EFT or card. We confirm every payment and keep you up to date on your balance.' },
   { t: 'Travel with confidence', b: 'Your plan finishes before departure, your documents are sent, and the adventure begins.' },
 ]
 
 export default function PaymentOptions() {
-  usePageMeta('Payment options', 'Pay for your African safari or European adventure by EFT or card — in full, or in monthly instalments over up to twelve months before you travel.')
+  usePageMeta('Payment options', 'Pay for your African safari or European adventure by EFT or card, in full or in monthly instalments over up to twelve months before you travel.')
   const [which, setWhich] = useState<'europe' | 'africa'>('europe')
 
   return (
@@ -40,7 +40,7 @@ export default function PaymentOptions() {
             Travel now. <em>Pay over time.</em>
           </>
         }
-        intro="Pay by EFT or card — in full, or in monthly instalments over up to twelve months before you travel. Flexible payments for African safaris and European adventures."
+        intro="Pay by EFT or card, in full or in monthly instalments over up to twelve months before you travel. Flexible payments for African safaris and European adventures."
       >
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 30 }}>
           <a href="#calculator" className="btn btn-gold">
@@ -125,7 +125,7 @@ export default function PaymentOptions() {
           <Reveal>
             <ul style={{ listStyle: 'none', margin: '36px 0 0', padding: '22px 24px', borderRadius: 18, background: 'var(--color-ink-2)', display: 'grid', gap: 10, color: 'var(--color-mist)', fontSize: 15 }}>
               {[
-                'Your plan must be completed before departure — so a twelve-month plan needs a departure at least twelve months away.',
+                'Your plan must be completed before departure, so a twelve-month plan needs a departure at least twelve months away.',
                 'The calculator shows equal monthly payments with no interest or fees; your final schedule is confirmed in writing.',
                 'International flights, visas and travel insurance are paid separately unless we include them in your quote.',
               ].map((x) => (
@@ -145,10 +145,10 @@ export default function PaymentOptions() {
         id="pay-faq"
         title={<>Payment <em>questions</em></>}
         items={[
-          { q: 'Can I pay in instalments for an African safari too?', a: 'Yes — payments are flexible for every trip. Choose to pay in full or spread the cost over up to twelve months, by EFT or card.' },
+          { q: 'Can I pay in instalments for an African safari too?', a: 'Yes. Payments are flexible for every trip. Choose to pay in full or spread the cost over up to twelve months, by EFT or card.' },
           { q: 'Do I pay online through the website?', a: 'No. Once your trip is confirmed we send you an invoice and a payment schedule, and you pay each amount by EFT or card. Every payment is confirmed by our team.' },
           { q: 'How is the monthly amount worked out?', a: 'It is simply the price of your trip divided by the number of months you choose, up to twelve. The calculator above gives you an estimate; your exact schedule is agreed when you book.' },
-          { q: 'What if I book less than twelve months before travelling?', a: 'No problem — we shorten the plan so it finishes before you go. For example, booking seven months ahead could mean six monthly payments.' },
+          { q: 'What if I book less than twelve months before travelling?', a: 'No problem. We shorten the plan so it finishes before you go. For example, booking seven months ahead could mean six monthly payments.' },
           { q: 'Which currency do I pay in?', a: 'African safaris are priced in euros and European adventures in South African rand. If you would like to pay in another currency, ask us and we will confirm the options.' },
         ]}
       />
@@ -159,7 +159,7 @@ export default function PaymentOptions() {
             <div>
               <Eyebrow>Start planning</Eyebrow>
               <h2 id="plan-h" className="display" style={{ margin: '16px 0 0', fontSize: 'clamp(30px, 4vw, 48px)' }}>
-                Let’s plan your trip — <em>and your payments.</em>
+                Let’s plan your trip, <em>and your payments.</em>
               </h2>
               <p style={{ margin: '18px 0 0', color: 'var(--color-mist)', fontSize: 17 }}>
                 Tell us where you’d like to go and how you’d like to pay. We’ll reply within one working day with a route, an itemised price and a payment schedule.

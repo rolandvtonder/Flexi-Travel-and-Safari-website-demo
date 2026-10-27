@@ -8,12 +8,12 @@ import { ArrowRight, Heart, Wallet, Globe, Compass, Pin } from '../components/Ic
 const POINTS = [
   { icon: Heart, t: 'A genuine African story', b: 'African-founded, with roots in Hwange, Zimbabwe, and a lifelong connection to Africa’s wildlife. A personal passion, not simply a business selling safari packages.' },
   { icon: Wallet, t: 'Europe made more achievable', b: 'For travellers from South Africa, Botswana and Namibia, European holidays can be paid in monthly instalments over up to twelve months before departure, by EFT or card.' },
-  { icon: Globe, t: 'First-hand experience of both worlds', b: 'Born and raised in Africa, now living in Spain. We understand the appeal of Africa for international visitors — and the practical considerations Southern African travellers face when planning Europe.' },
+  { icon: Globe, t: 'First-hand experience of both worlds', b: 'Born and raised in Africa, now living in Spain. We understand the appeal of Africa for international visitors, and the practical considerations Southern African travellers face when planning Europe.' },
   { icon: Compass, t: 'Flexible adventures, designed around you', b: 'Choose a signature itinerary or tailor the destinations, pace, accommodation and experiences to your interests, dates and budget.' },
 ]
 
 export default function About() {
-  usePageMeta('Our story', 'Flexi Travel & Safari was born in Hwange, Zimbabwe, from a childhood among elephants — and grew into a travel company connecting Africa and Europe, from Madrid and Cape Town.')
+  usePageMeta('Our story', 'Flexi Travel & Safari was born in Hwange, Zimbabwe, from a childhood among elephants, and grew into a travel company connecting Africa and Europe, from Madrid and Cape Town.')
 
   return (
     <>
@@ -23,7 +23,7 @@ export default function About() {
         eyebrow="Our story"
         title={
           <>
-            From Africa to Europe — <em>and back to what matters.</em>
+            From Africa to Europe, <em>and back to what matters.</em>
           </>
         }
         intro="Flexi Travel & Safari was born from a love of travel, a deep connection to Africa and a belief that extraordinary journeys should be easier to experience."
@@ -40,7 +40,7 @@ export default function About() {
           </Reveal>
           <Reveal delay={0.08}>
             <p style={{ margin: '34px 0 0', fontSize: 'clamp(18px, 1.6vw, 21px)', lineHeight: 1.7, color: 'var(--color-mist)' }}>
-              Our founder grew up in Hwange, where wildlife was woven into everyday life. Sometimes elephants would break out of the reserve and wander into her uncles’ fields, grazing on their crops and vegetables. Her uncles would chase them away — while she watched, completely captivated by these magnificent animals.
+              Our founder grew up in Hwange, where wildlife was woven into everyday life. Sometimes elephants would break out of the reserve and wander into her uncles’ fields, grazing on their crops and vegetables. Her uncles would chase them away while she watched, completely captivated by these magnificent animals.
             </p>
           </Reveal>
           <Reveal delay={0.12}>
@@ -55,7 +55,7 @@ export default function About() {
               That childhood connection grew into a lifelong passion for Africa’s wildlife, landscapes and natural heritage. Today, living in Spain, she brings together two worlds she knows personally: the richness and wonder of Africa, and the diversity, culture and adventure of Europe.
             </p>
             <p style={{ margin: '22px 0 0', fontSize: 'clamp(18px, 1.6vw, 21px)', lineHeight: 1.7, color: 'var(--color-mist)' }}>
-              We use that perspective to help travellers discover destinations with more confidence — whether they’re coming from Europe or America for an African safari, or travelling from Southern Africa to explore Europe. Some want a luxurious safari with exceptional wildlife encounters. Others want a practical, exciting European holiday they can plan and pay for well in advance. That’s why flexibility sits at the heart of everything we do.
+              We use that perspective to help travellers discover destinations with more confidence, whether they’re coming from Europe or America for an African safari, or travelling from Southern Africa to explore Europe. Some want a luxurious safari with exceptional wildlife encounters. Others want a practical, exciting European holiday they can plan and pay for well in advance. That’s why flexibility sits at the heart of everything we do.
             </p>
           </Reveal>
         </div>

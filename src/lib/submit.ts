@@ -43,6 +43,6 @@ export async function submitEnquiry(
     if (res.ok && data.success) return { ok: true, via: 'email' }
     return { ok: false, error: data.message || 'We couldn’t send that just now.' }
   } catch {
-    return { ok: false, error: 'You appear to be offline — check your connection, or message us on WhatsApp instead.' }
+    return { ok: false, error: 'You appear to be offline. Check your connection, or message us on WhatsApp instead.' }
   }
 }
