@@ -61,6 +61,12 @@ export const SITE = {
   */
   calendlyUrl: '',
 
+  /*
+    The client's Soro embed (AI SEO articles), shown on /blog. Soro writes
+    the articles; this script draws them into the page.
+  */
+  soroEmbed: 'https://app.trysoro.com/api/embed/efa9c991-bdf2-4607-bd12-4fb7a0d62604',
+
   offices: OFFICES,
 } as const
 

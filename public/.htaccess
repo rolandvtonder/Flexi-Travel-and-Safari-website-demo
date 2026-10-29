@@ -1,0 +1,37 @@
+# Flexi Travel & Safari website (IONOS / Apache)
+
+Options -MultiViews
+RewriteEngine On
+RewriteBase /
+
+# Always use the secure address, without "www", so visitors never see
+# "Not secure" and Google sees one site instead of four.
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://flexitravelandsafari.com%{REQUEST_URI} [L,R=301]
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://flexitravelandsafari.com%{REQUEST_URI} [L,R=301]
+
+# Every page address (e.g. /safari, /tours/viva-espana) loads the site,
+# which then shows the right page.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [L]
+
+# Scripts and styles get a new name on every update, so browsers keep them
+# for a year. Photos are kept for a week; the page itself is always fresh.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(webp|png|jpg|svg)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+  <FilesMatch "index\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType image/webp .webp
+</IfModule>

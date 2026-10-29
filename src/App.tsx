@@ -14,6 +14,7 @@ const Contact = lazy(() => import('./pages/Contact'))
 const PaymentOptions = lazy(() => import('./pages/PaymentOptions'))
 const TravelGuides = lazy(() => import('./pages/TravelGuides'))
 const GuidePage = lazy(() => import('./pages/GuidePage'))
+const Blog = lazy(() => import('./pages/Blog'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
 /*
@@ -26,6 +27,7 @@ const NotFound = lazy(() => import('./pages/NotFound'))
       /payment-options       EFT, card and monthly instalments, with a calculator
       /about                 Our Story — the founder's story
       /travel-guides(/:slug) destination guides; one JSON file per guide
+      /blog                  SEO articles, published by Soro (the client's tool)
       /contact               Contact Us / plan a trip
 */
 
@@ -84,6 +86,7 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/travel-guides" element={<TravelGuides />} />
           <Route path="/travel-guides/:slug" element={<GuidePage />} />
+          <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

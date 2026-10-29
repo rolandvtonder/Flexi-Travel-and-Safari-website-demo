@@ -36,6 +36,7 @@ const COLUMNS = [
       { t: 'Payment options', to: '/payment-options' },
       { t: 'Our story', to: '/about' },
       { t: 'Travel guides', to: '/travel-guides' },
+      { t: 'Blog', to: '/blog' },
       { t: 'Plan a trip', to: '/contact' },
       { t: 'Contact us', to: '/contact#offices' },
     ],
@@ -179,6 +180,12 @@ export default function Footer() {
         >
           <span>© {new Date().getFullYear()} {SITE.name}. All rights reserved.</span>
           <span>Prices are indicative and confirmed on quotation. International flights excluded.</span>
+          <span>
+            Website by{' '}
+            <a href="https://rolandwebdesign.co.za" target="_blank" rel="noopener" style={{ color: 'var(--color-mist)', textDecoration: 'underline', textUnderlineOffset: 3 }}>
+              Roland Web Design
+            </a>
+          </span>
         </div>
       </div>
       <div style={{ height: 16 }} />
