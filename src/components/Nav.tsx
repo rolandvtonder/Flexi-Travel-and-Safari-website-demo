@@ -29,6 +29,7 @@ export const MENU: Item[] = [
   { to: '/payment-options', label: 'Payment Options' },
   { to: '/about', label: 'Our Story' },
   { to: '/travel-guides', label: 'Travel Guides' },
+  { to: '/blog', label: 'Blog' },
   { to: '/contact', label: 'Contact Us' },
 ]
 
