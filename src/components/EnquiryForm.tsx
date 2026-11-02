@@ -5,8 +5,10 @@ import { nearestOffice, whatsappLink } from '../config'
 import { ArrowLeft, ArrowRight, Check, WhatsApp } from './Icons'
 
 /*
-  The lead pre-qualification form — one form, used on the contact page,
-  both journey pages and every tour page.
+  The lead pre-qualification form, in two versions. Given a region (the safari
+  and Europe pages, every tour page) it is that region's form and doesn't ask
+  which journey. Without one (the contact and payment pages) the visitor
+  chooses safari or Europe first.
 
   Three short steps rather than one long page (progressive disclosure): the
   trip, then budget & style, then the person. Each step validates before the
@@ -22,7 +24,7 @@ import { ArrowLeft, ArrowRight, Check, WhatsApp } from './Icons'
   visitor never sees it.
 */
 
-type Journey = '' | Region | 'unsure'
+type Journey = '' | Region
 
 type Values = {
   journey: Journey
@@ -73,7 +75,7 @@ const NOT_SURE = 'Not sure yet'
 const TIMELINES = ['Within the next month', 'In 1–3 months', 'In 3–6 months', 'Just researching for now']
 const STYLES = ['Comfortable', 'Premium', 'Luxury']
 const OCCASIONS = ['A holiday', 'Honeymoon or anniversary', 'Milestone birthday', 'Family trip', 'Friends / girls’ trip', 'Something else']
-const RESIDENCE = ['Spain', 'United Kingdom', 'Ireland', 'Germany', 'Netherlands', 'Portugal', 'France', 'Italy', 'Other Europe', 'United States', 'Canada', 'South Africa', 'Botswana', 'Namibia', 'Zimbabwe', 'Other']
+const RESIDENCE = ['Spain', 'United Kingdom', 'Ireland', 'Germany', 'Netherlands', 'Sweden', 'Switzerland', 'Portugal', 'France', 'Italy', 'Other Europe', 'United States', 'Canada', 'South Africa', 'Botswana', 'Namibia', 'Zimbabwe', 'Other']
 const SOURCES = ['Google', 'Instagram', 'Facebook', 'TikTok', 'A friend or family member', 'Other']
 
 const STEPS = ['Your trip', 'Budget & style', 'About you'] as const
@@ -194,7 +196,7 @@ export default function EnquiryForm({
   const err = (k: Key) => (touched[k] || summary ? errors[k] : undefined)
 
   const europe = v.journey === 'europe'
-  const tours = TOURS.filter((t) => !v.journey || v.journey === 'unsure' || t.region === v.journey)
+  const tours = TOURS.filter((t) => !v.journey || t.region === v.journey)
   const countryOptions = v.journey === 'africa' ? SAFARI_COUNTRIES : v.journey === 'europe' ? EUROPE_COUNTRIES : []
 
   const fail = (found: Errors) => {
@@ -228,7 +230,7 @@ export default function EnquiryForm({
     setState('sending')
 
     const tour = TOURS.find((t) => t.slug === v.tour)
-    const journeyLabel = v.journey === 'africa' ? 'African safari' : v.journey === 'europe' ? 'European adventure' : 'Not sure yet'
+    const journeyLabel = europe ? 'European adventure' : 'African safari'
     const lead = score(v)
     const [y, m] = v.month.split('-')
     const monthLabel = v.month ? new Date(Number(y), Number(m) - 1).toLocaleDateString('en-GB', { month: 'long', year: 'numeric' }) : ''
@@ -302,7 +304,7 @@ export default function EnquiryForm({
       <div>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 12 }}>
           <h3 ref={headRef} tabIndex={-1} className="display" style={{ margin: 0, fontSize: 24, outline: 'none' }}>
-            {STEPS[step]}
+            {step === 0 && defaultRegion ? (europe ? 'Your European adventure' : 'Your safari') : STEPS[step]}
           </h3>
           <span className="label tabular" style={{ color: 'var(--color-dim)' }}>
             Step {step + 1} of {STEPS.length}
@@ -333,20 +335,21 @@ export default function EnquiryForm({
       {/* ================= step 1 — the trip ================= */}
       {step === 0 && (
         <>
-          <Group legend="I’m planning" required error={err('journey')} errId={id('journey-err')} firstId={id('journey')}>
-            <div style={{ display: 'grid', gridTemplateColumns: compact ? '1fr' : 'repeat(auto-fit, minmax(160px, 1fr))', gap: 10 }}>
-              {[
-                { val: 'africa', t: 'An African safari' },
-                { val: 'europe', t: 'A European adventure' },
-                { val: 'unsure', t: 'Not sure yet' },
-              ].map((o, i) => (
-                <label key={o.val} className="choice">
-                  <input type="radio" name={id('journey')} id={i === 0 ? id('journey') : undefined} value={o.val} checked={v.journey === o.val} onChange={() => set('journey', o.val as Journey)} onBlur={() => blur('journey')} aria-describedby={descr('journey')} />
-                  {o.t}
-                </label>
-              ))}
-            </div>
-          </Group>
+          {!defaultRegion && (
+            <Group legend="I’m planning" required error={err('journey')} errId={id('journey-err')} firstId={id('journey')}>
+              <div style={{ display: 'grid', gridTemplateColumns: compact ? '1fr' : 'repeat(auto-fit, minmax(160px, 1fr))', gap: 10 }}>
+                {[
+                  { val: 'africa', t: 'An African safari' },
+                  { val: 'europe', t: 'A European adventure' },
+                ].map((o, i) => (
+                  <label key={o.val} className="choice">
+                    <input type="radio" name={id('journey')} id={i === 0 ? id('journey') : undefined} value={o.val} checked={v.journey === o.val} onChange={() => set('journey', o.val as Journey)} onBlur={() => blur('journey')} aria-describedby={descr('journey')} />
+                    {o.t}
+                  </label>
+                ))}
+              </div>
+            </Group>
+          )}
 
           <Field id={id('tour')} label="A tour that caught your eye" hint="Optional. Or leave it to us and we’ll suggest a route">
             <select id={id('tour')} className="input" value={v.tour} onChange={(e) => set('tour', e.target.value)} aria-describedby={id('tour-hint')}>

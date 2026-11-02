@@ -1,4 +1,5 @@
 import { SITE, whatsappLink, type OfficeKey } from '../config'
+import { AD_SOURCE } from './adSource'
 
 export type SubmitResult = { ok: true; via: 'email' | 'whatsapp' } | { ok: false; error: string }
 
@@ -36,6 +37,7 @@ export async function submitEnquiry(
         from_name: SITE.name,
         replyto: fields.Email,
         ...opts.internal,
+        ...(AD_SOURCE && { 'Came from ad': AD_SOURCE }),
         ...fields,
       }),
     })

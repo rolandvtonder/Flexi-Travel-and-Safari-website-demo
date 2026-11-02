@@ -46,12 +46,12 @@ export const SITE = {
   email: 'bookings@flexitravelandsafari.com',
 
   /*
-    TODO(client): free access key from https://web3forms.com, created with
-    bookings@flexitravelandsafari.com — every enquiry is then emailed there.
-    Until it is set, forms hand the enquiry to the right office's WhatsApp,
+    The client's access key from https://web3forms.com: every enquiry is
+    emailed to the address the key was created with. This key is meant to be
+    public. Without one, forms hand the enquiry to the right office's WhatsApp,
     pre-filled, so no lead is ever lost.
   */
-  web3formsKey: '',
+  web3formsKey: 'b6aa2264-2cce-47ae-a096-814ecb16cdb4',
 
   /*
     TODO(client): the founder's Calendly booking link, e.g.
