@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { Link } from 'react-router'
 import { useReducedMotion } from 'motion/react'
-import { photo, img } from '../data/tours'
+import { img } from '../data/tours'
 import { ArrowRight } from '../components/Icons'
 
 /*
@@ -36,9 +36,9 @@ const SLIDES: Slide[] = [
     key: 'africa',
     tab: 'African Safaris',
     short: 'Safaris',
-    image: photo('hwa-plains'),
-    alt: 'Elephants crossing the plains of Hwange National Park, Zimbabwe',
-    position: '62% 60%',
+    image: img('safari-zebras-light'),
+    alt: 'Zebras grazing on golden grassland as light breaks through the clouds',
+    position: '55% 70%',
     shade: 0.62,
     eyebrow: 'African Safaris · For Europe & America',
     title: (
@@ -54,7 +54,7 @@ const SLIDES: Slide[] = [
     key: 'europe',
     tab: 'European Adventures',
     short: 'Europe',
-    image: img('europe-madrid-granvia'),
+    image: img('europe-madrid-sunset'),
     alt: 'Gran Vía and the Metropolis building in Madrid at sunset',
     position: '60% 55%',
     shade: 0.8,

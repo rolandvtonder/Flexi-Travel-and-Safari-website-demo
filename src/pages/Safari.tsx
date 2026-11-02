@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { Link, useSearchParams } from 'react-router'
 import { PageHero, Reveal, SectionHead, TourCard, Chips, Eyebrow, Faq, usePageMeta } from '../components/ui'
 import EnquiryForm from '../components/EnquiryForm'
-import { SAFARI_COUNTRIES, toursIn, photo } from '../data/tours'
+import { SAFARI_COUNTRIES, toursIn, photo, img } from '../data/tours'
 import { GUIDES } from '../data/guides'
 import { guideImage } from './TravelGuides'
 import { ArrowRight, Check, Info } from '../components/Icons'
@@ -44,7 +44,7 @@ export default function Safari() {
   return (
     <>
       <PageHero
-        image={photo('safari-waterhole-mix')}
+        image={img('safari-acacia-zebras')}
         eyebrow="African Safaris · For Europe & America"
         title={
           <>

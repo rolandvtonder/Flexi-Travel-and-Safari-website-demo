@@ -11,7 +11,7 @@ export default function Europe() {
   return (
     <>
       <PageHero
-        image={img('europe-paris-dawn')}
+        image={img('europe-paris-dusk')}
         position="center 62%"
         titleMax={620}
         eyebrow="European Adventures · For South Africa, Botswana & Namibia"

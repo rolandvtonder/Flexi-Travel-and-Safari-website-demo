@@ -12,7 +12,7 @@ const JOURNEYS = [
     line: 'Africa’s wild side, without the planning stress.',
     body: 'Eight signature safaris across South Africa, Zimbabwe, Kenya and Tanzania, designed for first-timers, couples, families and friends travelling together.',
     meta: '6–10 days · from €4,000 pp',
-    image: photo('hwa-plains'),
+    image: img('safari-elephant-dust'),
     cta: 'Discover our safaris',
   },
   {
@@ -22,7 +22,7 @@ const JOURNEYS = [
     line: 'Your European dream, paid for over time.',
     body: 'Spain, Portugal, France and Italy for travellers from South Africa, Botswana and Namibia, paid monthly by EFT or card over up to twelve months before you fly.',
     meta: '7–8 days · from R36,000 pp',
-    image: img('europe-rome-vatican'),
+    image: img('europe-venice-canal'),
     cta: 'Explore Europe',
   },
 ]
