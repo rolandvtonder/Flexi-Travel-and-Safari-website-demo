@@ -1,4 +1,5 @@
 import { useEffect, useId, useRef, useState, type FormEvent, type ReactNode } from 'react'
+import { Link } from 'react-router'
 import { TOURS, SAFARI_COUNTRIES, EUROPE_COUNTRIES, type Region } from '../data/tours'
 import { submitEnquiry } from '../lib/submit'
 import { nearestOffice, whatsappLink } from '../config'
@@ -546,7 +547,11 @@ export default function EnquiryForm({
             <label className="choice" style={{ alignItems: 'flex-start' }}>
               <input id={id('consent')} type="checkbox" checked={v.consent} onChange={(e) => set('consent', e.target.checked)} onBlur={() => blur('consent')} aria-invalid={!!err('consent')} aria-describedby={descr('consent')} style={{ marginTop: 3 }} />
               <span style={{ fontSize: 14.5 }}>
-                I agree to Flexi Travel &amp; Safari contacting me about this enquiry. <span aria-hidden="true" style={{ color: 'var(--color-gold)' }}>*</span>
+                I agree to Flexi Travel &amp; Safari contacting me about this enquiry, as set out in our{' '}
+                <Link to="/privacy-policy" target="_blank" style={{ textDecoration: 'underline', textUnderlineOffset: 3 }}>
+                  privacy policy
+                </Link>
+                . <span aria-hidden="true" style={{ color: 'var(--color-gold)' }}>*</span>
               </span>
             </label>
             {err('consent') && (

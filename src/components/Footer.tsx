@@ -178,7 +178,20 @@ export default function Footer() {
             padding: '22px 0 26px',
           }}
         >
-          <span>© {new Date().getFullYear()} {SITE.name}. All rights reserved.</span>
+          <span>
+            © {new Date().getFullYear()} {SITE.legal.name} (trading as {SITE.name}) · CIF {SITE.legal.cif} · Travel agency licence {SITE.legal.licence} · {SITE.legal.address}
+          </span>
+          <span style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+            <Link to="/legal-notice" style={{ color: 'var(--color-mist)', textDecoration: 'underline', textUnderlineOffset: 3 }}>
+              Legal notice
+            </Link>
+            <Link to="/privacy-policy" style={{ color: 'var(--color-mist)', textDecoration: 'underline', textUnderlineOffset: 3 }}>
+              Privacy policy
+            </Link>
+            <Link to="/cookie-policy" style={{ color: 'var(--color-mist)', textDecoration: 'underline', textUnderlineOffset: 3 }}>
+              Cookie policy
+            </Link>
+          </span>
           <span>Prices are indicative and confirmed on quotation. International flights excluded.</span>
           <span>
             Website by{' '}

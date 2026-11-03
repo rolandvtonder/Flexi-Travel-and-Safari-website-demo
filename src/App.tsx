@@ -15,6 +15,9 @@ const PaymentOptions = lazy(() => import('./pages/PaymentOptions'))
 const TravelGuides = lazy(() => import('./pages/TravelGuides'))
 const GuidePage = lazy(() => import('./pages/GuidePage'))
 const Blog = lazy(() => import('./pages/Blog'))
+const Privacy = lazy(() => import('./pages/Legal').then((m) => ({ default: m.Privacy })))
+const Cookies = lazy(() => import('./pages/Legal').then((m) => ({ default: m.Cookies })))
+const LegalNotice = lazy(() => import('./pages/Legal').then((m) => ({ default: m.LegalNotice })))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
 /*
@@ -29,6 +32,9 @@ const NotFound = lazy(() => import('./pages/NotFound'))
       /travel-guides(/:slug) destination guides; one JSON file per guide
       /blog                  SEO articles, published by Soro (the client's tool)
       /contact               Contact Us / plan a trip
+      /privacy-policy        privacy policy (the client's wording)
+      /cookie-policy         what the site sets: no cookies of its own
+      /legal-notice          who runs the site (aviso legal)
 */
 
 /** New page → top of the page (or the #anchor), and focus to main for screen readers. */
@@ -88,6 +94,9 @@ export default function App() {
           <Route path="/travel-guides/:slug" element={<GuidePage />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy-policy" element={<Privacy />} />
+          <Route path="/cookie-policy" element={<Cookies />} />
+          <Route path="/legal-notice" element={<LegalNotice />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         </Suspense>

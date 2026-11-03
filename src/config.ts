@@ -46,6 +46,20 @@ export const SITE = {
   email: 'bookings@flexitravelandsafari.com',
 
   /*
+    The company behind the site, confirmed by the client (Nov 2026). Shown in
+    the footer and the legal pages. Privacy requests go to SITE.email.
+  */
+  legal: {
+    name: 'Flexi Travel y Aventuras, S.L.',
+    cif: 'B21768445',
+    address: 'Calle Puerto de Somosierra 11, Majadahonda, Madrid, Spain',
+    /** Travel agency registration with the Comunidad de Madrid. */
+    licence: 'C.I.C.MA 4815',
+    /** Registro Mercantil entry: the registry and its IRUS number. */
+    registry: 'Registro Mercantil de Madrid, IRUS 1000447859175',
+  },
+
+  /*
     The client's access key from https://web3forms.com: every enquiry is
     emailed to the address the key was created with. This key is meant to be
     public. Without one, forms hand the enquiry to the right office's WhatsApp,
